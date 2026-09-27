@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Header } from "@/components/header/Header";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { locales } from "@/i18n/config";
 import { plexMono } from "../fonts";
@@ -21,15 +22,21 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
+  const locale = await getLocale();
+  const dict = await getDictionary();
+
   return (
-    <html lang={await getLocale()} className={plexMono.variable} suppressHydrationWarning>
+    <html lang={locale} className={plexMono.variable} suppressHydrationWarning>
       <head>
         {/* Позначка «JS працює»: без неї анімований текст не ховається. */}
         <script
           dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <Header lang={locale} nav={dict.nav} t={dict.header} />
+        {children}
+      </body>
     </html>
   );
 }

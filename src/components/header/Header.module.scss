@@ -1,0 +1,236 @@
+@use "@/styles/mixins";
+
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 45;
+  height: 64px;
+  padding: 0 12px 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(232 230 227 / 8%);
+  transition:
+    background-color 0.35s,
+    border-color 0.35s;
+
+  @include mixins.up(xl) {
+    height: 80px;
+    padding-inline: var(--gutter);
+  }
+}
+
+.solid {
+  background: rgb(11 11 12 / 82%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom-color: var(--line);
+}
+
+.logo {
+  font-size: 16px;
+  font-weight: 700;
+
+  @include mixins.up(xl) {
+    font-size: 17px;
+  }
+}
+
+.dot {
+  color: var(--accent);
+}
+
+// Десктопне меню
+.nav {
+  display: none;
+
+  @include mixins.up(xl) {
+    display: flex;
+    gap: 32px;
+    font-size: 14px;
+  }
+}
+
+.navLink {
+  position: relative;
+  color: var(--muted);
+  transition: color 0.2s;
+
+  &:hover,
+  &.active {
+    color: var(--text);
+  }
+
+  &.active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -12px;
+    width: 5px;
+    height: 5px;
+    margin-left: -2.5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  @include mixins.up(xl) {
+    gap: 16px;
+  }
+}
+
+// Перемикач мов
+.lang {
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-sm);
+}
+
+.langLink {
+  height: 36px;
+  min-width: 42px;
+  padding-inline: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-2);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+
+  &:hover {
+    color: var(--text);
+  }
+
+  &[aria-current="page"] {
+    background: var(--text);
+    color: var(--on-accent);
+  }
+}
+
+.cta {
+  display: none;
+
+  @include mixins.up(xl) {
+    display: inline-flex;
+  }
+}
+
+// Мобільна кнопка «Написати» — з'являється в другій половині сторінки.
+.ctaShort {
+  display: none;
+
+  &.visible {
+    display: inline-flex;
+  }
+
+  @include mixins.up(xl) {
+    display: none !important;
+  }
+}
+
+.burger {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+
+  span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  @include mixins.up(xl) {
+    display: none;
+  }
+}
+
+.burgerOpen span:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.burgerOpen span:last-child {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+// Лінія прогресу прокрутки
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(var(--progress, 0));
+  transform-origin: left;
+}
+
+// Мобільне меню
+.menu {
+  position: fixed;
+  inset: 64px 0 0;
+  padding: 32px 24px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+  overflow-y: auto;
+  background: var(--bg);
+
+  &[hidden] {
+    display: none;
+  }
+
+  @include mixins.up(xl) {
+    display: none !important;
+  }
+}
+
+.menuOpen {
+  @include mixins.motion-safe {
+    animation: menu-in 0.35s var(--ease-out) both;
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.menuNav {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuLink {
+  padding-block: 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 28px;
+  font-weight: 700;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--accent);
+  }
+}
