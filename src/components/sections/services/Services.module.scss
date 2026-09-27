@@ -1,0 +1,182 @@
+@use "@/styles/mixins";
+
+.section {
+  @include mixins.section;
+}
+
+.inner {
+  @include mixins.inner;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include mixins.up(xl) {
+    gap: 48px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  @include mixins.up(lg) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+  }
+}
+
+.titles {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  @include mixins.up(xl) {
+    gap: 20px;
+  }
+}
+
+.title {
+  font-size: 28px;
+  line-height: 1.15;
+
+  @include mixins.up(md) {
+    font-size: 44px;
+  }
+
+  @include mixins.up(xl) {
+    font-size: 52px;
+    line-height: 1.12;
+  }
+}
+
+.lead {
+  max-width: 360px;
+  font-size: 14px;
+  color: var(--muted);
+
+  @include mixins.up(xl) {
+    font-size: 15px;
+  }
+}
+
+.grid {
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+
+  @include mixins.up(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+.card {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background-color: var(--surface-1);
+  transition:
+    border-color 0.3s,
+    background-color 0.3s;
+
+  &:hover {
+    border-color: var(--accent);
+    background-color: #15161a;
+  }
+
+  @include mixins.up(xl) {
+    padding: 36px;
+    gap: 20px;
+    border-radius: var(--radius-md);
+  }
+}
+
+.num {
+  font-size: 12px;
+  color: var(--accent);
+
+  @include mixins.up(xl) {
+    font-size: 13px;
+  }
+}
+
+.cardTitle {
+  font-size: 18px;
+  line-height: 1.2;
+
+  @include mixins.up(xl) {
+    font-size: 28px;
+    line-height: 1.15;
+  }
+}
+
+.text {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+
+  @include mixins.up(xl) {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
+
+.tags {
+  display: none;
+
+  @include mixins.up(md) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid var(--line);
+
+  @include mixins.up(xl) {
+    padding-top: 20px;
+  }
+}
+
+.from {
+  font-size: 13px;
+  color: var(--muted-2);
+
+  @include mixins.up(xl) {
+    font-size: 14px;
+  }
+}
+
+.amount {
+  font-size: 15px;
+  font-weight: 700;
+
+  @include mixins.up(xl) {
+    font-size: 22px;
+  }
+}
+
+.term {
+  margin-left: 14px;
+  font-size: 12px;
+  color: var(--muted);
+
+  @include mixins.up(xl) {
+    font-size: 13px;
+  }
+}

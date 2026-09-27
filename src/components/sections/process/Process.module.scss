@@ -1,0 +1,264 @@
+@use "@/styles/mixins";
+
+.section {
+  @include mixins.section;
+}
+
+.inner {
+  @include mixins.inner;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @include mixins.up(xl) {
+    gap: 56px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  @include mixins.up(xl) {
+    gap: 20px;
+  }
+}
+
+.title {
+  font-size: 28px;
+  line-height: 1.15;
+
+  @include mixins.up(md) {
+    font-size: 44px;
+  }
+
+  @include mixins.up(xl) {
+    font-size: 52px;
+    line-height: 1.12;
+  }
+}
+
+.scene {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include mixins.up(lg) {
+    gap: 4px;
+  }
+}
+
+.drawing {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.draw {
+  fill: none;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.main {
+  stroke: var(--scene-line);
+}
+
+.sub {
+  stroke: var(--scene-line-2);
+}
+
+.accent {
+  stroke: var(--accent);
+}
+
+.plot {
+  fill: none;
+  stroke: var(--accent);
+  stroke-opacity: 0.75;
+  stroke-dasharray: 4 4;
+  vector-effect: non-scaling-stroke;
+}
+
+.fill,
+.light {
+  fill: var(--accent);
+}
+
+.light {
+  opacity: 0.9;
+}
+
+// Кроки: на мобільному — вертикальна лінія зліва, від 1024px — 4 колонки.
+.steps {
+  margin: 0;
+  padding: 0 0 0 22px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  border-left: 1px solid var(--line-2);
+
+  @include mixins.up(lg) {
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
+    border: 0;
+  }
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @include mixins.up(lg) {
+    padding-top: 28px;
+    gap: 14px;
+    border-top: 1px solid var(--line-2);
+  }
+}
+
+.dot {
+  position: absolute;
+  left: -28px;
+  top: 6px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.3s;
+
+  .step:hover & {
+    transform: scale(1.7);
+  }
+
+  @include mixins.up(lg) {
+    left: 0;
+    top: -6px;
+  }
+}
+
+.kicker {
+  font-size: 12px;
+  color: var(--muted-2);
+
+  @include mixins.up(lg) {
+    font-size: 13px;
+  }
+}
+
+.stepTitle {
+  font-size: 18px;
+  line-height: 1.25;
+  transition: color 0.25s;
+
+  .step:hover & {
+    color: var(--accent);
+  }
+
+  @include mixins.up(lg) {
+    font-size: 22px;
+  }
+}
+
+.text {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+// Анімації: запускаються один раз, коли сцена з'являється (клас .typed).
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes light-on {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.9;
+  }
+}
+
+@keyframes dot-on {
+  0% {
+    background-color: var(--line-3);
+  }
+
+  50% {
+    transform: scale(1.9);
+  }
+
+  100% {
+    background-color: var(--accent);
+  }
+}
+
+@keyframes step-on {
+  from {
+    opacity: 0.3;
+  }
+}
+
+@include mixins.motion-safe {
+  :global(.js) .scene:not(.typed) {
+    .draw {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+    }
+
+    .fade,
+    .light {
+      opacity: 0;
+    }
+
+    .dot {
+      background-color: var(--line-3);
+    }
+
+    .step {
+      opacity: 0.3;
+    }
+  }
+
+  .typed {
+    .draw {
+      stroke-dasharray: 1;
+      animation: draw 1.2s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    .fade {
+      animation: fade-in 0.8s ease var(--fd, 0s) both;
+    }
+
+    .light {
+      animation: light-on 0.35s ease var(--wd, 0s) both;
+    }
+
+    .dot {
+      animation: dot-on 0.7s ease var(--sd, 0s) both;
+    }
+
+    .step {
+      animation: step-on 0.6s ease var(--sd, 0s) both;
+    }
+  }
+}

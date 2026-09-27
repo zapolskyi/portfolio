@@ -1,6 +1,8 @@
 import { Hero } from "@/components/sections/hero/Hero";
+import { Process } from "@/components/sections/process/Process";
 import { Projects } from "@/components/sections/projects/Projects";
 import { Marquee } from "@/components/sections/marquee/Marquee";
+import { Services } from "@/components/sections/services/Services";
 import { Stats } from "@/components/sections/stats/Stats";
 import { TypingHeading } from "@/components/typing-heading/TypingHeading";
 import { Container } from "@/components/ui/Container";
@@ -9,10 +11,8 @@ import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import styles from "./page.module.scss";
 
 // Тимчасовий каркас: секції з якорями й заголовками для шапки та скролбара.
-// Наповнення секцій — фази 3–4.
+// Наповнення секцій — фаза 4.
 const placeholders = [
-  { id: "services", size: "md" },
-  { id: "process", size: "md" },
   { id: "portfolio", size: "xl" },
   { id: "reviews", size: "md" },
   { id: "about", size: "md" },
@@ -21,7 +21,7 @@ const placeholders = [
 ] as const;
 
 export default async function Home() {
-  const { hero, marquee, stats, work, headings } = await getDictionary();
+  const { hero, marquee, stats, work, services, process, headings } = await getDictionary();
   const home = (await getLocale()) === "en" ? "/en" : "/";
 
   return (
@@ -30,13 +30,15 @@ export default async function Home() {
       <Marquee items={marquee} />
       <Stats t={stats} />
       <Projects t={work} heading={headings.work} home={home} />
+      <Services t={services} heading={headings.services} home={home} />
+      <Process t={process} heading={headings.process} />
 
       {placeholders.map(({ id, size }, i) => {
         const heading = headings[id];
         return (
           <section key={id} id={id} className={styles.section}>
             <Container className={styles.stack}>
-              <SectionLabel index={i + 2}>{heading.label}</SectionLabel>
+              <SectionLabel index={i + 4}>{heading.label}</SectionLabel>
               <TypingHeading lines={heading.lines} className={styles[size]} />
             </Container>
           </section>
