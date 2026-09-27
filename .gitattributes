@@ -12,6 +12,3 @@
 *.woff binary
 *.woff2 binary
 *.pdf  binary
-
-# Експорт макета — не показувати в статистиці мов GitHub
-docs/design/*.dc.html linguist-documentation
