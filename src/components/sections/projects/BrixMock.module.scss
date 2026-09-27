@@ -1,0 +1,194 @@
+@use "sass:math";
+
+// 1 одиниця макета = 1px при ширині превью 676px.
+@function u($px) {
+  @return math.div($px, 16) * 1em;
+}
+
+.mock {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(100cqw / 42.25); // 676 / 16
+  background: #f2f0eb;
+  color: #1a1a18;
+}
+
+.topbar {
+  height: u(20);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a18;
+  color: #f2f0eb;
+  font-size: u(8);
+  letter-spacing: 0.12em;
+}
+
+.nav {
+  height: u(44);
+  flex-shrink: 0;
+  padding: 0 u(24);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2ded6;
+  font-size: u(10);
+}
+
+.logo {
+  font-size: u(13);
+  font-weight: 700;
+
+  span {
+    font-size: u(7);
+    color: #a8283a;
+  }
+}
+
+.menu {
+  display: flex;
+  gap: u(16);
+}
+
+.locale {
+  font-size: u(9);
+}
+
+.hero {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) u(260);
+  gap: u(16);
+  align-items: center;
+  padding: u(20) u(24);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: u(12);
+}
+
+.kicker {
+  font-size: u(8);
+  letter-spacing: 0.14em;
+  color: #6b6860;
+}
+
+.title {
+  font-size: u(42);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+
+  span {
+    color: #a8283a;
+  }
+}
+
+.text {
+  max-width: u(300);
+  font-size: u(11);
+  line-height: 1.5;
+  color: #4a4842;
+}
+
+.buttons {
+  display: flex;
+  gap: u(8);
+  font-size: u(11);
+}
+
+.primary,
+.secondary {
+  height: u(30);
+  padding: 0 u(16);
+  display: flex;
+  align-items: center;
+  border-radius: u(6);
+  white-space: nowrap;
+}
+
+.primary {
+  background: #a8283a;
+  color: #fff;
+}
+
+.secondary {
+  border: 1px solid #1a1a18;
+}
+
+.art {
+  position: relative;
+  height: u(270);
+}
+
+.backdrop {
+  position: absolute;
+  inset: u(8) 0 0 u(26);
+  border-radius: u(6);
+  background: #f1d9dc;
+}
+
+.pack {
+  position: absolute;
+  left: u(40);
+  top: u(24);
+  width: u(176);
+  height: u(220);
+  padding: u(16);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: u(6);
+  background: #a62639;
+  color: #f6e9ea;
+  transform: rotate(-4deg);
+  box-shadow: 0 u(24) u(40) rgb(60 10 20 / 35%);
+}
+
+.packTop {
+  display: flex;
+  justify-content: space-between;
+  font-size: u(7);
+  letter-spacing: 0.14em;
+}
+
+.packBrix {
+  align-self: flex-end;
+  width: u(46);
+  height: u(46);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(246 233 234 / 70%);
+  border-radius: 50%;
+  font-size: u(10);
+}
+
+.packName {
+  font-size: u(14);
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.meter {
+  position: absolute;
+  left: 0;
+  bottom: u(16);
+  padding: u(8) u(10);
+  border-radius: u(4);
+  background: #1a1a18;
+  color: #f2f0eb;
+  font-size: u(13);
+
+  div {
+    margin-bottom: u(3);
+    font-size: u(6);
+    letter-spacing: 0.14em;
+    color: #9a9a9f;
+  }
+}

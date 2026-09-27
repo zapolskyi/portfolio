@@ -1,0 +1,513 @@
+@use "@/styles/mixins";
+
+.section {
+  @include mixins.section(96px);
+}
+
+.inner {
+  @include mixins.inner;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include mixins.up(xl) {
+    gap: 56px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include mixins.up(xl) {
+    gap: 28px;
+  }
+}
+
+.labelRow {
+  padding-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+
+  @include mixins.up(xl) {
+    padding-bottom: 20px;
+  }
+}
+
+.hint {
+  display: none;
+  font-size: 13px;
+  color: var(--muted-2);
+
+  @include mixins.up(xl) {
+    display: block;
+  }
+}
+
+.title {
+  font-size: 36px;
+  line-height: 1.05;
+
+  @include mixins.up(md) {
+    font-size: 64px;
+  }
+
+  @include mixins.up(xl) {
+    font-size: 88px;
+    line-height: 1;
+  }
+}
+
+.count {
+  align-self: flex-start;
+  margin-left: 16px;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--accent);
+
+  @media (width < 768px) {
+    display: none;
+  }
+}
+
+// Макет: список 500px + превью
+.showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include mixins.up(xl) {
+    display: grid;
+    grid-template-columns: 500px minmax(0, 1fr);
+    gap: 64px;
+    align-items: start;
+  }
+}
+
+.list {
+  display: none;
+
+  @include mixins.up(xl) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.rows {
+  border-top: 1px solid var(--line);
+}
+
+.row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) 32px;
+  align-items: center;
+  gap: 16px;
+  padding: 30px 8px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: none;
+  color: #6b6b70;
+  text-align: left;
+  transition: padding 0.35s var(--ease-out);
+}
+
+.rowIdx {
+  font-size: 13px;
+  color: var(--muted-2);
+  transition: color 0.3s;
+}
+
+.rowBody {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rowName {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transition: color 0.3s;
+
+  .row:hover & {
+    color: var(--text);
+  }
+}
+
+.rowType {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  transition: color 0.3s;
+}
+
+.rowArrow {
+  font-size: 24px;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-12px);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+
+.rowOn {
+  padding-left: 20px;
+
+  .rowName {
+    color: var(--text);
+  }
+
+  .rowIdx,
+  .rowType {
+    color: var(--accent);
+  }
+
+  .rowArrow {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.progress {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--muted-2);
+}
+
+.bars {
+  display: flex;
+  gap: 6px;
+}
+
+.bar {
+  display: block;
+  width: 28px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--line-2);
+  transition:
+    width 0.35s,
+    background-color 0.35s;
+}
+
+.barOn {
+  width: 56px;
+  background: var(--accent);
+}
+
+.allCode {
+  margin-top: 40px;
+  display: flex;
+  gap: 8px;
+  font-size: 15px;
+  color: var(--text-2);
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+// Перемикач до 1280px
+.segmented {
+  padding: 4px;
+  display: flex;
+  gap: 4px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+
+  button {
+    flex: 1;
+    height: 40px;
+    border: 0;
+    border-radius: 4px;
+    background: none;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+
+    &[aria-pressed="true"] {
+      background: var(--text);
+      color: var(--on-accent);
+    }
+  }
+
+  @include mixins.up(xl) {
+    display: none;
+  }
+}
+
+// Картка превью
+.card {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-1);
+
+  @include mixins.up(xl) {
+    padding: 20px;
+    border-radius: var(--radius-lg);
+  }
+}
+
+.swap {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  @include mixins.up(xl) {
+    gap: 24px;
+  }
+}
+
+.browser {
+  overflow: hidden;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-sm);
+  background: var(--surface-3);
+
+  @include mixins.up(xl) {
+    border-radius: 8px;
+  }
+}
+
+.browserBar {
+  height: 28px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--line-2);
+
+  @include mixins.up(xl) {
+    height: 36px;
+    padding: 0 14px;
+    gap: 16px;
+  }
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+
+  i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--line-3);
+  }
+
+  @include mixins.up(xl) {
+    gap: 8px;
+
+    i {
+      width: 10px;
+      height: 10px;
+    }
+  }
+}
+
+.domain {
+  font-size: 10px;
+  color: var(--muted-2);
+
+  @include mixins.up(xl) {
+    font-size: 12px;
+  }
+}
+
+// Екран превью 676×390 (десктоп) масштабується разом із шириною.
+.screen {
+  position: relative;
+  aspect-ratio: 676 / 390;
+  overflow: hidden;
+  container-type: inline-size;
+
+  > * {
+    transition: transform 0.6s var(--ease-out);
+  }
+
+  .card:hover & > * {
+    transform: scale(1.03);
+  }
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background-color: #15161a;
+}
+
+.placeholderTitle {
+  font-size: clamp(32px, 10cqw, 72px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.placeholderHint {
+  padding-inline: 16px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted-2);
+}
+
+.details {
+  padding: 0 6px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  @include mixins.up(xl) {
+    padding: 0 8px 8px;
+    gap: 18px;
+  }
+}
+
+.cardHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  @include mixins.up(xl) {
+    display: none;
+  }
+}
+
+.cardName {
+  font-size: 24px;
+}
+
+.cardType {
+  font-size: 11px;
+  color: var(--muted-2);
+}
+
+.cardText {
+  font-size: 14px;
+  color: var(--muted);
+
+  @include mixins.up(xl) {
+    font-size: 15px;
+  }
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  @include mixins.up(md) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-block: 1px solid var(--line);
+
+  div {
+    padding: 12px 0;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 2px;
+  }
+
+  dt {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+  }
+
+  dd {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  @include mixins.up(md) {
+    display: flex;
+    gap: 28px;
+    border: 0;
+
+    div {
+      padding: 0;
+    }
+
+    dd {
+      font-size: 22px;
+    }
+  }
+}
+
+.links {
+  display: flex;
+  gap: 8px;
+}
+
+.caseLink {
+  flex-grow: 1;
+  justify-content: center;
+
+  @include mixins.up(md) {
+    flex-grow: 0;
+  }
+}
+
+.caseShort {
+  display: none;
+
+  @include mixins.up(xl) {
+    display: inline;
+  }
+}
+
+.caseLong {
+  @include mixins.up(xl) {
+    display: none;
+  }
+}
+
+.githubLink {
+  display: none;
+
+  @include mixins.up(md) {
+    display: inline-flex;
+  }
+}
+
+@keyframes swap-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+}
+
+@include mixins.motion-safe {
+  .swap {
+    animation: swap-in 0.5s var(--ease-out) both;
+  }
+}

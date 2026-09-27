@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/hero/Hero";
+import { Projects } from "@/components/sections/projects/Projects";
 import { Marquee } from "@/components/sections/marquee/Marquee";
 import { Stats } from "@/components/sections/stats/Stats";
 import { TypingHeading } from "@/components/typing-heading/TypingHeading";
@@ -10,7 +11,6 @@ import styles from "./page.module.scss";
 // Тимчасовий каркас: секції з якорями й заголовками для шапки та скролбара.
 // Наповнення секцій — фази 3–4.
 const placeholders = [
-  { id: "work", size: "xl" },
   { id: "services", size: "md" },
   { id: "process", size: "md" },
   { id: "portfolio", size: "xl" },
@@ -21,7 +21,7 @@ const placeholders = [
 ] as const;
 
 export default async function Home() {
-  const { hero, marquee, stats, headings } = await getDictionary();
+  const { hero, marquee, stats, work, headings } = await getDictionary();
   const home = (await getLocale()) === "en" ? "/en" : "/";
 
   return (
@@ -29,13 +29,14 @@ export default async function Home() {
       <Hero t={hero} home={home} />
       <Marquee items={marquee} />
       <Stats t={stats} />
+      <Projects t={work} heading={headings.work} home={home} />
 
       {placeholders.map(({ id, size }, i) => {
         const heading = headings[id];
         return (
           <section key={id} id={id} className={styles.section}>
             <Container className={styles.stack}>
-              <SectionLabel index={i + 1}>{heading.label}</SectionLabel>
+              <SectionLabel index={i + 2}>{heading.label}</SectionLabel>
               <TypingHeading lines={heading.lines} className={styles[size]} />
             </Container>
           </section>

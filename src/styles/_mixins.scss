@@ -30,3 +30,19 @@ $breakpoints: (
   white-space: nowrap;
   border: 0;
 }
+
+// Оболонка секції: відступи, розділювач зверху; $block — вертикальний відступ на десктопі.
+@mixin section($block: 80px) {
+  padding: 56px var(--gutter);
+  border-top: 1px solid var(--line);
+
+  @include up(xl) {
+    padding-block: $block;
+  }
+}
+
+@mixin inner {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+}
