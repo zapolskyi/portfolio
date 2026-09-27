@@ -1,0 +1,17 @@
+# Єдині закінчення рядків (LF) для всіх текстових файлів
+* text=auto eol=lf
+
+# Бінарні файли — без змін і без diff
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.gif  binary
+*.ico  binary
+*.woff binary
+*.woff2 binary
+*.pdf  binary
+
+# Експорт макета — не показувати в статистиці мов GitHub
+docs/design/*.dc.html linguist-documentation

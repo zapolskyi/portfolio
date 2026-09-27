@@ -1,0 +1,51 @@
+# Залежності
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Next.js
+.next/
+out/
+next-env.d.ts
+
+# Збірка
+build/
+dist/
+*.tsbuildinfo
+
+# Тести й звіти
+coverage/
+.lighthouseci/
+playwright-report/
+test-results/
+
+# Середовище (секрети не комітимо; шаблон — .env.example)
+.env
+.env*.local
+!.env.example
+
+# Vercel
+.vercel
+
+# Логи
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Система й редактори
+.DS_Store
+Thumbs.db
+*.pem
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Локальні налаштування Claude Code
+.claude/settings.local.json
