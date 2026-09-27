@@ -1,0 +1,23 @@
+.chip {
+  height: 44px;
+  padding-inline: 18px;
+  border: 1px solid var(--line-3);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-2);
+  font-size: 14px;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+
+  &:hover {
+    border-color: var(--muted-2);
+  }
+
+  &[aria-pressed="true"] {
+    border-color: var(--text);
+    background: var(--text);
+    color: var(--on-accent);
+  }
+}

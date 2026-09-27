@@ -95,3 +95,31 @@ p {
     scroll-behavior: auto !important;
   }
 }
+
+// Якорі не ховаються під фіксованою шапкою (64px моб., 80px десктоп).
+[id] {
+  scroll-margin-top: 64px;
+
+  @include mixins.up(lg) {
+    scroll-margin-top: 80px;
+  }
+}
+
+// Поява блоків при прокрутці: чистий CSS (scroll-driven animations).
+// Де не підтримується — блок просто видно одразу.
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @include mixins.motion-safe {
+    .reveal {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 18%;
+    }
+  }
+}

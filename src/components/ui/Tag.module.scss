@@ -1,0 +1,21 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.default {
+  border: 1px solid #2f3034;
+}
+
+.concept {
+  border: 1px dashed var(--line-3);
+  color: var(--muted-2);
+}
+
+.feature {
+  background: var(--surface-3);
+}
