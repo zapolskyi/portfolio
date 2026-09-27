@@ -22,7 +22,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
   return (
-    <html lang={await getLocale()} className={plexMono.variable}>
+    <html lang={await getLocale()} className={plexMono.variable} suppressHydrationWarning>
+      <head>
+        {/* Позначка «JS працює»: без неї анімований текст не ховається. */}
+        <script
+          dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   );

@@ -1,0 +1,95 @@
+@use "@/styles/mixins";
+
+// Ширина рядка рахується в ch, тому трекінг має бути 0.
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  letter-spacing: 0;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  width: calc(var(--n) * 1ch + 0.12em);
+  border-right: 0.08em solid transparent;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.cursor {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 0.56em;
+  height: 0.86em;
+  margin-left: 0.06em;
+  background: var(--accent);
+}
+
+// Секційні заголовки: без руху курсор не показуємо.
+.finite .cursor {
+  display: none;
+}
+
+@keyframes type {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes caret {
+  0%,
+  100% {
+    border-right-color: var(--accent);
+  }
+}
+
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@include mixins.motion-safe {
+  // Ховаємо текст до старту, лише якщо JS працює (клас .js ставить layout).
+  :global(.js) .heading:not(.typed) .text {
+    width: 0;
+  }
+
+  .typed .text {
+    animation:
+      type var(--t) steps(var(--n)) var(--dl) both,
+      caret var(--t) linear var(--dl);
+  }
+
+  .cursor {
+    opacity: 0;
+  }
+
+  .finite .cursor {
+    display: inline-block;
+  }
+
+  .loop.typed .cursor {
+    animation: blink 1.06s linear var(--dl) infinite;
+  }
+
+  .finite.typed .cursor {
+    animation: blink 1.06s linear var(--dl) 4 forwards;
+  }
+}
