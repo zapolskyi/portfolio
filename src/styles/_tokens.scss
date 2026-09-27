@@ -1,0 +1,42 @@
+// Дизайн-токени Amber Terminal. Джерело значень — docs/DESIGN.md.
+:root {
+  // Кольори
+  --bg: #0b0b0c;
+  --bg-deep: #09090a;
+  --surface-1: #111214;
+  --surface-2: #131416;
+  --surface-3: #1a1b1e;
+  --line: #232428;
+  --line-2: #2a2b2f;
+  --line-3: #3a3b40;
+  --text: #e8e6e3;
+  --text-2: #cfcdc8;
+  --muted: #9a9a9f;
+  --muted-2: #86868b;
+  --accent: #f5b754;
+  --on-accent: #0b0b0c;
+  --ok: #9be3a0;
+
+  // Лінії сцен
+  --scene-line: rgb(232 230 227 / 36%);
+  --scene-line-2: rgb(232 230 227 / 16%);
+
+  // Типографіка
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  // Радіуси
+  --radius-sm: 6px; // кнопки, чипи, теги, поля
+  --radius-md: 10px; // картки
+  --radius-lg: 12px; // великі блоки
+
+  // Сітка
+  --content-width: 1280px;
+  --gutter: 24px;
+
+  // Рух
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  @media (width >= 1024px) {
+    --gutter: 80px;
+  }
+}
