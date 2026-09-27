@@ -1,0 +1,4 @@
+docs/
+.next/
+out/
+package-lock.json
