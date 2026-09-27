@@ -4,10 +4,8 @@
     "description": "Front-end developer: websites, landing pages and online stores for small businesses. No page builders, Lighthouse 95+."
   },
   "hero": {
+    "greeting": "Hi, I'm Nazar",
     "title": [
-      {
-        "text": "> Hi, I'm Nazar"
-      },
       {
         "text": "Fast websites"
       },
@@ -16,7 +14,33 @@
         "accent": true
       }
     ],
-    "role": "Front-end developer · websites and online stores"
+    "titleMobile": [
+      {
+        "text": "Fast"
+      },
+      {
+        "text": "websites"
+      },
+      {
+        "text": "that sell",
+        "accent": true
+      }
+    ],
+    "role": "Front-end developer · websites & online stores",
+    "lead": "I build websites, landing pages and online stores that load in a second, work great on phones and bring in leads. Clean code, no page builders, and an admin panel where you edit content yourself.",
+    "ctaPrimary": "Let's talk",
+    "ctaSecondary": "See my work",
+    "trust": ["Reply within [24 h]", "Live demo of every project", "Open code on GitHub"],
+    "status": "Taking projects for [MONTH]",
+    "photo": "[Your photo · 4:5 portrait]",
+    "photoHint": "1200 × 1500 · dark background",
+    "badge": "LET'S TALK · LET'S TALK · LET'S TALK · ",
+    "speed": {
+      "title": "Site speed",
+      "sub": "Lighthouse, mobile · torq / price",
+      "lcp": "LCP 2.2 s",
+      "short": "Lighthouse mobile · TORQ"
+    }
   },
   "nav": {
     "label": "Main navigation",
@@ -70,6 +94,17 @@
         {
           "text": "for your business"
         }
+      ],
+      "linesMobile": [
+        {
+          "text": "What I'll build"
+        },
+        {
+          "text": "for your"
+        },
+        {
+          "text": "business"
+        }
       ]
     },
     "process": {
@@ -77,6 +112,18 @@
       "lines": [
         {
           "text": "From brief to launch —"
+        },
+        {
+          "text": "no surprises",
+          "accent": true
+        }
+      ],
+      "linesMobile": [
+        {
+          "text": "From brief"
+        },
+        {
+          "text": "to launch —"
         },
         {
           "text": "no surprises",
@@ -132,5 +179,131 @@
         }
       ]
     }
+  },
+  "marquee": [
+    "WordPress",
+    "WooCommerce",
+    "PHP 8",
+    "SCSS · BEM",
+    "Vanilla JS",
+    "React",
+    "Gutenberg blocks",
+    "LiqPay",
+    "monobank",
+    "Nova Poshta",
+    "Core Web Vitals",
+    "WCAG 2.2"
+  ],
+  "stats": {
+    "label": "Numbers",
+    "items": [
+      {
+        "value": "876",
+        "unit": " ms",
+        "text": "LCP of the Ploshchyna landing on 4G with 4× CPU slowdown"
+      },
+      {
+        "value": "99",
+        "unit": " / 100",
+        "text": "Lighthouse Performance on mobile, TORQ price list"
+      },
+      {
+        "value": "11,210",
+        "unit": "",
+        "text": "Nova Poshta cities in the BRIX checkout autocomplete"
+      },
+      {
+        "value": "0",
+        "unit": "",
+        "text": "page builders. Every theme is written by hand",
+        "accent": true
+      }
+    ]
+  },
+  "work": {
+    "hint": "Hover a project to preview it",
+    "pick": "Choose a project",
+    "allCode": "Code for all projects on GitHub",
+    "case": "Case",
+    "caseLong": "Read the case",
+    "demo": "Demo",
+    "screenshot": "Homepage screenshot",
+    "projects": {
+      "brix": {
+        "type": "WooCommerce · Store",
+        "short": "WooCommerce",
+        "text": "A specialty coffee store with a passport for every lot, the BRIX Club subscription and a B2B channel. LiqPay, Nova Poshta, UA / EN — and the full purchase flow works even without JavaScript."
+      },
+      "torq": {
+        "type": "WordPress · Service site",
+        "short": "WordPress",
+        "text": "A car service site: 4-step online booking on real free slots, a searchable price list of 184 services, a maintenance calculator and leads sent straight to Telegram."
+      },
+      "ploshchyna": {
+        "type": "WordPress · Landing",
+        "short": "WordPress",
+        "text": "A renovation company landing: 13 sections the client edits on their own, a cost calculator and spam-protected lead forms. Responsive layout verified by automated tests at 11 screen widths."
+      }
+    },
+    "weight": "Weight"
+  },
+  "services": {
+    "lead": "Pick a service and it goes straight into the request form. I fix the exact price in writing after the brief.",
+    "from": "from",
+    "choose": "Choose",
+    "items": [
+      {
+        "title": "WooCommerce online store",
+        "text": "A catalog with filters, LiqPay or monobank payments, Nova Poshta delivery, several languages and currencies. You add products yourself.",
+        "tags": ["Checkout for Ukraine", "Subscriptions", "Wholesale prices"],
+        "price": "[$ PRICE]",
+        "term": "[X–Y wks]"
+      },
+      {
+        "title": "Company or service website",
+        "text": "A multi-page site with online booking, a price list, case studies and reviews. Everything is edited from the admin, no code.",
+        "tags": ["Online booking", "Leads to Telegram", "SEO markup"],
+        "price": "[$ PRICE]",
+        "term": "[X–Y wks]"
+      },
+      {
+        "title": "Landing page for ads",
+        "text": "A single page that loads in under a second and turns traffic into leads. UTM tags and spam-protected forms.",
+        "tags": ["LCP < 1 s", "Calculator", "Anti-spam"],
+        "price": "[$ PRICE]",
+        "term": "[X–Y wks]"
+      },
+      {
+        "title": "Speed-up and site fixes",
+        "text": "A Core Web Vitals audit, bug fixes, theme and plugin updates without breakage. A good way to get to know each other before a bigger project.",
+        "tags": ["Speed audit", "Bug fixes", "Support"],
+        "price": "[$ PRICE]",
+        "term": "[X days]"
+      }
+    ]
+  },
+  "process": {
+    "steps": [
+      {
+        "kicker": "01 / Intro",
+        "title": "Brief and estimate",
+        "text": "A short call or chat. I fix the scope, price and timeline in writing."
+      },
+      {
+        "kicker": "02 / Prototype",
+        "title": "Structure and design",
+        "text": "We agree on pages and look before the first line of code. I also work from your Figma layout."
+      },
+      {
+        "kicker": "03 / Build",
+        "title": "Site on a staging domain",
+        "text": "You see progress live, not in reports. We make changes as we go."
+      },
+      {
+        "kicker": "04 / Launch",
+        "title": "Launch and handover",
+        "text": "I move it to hosting, set up email and analytics, and show you how to run the site. [X] days of free edits."
+      }
+    ]
   }
 }
