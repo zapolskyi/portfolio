@@ -16,7 +16,8 @@
 
   @include mixins.up(xl) {
     height: 80px;
-    padding-inline: var(--gutter);
+    // Вирівнюємо по контенту (1280px) на широких екранах.
+    padding-inline: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   }
 }
 
