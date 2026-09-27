@@ -4,7 +4,7 @@ import { cx } from "@/lib/cx";
 import styles from "./Button.module.scss";
 
 type Variant = "primary" | "secondary";
-type Size = "lg" | "md" | "sm";
+type Size = "xl" | "lg" | "md" | "sm";
 
 type Props = Omit<ComponentProps<typeof Link>, "className"> & {
   variant?: Variant;

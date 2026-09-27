@@ -8,6 +8,26 @@
   letter-spacing: 0;
 }
 
+.group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.desktop {
+  display: none;
+
+  @include mixins.up(md) {
+    display: flex;
+  }
+}
+
+.mobile {
+  @include mixins.up(md) {
+    display: none;
+  }
+}
+
 .line {
   display: flex;
   align-items: center;

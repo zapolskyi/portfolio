@@ -134,3 +134,19 @@ p {
     display: none;
   }
 }
+
+// Поява елементів одразу після завантаження (hero): затримка через --delay.
+@include mixins.motion-safe {
+  .enter {
+    animation: fade-up 0.8s var(--ease-out) var(--delay, 0s) both;
+  }
+}
+
+// Штрихування-плейсхолдер (фото, скріншоти до появи реальних зображень).
+.hatch {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgb(232 230 227 / 3.5%) 0 1px,
+    transparent 1px 4px
+  );
+}
