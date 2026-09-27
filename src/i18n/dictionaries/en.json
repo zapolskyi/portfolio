@@ -1,0 +1,11 @@
+{
+  "meta": {
+    "title": "Nazar Zapolskyi — fast websites that sell",
+    "description": "Front-end developer: websites, landing pages and online stores for small businesses. No page builders, Lighthouse 95+."
+  },
+  "hero": {
+    "greeting": "> Hi, I'm Nazar",
+    "title": ["Fast websites", "that sell"],
+    "role": "Front-end developer · websites and online stores"
+  }
+}
