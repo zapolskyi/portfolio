@@ -1,0 +1,514 @@
+@use "@/styles/mixins";
+
+// До 1280px — одна колонка (як мобільний макет), від 1280px — дві (десктоп).
+.hero {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  padding: 96px var(--gutter) 48px;
+  background: radial-gradient(ellipse 90% 40% at 85% 5%, #15130e 0%, var(--bg) 70%);
+
+  @include mixins.up(xl) {
+    min-height: 900px;
+    padding: 120px var(--gutter) 64px;
+    background: radial-gradient(ellipse 60% 55% at 64% 22%, #15130e 0%, var(--bg) 72%);
+  }
+}
+
+.inner {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  display: grid;
+  grid-template-areas: "intro" "visual" "body";
+  gap: 22px;
+
+  @include mixins.up(xl) {
+    grid-template-columns: minmax(0, 1fr) 420px;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "intro visual" "body visual";
+    column-gap: 72px;
+    row-gap: 32px;
+  }
+}
+
+// Текст
+.intro {
+  grid-area: intro;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+
+  @include mixins.up(xl) {
+    gap: 32px;
+    align-self: end;
+  }
+}
+
+.greeting {
+  font-size: 13px;
+  color: var(--muted);
+
+  @include mixins.up(md) {
+    font-size: 15px;
+  }
+}
+
+.prompt {
+  margin-right: 1ch;
+  color: var(--accent);
+}
+
+.title {
+  font-size: 36px;
+  line-height: 1.12;
+
+  @include mixins.up(md) {
+    font-size: 56px;
+  }
+
+  @include mixins.up(xl) {
+    font-size: 76px;
+    line-height: 1.1;
+  }
+}
+
+.role {
+  display: none;
+  font-size: 14px;
+  color: var(--muted-2);
+
+  @include mixins.up(md) {
+    display: block;
+  }
+
+  @include mixins.up(xl) {
+    margin-top: -14px;
+  }
+}
+
+.body {
+  grid-area: body;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @include mixins.up(xl) {
+    gap: 32px;
+    align-self: start;
+  }
+}
+
+.lead {
+  max-width: 660px;
+  font-size: 15px;
+  color: var(--text-2);
+
+  @include mixins.up(md) {
+    font-size: 18px;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  > * {
+    justify-content: center;
+  }
+
+  @include mixins.up(md) {
+    flex-direction: row;
+    gap: 12px;
+  }
+}
+
+.secondary {
+  border-color: rgb(232 230 227 / 22%);
+  background: rgb(11 11 12 / 35%);
+  backdrop-filter: blur(6px);
+  font-weight: 500;
+}
+
+.trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+  color: var(--muted-2);
+
+  li + li::before {
+    content: "·";
+    margin-right: 16px;
+  }
+
+  li:nth-child(3) {
+    display: none;
+  }
+
+  @include mixins.up(md) {
+    font-size: 13px;
+    color: var(--muted);
+
+    li:nth-child(3) {
+      display: list-item;
+    }
+  }
+}
+
+// Фото і плашки
+.visual {
+  grid-area: visual;
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  height: 380px;
+  --photo-bottom: 40px;
+
+  @include mixins.up(xl) {
+    max-width: none;
+    height: 600px;
+    align-self: center;
+    --photo-bottom: 56px;
+    --delay: 0.24s;
+  }
+}
+
+.photo {
+  position: absolute;
+  inset: 0 0 var(--photo-bottom) 0;
+  overflow: hidden;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-md);
+  background-color: var(--surface-2);
+  transform: perspective(1000px) rotateY(var(--ry, 0deg)) rotateX(var(--rx, 0deg));
+  transition: transform 0.25s ease-out;
+
+  @include mixins.up(xl) {
+    border-color: rgb(232 230 227 / 12%);
+    border-radius: var(--radius-lg);
+    background-color: rgb(19 20 22 / 55%);
+    backdrop-filter: blur(8px);
+  }
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--muted);
+
+  svg {
+    fill: none;
+    stroke: #5a5b60;
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+.placeholderHint {
+  font-size: 11px;
+  color: var(--muted-2);
+}
+
+.glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--gx, 50%) var(--gy, 50%),
+    rgb(232 230 227 / 12%),
+    transparent 55%
+  );
+}
+
+.status {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-sm);
+  background: rgb(11 11 12 / 80%);
+  backdrop-filter: blur(8px);
+  font-size: 12px;
+  color: var(--text-2);
+
+  @include mixins.up(xl) {
+    left: 20px;
+    top: 20px;
+    gap: 10px;
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}
+
+.pulse {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ok);
+}
+
+// Кругла кнопка з текстом по колу
+.badge {
+  position: absolute;
+  right: -6px;
+  bottom: 6px;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include mixins.up(xl) {
+    right: -40px;
+    top: -36px;
+    bottom: auto;
+    width: 132px;
+    height: 132px;
+  }
+}
+
+.badgeText {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  circle {
+    fill: var(--bg);
+    stroke: var(--line-2);
+  }
+
+  text {
+    fill: var(--text);
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+}
+
+.badgeCore {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 15px;
+  transition: transform 0.35s var(--ease-out);
+
+  .badge:hover & {
+    transform: scale(1.1) rotate(45deg);
+  }
+
+  @include mixins.up(xl) {
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+  }
+}
+
+// Картка «Швидкість сайту» (десктоп) і коротка плашка (до 1280px)
+.speed {
+  display: none;
+
+  @include mixins.up(xl) {
+    position: absolute;
+    left: -56px;
+    bottom: 0;
+    width: 340px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line-2));
+    border-radius: 8px;
+    background: rgb(19 20 22 / 90%);
+    backdrop-filter: blur(10px);
+  }
+}
+
+.speedHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.speedTitle {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.speedLcp {
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--accent);
+}
+
+.speedSub {
+  margin-top: -10px;
+  font-size: 12px;
+  color: var(--muted-2);
+}
+
+.rings {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+  color: var(--accent);
+}
+
+.ringItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.ring {
+  position: relative;
+  width: 56px;
+  height: 56px;
+
+  svg {
+    transform: rotate(-90deg);
+  }
+}
+
+.ringTrack,
+.ringValue {
+  fill: none;
+  stroke-width: 9;
+}
+
+.ringTrack {
+  stroke: var(--line);
+}
+
+.ringValue {
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-dasharray: 301.6;
+  stroke-dashoffset: var(--offset);
+}
+
+.ringNum {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ringLabel {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.speedShort {
+  position: absolute;
+  left: 12px;
+  bottom: 0;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-sm);
+  background: rgb(19 20 22 / 94%);
+
+  @include mixins.up(xl) {
+    display: none;
+  }
+}
+
+.speedShortNum {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.speedShortText {
+  max-width: 120px;
+  font-size: 10px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+// Анімації
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(155 227 160 / 55%);
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgb(155 227 160 / 0%);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgb(155 227 160 / 0%);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ring {
+  from {
+    stroke-dashoffset: 301.6;
+  }
+}
+
+@include mixins.motion-safe {
+  .pulse {
+    animation: pulse 2s infinite;
+  }
+
+  .badgeText {
+    animation: spin 16s linear infinite;
+  }
+
+  .ringValue {
+    animation: ring 1.6s cubic-bezier(0.3, 0.7, 0.2, 1) both;
+  }
+}
+
+// Нахил фото — лише для миші і коли рух дозволено.
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .photo {
+    transform: none;
+  }
+
+  .glare {
+    display: none;
+  }
+}

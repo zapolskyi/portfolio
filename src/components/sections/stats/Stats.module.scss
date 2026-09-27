@@ -1,0 +1,75 @@
+@use "@/styles/mixins";
+
+.stats {
+  padding: 40px var(--gutter);
+
+  @include mixins.up(xl) {
+    padding-block: 64px;
+  }
+}
+
+.grid {
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 16px;
+
+  @include mixins.up(lg) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+  }
+}
+
+.item {
+  padding-left: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-left: 1px solid var(--line-2);
+
+  @include mixins.up(lg) {
+    padding-inline: 32px;
+    gap: 14px;
+    border-left-color: var(--line);
+  }
+}
+
+.value {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  @include mixins.up(lg) {
+    font-size: 52px;
+    letter-spacing: -0.02em;
+  }
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.unit {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--muted);
+
+  @include mixins.up(lg) {
+    font-size: 22px;
+  }
+}
+
+.text {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+
+  @include mixins.up(lg) {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}

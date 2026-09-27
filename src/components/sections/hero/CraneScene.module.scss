@@ -1,0 +1,360 @@
+@use "@/styles/mixins";
+
+.root {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.scene {
+  position: absolute;
+  top: 0;
+}
+
+// Десктоп: полотно 1440×900 по центру, щоб на ширших екранах кран лишався
+// на тому ж місці відносно контенту.
+.desktop {
+  display: none;
+  left: 50%;
+  width: 1440px;
+  height: 900px;
+  margin-left: -720px;
+
+  @include mixins.up(xl) {
+    display: block;
+  }
+}
+
+// До 1280px: мала сцена 390×140 у правому верхньому куті, під шапкою.
+.mobile {
+  right: 0;
+  top: 64px;
+  width: 390px;
+  height: 140px;
+
+  // Місце під кастомний скролбар праворуч.
+  @include mixins.up(lg) {
+    right: 64px;
+  }
+
+  @include mixins.up(xl) {
+    display: none;
+  }
+}
+
+.svg,
+.perspective {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: visible;
+}
+
+.perspective {
+  fill: none;
+  stroke: rgb(232 230 227 / 7%);
+  mask-image: linear-gradient(90deg, transparent 36%, #000 58%, #000 94%, transparent);
+}
+
+.draw {
+  fill: none;
+  stroke-width: 1;
+}
+
+.main {
+  stroke: rgb(232 230 227 / 34%);
+}
+
+.sub {
+  stroke: var(--scene-line-2);
+}
+
+.slot {
+  fill: none;
+  stroke: var(--accent);
+  stroke-opacity: 0.7;
+  stroke-dasharray: 4 4;
+
+  .mobile & {
+    stroke-dasharray: 3 3;
+  }
+}
+
+.beacon {
+  fill: var(--accent);
+}
+
+// Візок з тросом і блоком. Параметри руху — у CSS-змінних з розмітки.
+.trolley {
+  position: absolute;
+  transform: translateX(var(--tx));
+
+  .desktop & {
+    left: 790px;
+    top: 122px;
+    width: 100px;
+    height: 420px;
+  }
+
+  .mobile & {
+    left: 268px;
+    top: 30px;
+    width: 40px;
+    height: 60px;
+  }
+}
+
+.hook {
+  position: absolute;
+  background: rgb(232 230 227 / 50%);
+  border-radius: 2px;
+
+  .desktop & {
+    left: 38px;
+    top: -4px;
+    width: 24px;
+    height: 8px;
+  }
+
+  .mobile & {
+    left: 16px;
+    top: -2px;
+    width: 8px;
+    height: 4px;
+    border-radius: 1px;
+  }
+}
+
+.cable {
+  position: absolute;
+  width: 1px;
+  background: rgb(232 230 227 / 55%);
+  transform: scaleY(var(--ls));
+  transform-origin: top;
+
+  .desktop & {
+    left: 49px;
+    top: 4px;
+    height: 374px;
+  }
+
+  .mobile & {
+    left: 20px;
+    top: 2px;
+    height: 40px;
+  }
+}
+
+.block {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background: var(--accent);
+  box-shadow: 0 0 44px color-mix(in srgb, var(--accent) 45%, transparent);
+  transform: translateY(var(--hy));
+
+  .desktop & {
+    height: 40px;
+    border-radius: 3px;
+    background-image: linear-gradient(
+      90deg,
+      transparent 33%,
+      rgb(11 11 12 / 18%) 33%,
+      rgb(11 11 12 / 18%) calc(33% + 1px),
+      transparent calc(33% + 1px),
+      transparent 66%,
+      rgb(11 11 12 / 18%) 66%,
+      rgb(11 11 12 / 18%) calc(66% + 1px),
+      transparent calc(66% + 1px)
+    );
+  }
+
+  .mobile & {
+    height: 16px;
+    border-radius: 2px;
+    box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+}
+
+.glow {
+  position: absolute;
+  opacity: 0;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--accent) 40%, transparent),
+    transparent 70%
+  );
+
+  .desktop & {
+    left: 740px;
+    top: 510px;
+    width: 200px;
+    height: 70px;
+  }
+
+  .mobile & {
+    left: 248px;
+    top: 78px;
+    width: 80px;
+    height: 30px;
+  }
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.07;
+}
+
+// Анімації
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes trolley {
+  0%,
+  12% {
+    transform: translateX(var(--tx));
+  }
+
+  38%,
+  86% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(var(--tx));
+  }
+}
+
+@keyframes cable {
+  0%,
+  38% {
+    transform: scaleY(var(--ls));
+  }
+
+  60%,
+  66% {
+    transform: scaleY(1);
+  }
+
+  80%,
+  100% {
+    transform: scaleY(var(--ls));
+  }
+}
+
+@keyframes block {
+  0%,
+  38% {
+    transform: translateY(var(--hy));
+    opacity: 1;
+  }
+
+  60%,
+  80% {
+    transform: translateY(var(--ly));
+    opacity: 1;
+  }
+
+  86% {
+    transform: translateY(var(--ly));
+    opacity: 0;
+  }
+
+  87%,
+  95% {
+    transform: translateY(var(--hy));
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(var(--hy));
+    opacity: 1;
+  }
+}
+
+@keyframes glow {
+  0%,
+  57% {
+    opacity: 0;
+  }
+
+  61% {
+    opacity: 1;
+  }
+
+  78%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes beacon {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+$loop: 12s cubic-bezier(0.55, 0, 0.25, 1) 2.6s infinite both;
+
+@include mixins.motion-safe {
+  .draw {
+    stroke-dasharray: 1;
+    animation: draw 1.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  .perspective,
+  .slot {
+    animation: fade-in 1.2s ease both;
+  }
+
+  .slot {
+    animation-delay: 2s;
+
+    .mobile & {
+      animation-delay: 1.6s;
+    }
+  }
+
+  .trolley {
+    animation: trolley $loop;
+  }
+
+  .cable {
+    animation: cable $loop;
+  }
+
+  .block {
+    animation: block $loop;
+  }
+
+  .glow {
+    animation: glow 12s ease 2.6s infinite both;
+  }
+
+  .beacon {
+    animation: beacon 2.4s ease-in-out infinite;
+  }
+}

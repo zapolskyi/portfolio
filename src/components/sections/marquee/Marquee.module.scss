@@ -1,0 +1,55 @@
+@use "@/styles/mixins";
+
+.marquee {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+
+  @include mixins.up(xl) {
+    height: 72px;
+  }
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+
+  span {
+    padding-right: 28px;
+  }
+
+  @include mixins.up(xl) {
+    font-size: 14px;
+
+    span {
+      padding-right: 40px;
+    }
+  }
+}
+
+.sep {
+  color: var(--accent);
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@include mixins.motion-safe {
+  .track {
+    animation: marquee 38s linear infinite;
+  }
+
+  .marquee:hover .track {
+    animation-play-state: paused;
+  }
+}

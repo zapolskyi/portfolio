@@ -1,7 +1,10 @@
+import { Hero } from "@/components/sections/hero/Hero";
+import { Marquee } from "@/components/sections/marquee/Marquee";
+import { Stats } from "@/components/sections/stats/Stats";
 import { TypingHeading } from "@/components/typing-heading/TypingHeading";
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { getDictionary } from "@/i18n/get-dictionary";
+import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import styles from "./page.module.scss";
 
 // Тимчасовий каркас: секції з якорями й заголовками для шапки та скролбара.
@@ -18,16 +21,14 @@ const placeholders = [
 ] as const;
 
 export default async function Home() {
-  const { hero, headings } = await getDictionary();
+  const { hero, marquee, stats, headings } = await getDictionary();
+  const home = (await getLocale()) === "en" ? "/en" : "/";
 
   return (
     <main id="main">
-      <section id="top" className={styles.hero}>
-        <Container>
-          <TypingHeading as="h1" trigger="load" lines={hero.title} className={styles.h1} />
-          <p className={styles.role}>{hero.role}</p>
-        </Container>
-      </section>
+      <Hero t={hero} home={home} />
+      <Marquee items={marquee} />
+      <Stats t={stats} />
 
       {placeholders.map(({ id, size }, i) => {
         const heading = headings[id];

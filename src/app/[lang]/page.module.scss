@@ -1,26 +1,5 @@
 @use "@/styles/mixins";
 
-.hero {
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  padding-block: 120px 80px;
-}
-
-.h1 {
-  font-size: 36px;
-  line-height: 1.1;
-
-  @include mixins.up(lg) {
-    font-size: 76px;
-  }
-}
-
-.role {
-  margin-top: 24px;
-  color: var(--muted);
-}
-
 .section {
   min-height: 100svh;
   padding-block: 80px;
