@@ -4,8 +4,133 @@
     "description": "Front-end developer: websites, landing pages and online stores for small businesses. No page builders, Lighthouse 95+."
   },
   "hero": {
-    "greeting": "> Hi, I'm Nazar",
-    "title": ["Fast websites", "that sell"],
+    "title": [
+      {
+        "text": "> Hi, I'm Nazar"
+      },
+      {
+        "text": "Fast websites"
+      },
+      {
+        "text": "that sell",
+        "accent": true
+      }
+    ],
     "role": "Front-end developer · websites and online stores"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "work": "Work",
+    "portfolio": "Portfolio",
+    "services": "Services",
+    "reviews": "Reviews",
+    "about": "About",
+    "faq": "FAQ"
+  },
+  "header": {
+    "home": "Home",
+    "cta": "Let's talk",
+    "ctaShort": "Contact",
+    "langLabel": "Site language",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "rail": {
+    "label": "Page navigation",
+    "grip": "Scrollbar, {pct}. Drag or use arrow keys",
+    "goTo": "Go to section {name}",
+    "toTop": "Back to top"
+  },
+  "sections": {
+    "top": "Home",
+    "work": "Work",
+    "services": "Services",
+    "process": "Process",
+    "portfolio": "Portfolio",
+    "reviews": "Reviews",
+    "about": "About",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "headings": {
+    "work": {
+      "label": "Latest projects",
+      "lines": [
+        {
+          "text": "Latest projects"
+        }
+      ]
+    },
+    "services": {
+      "label": "Services",
+      "lines": [
+        {
+          "text": "What I'll build"
+        },
+        {
+          "text": "for your business"
+        }
+      ]
+    },
+    "process": {
+      "label": "Process",
+      "lines": [
+        {
+          "text": "From brief to launch —"
+        },
+        {
+          "text": "no surprises",
+          "accent": true
+        }
+      ]
+    },
+    "portfolio": {
+      "label": "Portfolio",
+      "lines": [
+        {
+          "text": "All work"
+        }
+      ]
+    },
+    "reviews": {
+      "label": "Reviews",
+      "lines": [
+        {
+          "text": "What clients"
+        },
+        {
+          "text": "say",
+          "accent": true
+        }
+      ]
+    },
+    "about": {
+      "label": "About",
+      "lines": [
+        {
+          "text": "Hi, I'm Nazar."
+        }
+      ]
+    },
+    "faq": {
+      "label": "FAQ",
+      "lines": [
+        {
+          "text": "Common questions"
+        }
+      ]
+    },
+    "contact": {
+      "label": "Contact",
+      "lines": [
+        {
+          "text": "Got a project?"
+        },
+        {
+          "text": "Let's talk.",
+          "accent": true
+        }
+      ]
+    }
   }
 }
