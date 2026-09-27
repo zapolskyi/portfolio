@@ -123,3 +123,14 @@ p {
     }
   }
 }
+
+// Кастомний скролбар (ScrollRail) замінює нативний лише на десктопі з мишею.
+@media (width >= 1024px) and (hover: hover) and (pointer: fine) {
+  html {
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
+}

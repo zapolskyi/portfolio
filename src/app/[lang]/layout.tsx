@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/header/Header";
+import { ScrollRail } from "@/components/scroll-rail/ScrollRail";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { locales } from "@/i18n/config";
 import { plexMono } from "../fonts";
@@ -36,6 +37,7 @@ export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
       <body>
         <Header lang={locale} nav={dict.nav} t={dict.header} />
         {children}
+        <ScrollRail t={dict.rail} sectionNames={dict.sections} />
       </body>
     </html>
   );

@@ -1,0 +1,238 @@
+@use "@/styles/mixins";
+
+// Лише десктоп з мишею: на тач-пристроях лишається нативна прокрутка.
+.root {
+  display: none;
+
+  @media (width >= 1024px) and (hover: hover) and (pointer: fine) {
+    display: block;
+  }
+}
+
+.rail {
+  position: fixed;
+  right: 14px;
+  top: 104px;
+  bottom: 28px;
+  width: 44px;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.track,
+.fill {
+  position: absolute;
+  left: 21px;
+  top: 0;
+  width: 2px;
+  border-radius: 2px;
+}
+
+.track {
+  bottom: 0;
+  background: rgb(232 230 227 / 7%);
+}
+
+.fill {
+  background: color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+// Точки секцій
+.marker {
+  position: absolute;
+  left: 0;
+  z-index: 2;
+  width: 44px;
+  height: 24px;
+  margin-top: -12px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: none;
+  pointer-events: auto;
+}
+
+.markerDot {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line-3);
+  transition:
+    transform 0.25s,
+    background-color 0.25s;
+
+  .marker:hover & {
+    transform: scale(1.6);
+    background: var(--text);
+  }
+
+  .markerPast & {
+    background: var(--muted-2);
+  }
+
+  .markerOn & {
+    transform: scale(1.5);
+    background: var(--accent);
+  }
+}
+
+.markerLabel {
+  position: absolute;
+  right: 52px;
+  top: 50%;
+  height: 26px;
+  margin-top: -13px;
+  padding-inline: 10px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: var(--surface-3);
+  color: var(--text);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateX(6px);
+  pointer-events: none;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+
+  .marker:hover &,
+  .marker:focus-visible & {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Капсула
+.pill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  width: 44px;
+  padding: 6px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: rgb(19 20 22 / 90%);
+  backdrop-filter: blur(10px);
+  pointer-events: auto;
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s;
+
+  &:hover,
+  &.dragging {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 14%, transparent);
+  }
+}
+
+.grip {
+  width: 36px;
+  height: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border-radius: 999px;
+  color: var(--muted-2);
+  font-size: 10px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+
+  i {
+    display: block;
+    width: 12px;
+    height: 1.5px;
+    border-radius: 2px;
+    background: currentColor;
+  }
+
+  &:hover,
+  .dragging & {
+    color: var(--accent);
+  }
+
+  .dragging & {
+    cursor: grabbing;
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: 0;
+  }
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--muted);
+  transition:
+    color 0.2s,
+    background-color 0.2s,
+    transform 0.2s;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--on-accent);
+    background: var(--accent);
+    transform: scale(1.06);
+    outline: none;
+  }
+}
+
+// Кнопка «нагору»
+.toTop {
+  position: fixed;
+  right: 76px;
+  bottom: 28px;
+  z-index: 40;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line-3);
+  border-radius: var(--radius-sm);
+  background: rgb(19 20 22 / 92%);
+  color: var(--text);
+  font-size: 18px;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    transform 0.2s;
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  @include mixins.motion-safe {
+    animation: pop 0.35s var(--ease-out) both;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+}

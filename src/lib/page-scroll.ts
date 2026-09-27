@@ -10,10 +10,11 @@ export type PageScroll = {
   y: number;
   max: number; // scrollHeight − innerHeight
   progress: number; // 0…1
+  vh: number; // висота вікна
   offsets: Array<{ id: SectionId; top: number }>;
 };
 
-const initial: PageScroll = { y: 0, max: 1, progress: 0, offsets: [] };
+const initial: PageScroll = { y: 0, max: 1, progress: 0, vh: 900, offsets: [] };
 let snapshot = initial;
 const listeners = new Set<() => void>();
 let frame = 0;
@@ -28,10 +29,11 @@ function measureOffsets() {
 
 function update(remeasure: boolean) {
   const y = window.scrollY;
-  const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  const vh = window.innerHeight;
+  const max = Math.max(1, document.documentElement.scrollHeight - vh);
   const offsets = remeasure ? measureOffsets() : snapshot.offsets;
   if (!remeasure && y === snapshot.y && max === snapshot.max) return;
-  snapshot = { y, max, progress: Math.min(1, Math.max(0, y / max)), offsets };
+  snapshot = { y, max, vh, progress: Math.min(1, Math.max(0, y / max)), offsets };
   listeners.forEach((l) => l());
 }
 

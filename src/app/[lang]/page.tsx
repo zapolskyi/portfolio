@@ -21,7 +21,7 @@ export default async function Home() {
   const { hero, headings } = await getDictionary();
 
   return (
-    <main>
+    <main id="main">
       <section id="top" className={styles.hero}>
         <Container>
           <TypingHeading as="h1" trigger="load" lines={hero.title} className={styles.h1} />
