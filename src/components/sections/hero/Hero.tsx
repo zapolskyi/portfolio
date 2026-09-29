@@ -46,7 +46,10 @@ export function Hero({ t, home }: Props) {
             className={styles.title}
             lines={t.title}
             linesMobile={t.titleMobile}
-            effect="none"
+            effect="ghost"
+            charTime={0.045}
+            delay={0.35}
+            lineGap={0.06}
           />
           <p className={`${styles.role} enter`} style={delay(0.35)}>
             {t.role}

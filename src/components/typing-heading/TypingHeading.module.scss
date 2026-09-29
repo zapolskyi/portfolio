@@ -85,20 +85,50 @@
   }
 }
 
-// none: текст статичний (без друку й рамки-курсора), блимає лише блоковий курсор.
-.static .text {
+// ghost: справжній текст — блідий силует на своєму місці з першого кадру,
+// над ним — яскравий шар, що друкується (width у ch + steps).
+.ghost .text {
+  position: relative;
   width: auto;
   overflow: visible;
   border-right: 0;
+  color: rgb(232 230 227 / 14%);
+}
+
+.ghost .accent {
+  color: color-mix(in srgb, var(--accent) 24%, transparent);
+}
+
+// Яскравий шар — псевдоелемент: його немає в DOM-тексті (пошук, копіювання, скрінрідери).
+.ghost .text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  width: calc(var(--n) * 1ch + 0.12em);
+  border-right: 0.08em solid transparent;
+  color: var(--text);
+}
+
+.ghost .accent::after {
+  color: var(--accent);
 }
 
 @include mixins.motion-safe {
-  .static.typed .text {
+  .ghost.typed .text {
     animation: none;
   }
 
+  .ghost.typed .text::after {
+    animation:
+      type var(--t) steps(var(--n)) var(--dl) both,
+      caret var(--t) linear var(--dl);
+  }
+
   // Ховаємо текст до старту, лише якщо JS працює (клас .js ставить layout).
-  :global(.js) .heading:not(.typed):not(.static) .text {
+  :global(.js) .heading:not(.typed):not(.ghost) .text {
     width: 0;
   }
 

@@ -18,9 +18,11 @@ type Props = {
   before?: ReactNode;
   after?: ReactNode;
   cursor?: boolean;
-  // type — друк посимвольно; none — текст видно з першого кадру, блимає лише
-  // курсор (для LCP-заголовка hero: будь-яка поява з маски відкладає LCP).
-  effect?: "type" | "none";
+  // type — друк посимвольно з порожнього місця;
+  // ghost — текст одразу видно блідим «силуетом» (як автодоповнення в терміналі),
+  // а поверх друкується яскравий шар. Для LCP-заголовка hero: браузер рахує LCP
+  // за силуетом у першому кадрі, а відвідувач бачить повноцінний друк.
+  effect?: "type" | "ghost";
   charTime?: number; // с на символ
   delay?: number; // с до старту
   lineGap?: number; // пауза між рядками, с
@@ -63,7 +65,7 @@ export function TypingHeading({
 
   const renderLines = (set: TypingLine[]) => {
     const { timed, end: typedEnd } = timeLines(set, timing);
-    const end = effect === "none" ? delay : typedEnd;
+    const end = typedEnd;
     return timed.map((line, i) => {
       const last = i === timed.length - 1;
       return (
@@ -71,6 +73,8 @@ export function TypingHeading({
           {i === 0 && before}
           <span
             className={cx(styles.text, line.accent && styles.accent)}
+            // Для ghost яскравий шар малює ::after із цього атрибута — без дубля тексту в DOM.
+            data-text={effect === "ghost" ? line.text : undefined}
             style={
               {
                 "--n": line.n,
@@ -100,7 +104,7 @@ export function TypingHeading({
       className={cx(
         styles.heading,
         typed && styles.typed,
-        effect === "none" && styles.static,
+        effect === "ghost" && styles.ghost,
         trigger === "load" ? styles.loop : styles.finite,
         className,
       )}
