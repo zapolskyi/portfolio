@@ -117,19 +117,24 @@ export function CityScene({ className }: { className?: string }) {
   return (
     <Scene className={className} threshold={0.3}>
       <svg viewBox="0 -30 1280 200" width="1280" height="200" data-point-shape="city">
-        <path d="M0 168 H1280" pathLength={1} className={cx(s.draw, s.main)} style={draw(0)} />
+        <path
+          d="M0 168 H1280"
+          pathLength={1}
+          className={cx(s.scene__stroke, s["scene__stroke--main"])}
+          style={draw(0)}
+        />
         {buildings.map((b) => (
           <g key={b.x}>
             <path
               d={`M${b.x} 168 V${b.top} H${b.x + b.width} V168`}
               pathLength={1}
-              className={cx(s.draw, s.main)}
+              className={cx(s.scene__stroke, s["scene__stroke--main"])}
               style={draw(b.delay)}
             />
             <path
               d={`M${b.x - 4} ${b.top} H${b.x + b.width + 4}`}
               pathLength={1}
-              className={cx(s.draw, s.main)}
+              className={cx(s.scene__stroke, s["scene__stroke--main"])}
               style={draw(b.delay + 0.3)}
             />
             {b.rows.flatMap((y) =>
@@ -138,7 +143,7 @@ export function CityScene({ className }: { className?: string }) {
                   key={`${x}-${y}`}
                   d={`M${x} ${y} h10 v12 h-10 Z`}
                   pathLength={1}
-                  className={cx(s.draw, s.sub)}
+                  className={cx(s.scene__stroke, s["scene__stroke--sub"])}
                   style={draw(b.delay + 0.5)}
                 />
               )),
@@ -150,14 +155,19 @@ export function CityScene({ className }: { className?: string }) {
                 y={b.rows[r]! + 1}
                 width="8"
                 height="10"
-                className={s.light}
+                className={s.scene__light}
                 style={{ "--wd": `${d}s` } as CSSProperties}
               />
             ))}
           </g>
         ))}
-        <path d="M915 8 V-20" pathLength={1} className={cx(s.draw, s.main)} style={draw(0.9)} />
-        <circle cx="915" cy="-24" r="2.5" className={s.beacon} />
+        <path
+          d="M915 8 V-20"
+          pathLength={1}
+          className={cx(s.scene__stroke, s["scene__stroke--main"])}
+          style={draw(0.9)}
+        />
+        <circle cx="915" cy="-24" r="2.5" className={s.scene__beacon} />
       </svg>
     </Scene>
   );

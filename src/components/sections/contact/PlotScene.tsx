@@ -39,13 +39,18 @@ export function PlotScene({ className }: { className?: string }) {
             <stop offset="1" stopColor="#E8E6E3" stopOpacity="0.15" />
           </linearGradient>
         </defs>
-        <path d="M0 270 H460" pathLength={1} className={s.draw} stroke="url(#plot-horizon)" />
+        <path
+          d="M0 270 H460"
+          pathLength={1}
+          className={s.scene__stroke}
+          stroke="url(#plot-horizon)"
+        />
         <rect
           x="130.5"
           y="120.5"
           width="190"
           height="149"
-          className={cx(s.plot, s.fade)}
+          className={cx(s.scene__plot, s.scene__fade)}
           style={{ "--fd": "0.5s" } as CSSProperties}
         />
         {lines.map(([d, kind, delay], i) => (
@@ -53,26 +58,29 @@ export function PlotScene({ className }: { className?: string }) {
             key={i}
             d={d}
             pathLength={1}
-            className={cx(s.draw, s[kind])}
+            className={cx(s.scene__stroke, s[`scene__stroke--${kind}`])}
             style={{ animationDelay: `${delay}s` }}
           />
         ))}
-        <g className={s.sway} style={{ transformBox: "view-box", transformOrigin: "225px 52px" }}>
+        <g
+          className={s.scene__sway}
+          style={{ transformBox: "view-box", transformOrigin: "225px 52px" }}
+        >
           <rect x="215" y="49" width="20" height="6" rx="1" fill="rgb(232 230 227 / 50%)" />
           <path
             d="M225 55 V100"
             pathLength={1}
-            className={cx(s.draw, s.cable)}
+            className={cx(s.scene__stroke, s["scene__stroke--cable"])}
             style={{ animationDelay: "1.3s" }}
           />
           <path
             d="M225 100 V110 A6 6 0 1 1 213 110"
             pathLength={1}
-            className={cx(s.draw, s.accent)}
+            className={cx(s.scene__stroke, s["scene__stroke--accent"])}
             style={{ animationDelay: "1.5s" }}
           />
         </g>
-        <circle cx="398" cy="10" r="2.5" className={s.beacon} />
+        <circle cx="398" cy="10" r="2.5" className={s.scene__beacon} />
       </svg>
     </Scene>
   );

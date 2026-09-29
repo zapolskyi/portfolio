@@ -14,34 +14,34 @@ type Props = {
 
 export function Services({ t, heading, home }: Props) {
   return (
-    <section id="services" className={styles.section}>
-      <div className={styles.inner}>
-        <header className={cx(styles.header, "reveal")}>
-          <div className={styles.titles}>
+    <section id="services" className={styles.services}>
+      <div className={styles.services__inner}>
+        <header className={cx(styles.services__header, "reveal")}>
+          <div className={styles.services__titles}>
             <SectionLabel index={2}>{heading.label}</SectionLabel>
-            <TypingHeading lines={heading.lines} className={styles.title} />
+            <TypingHeading lines={heading.lines} className={styles.services__title} />
           </div>
-          <p className={styles.lead}>{t.lead}</p>
+          <p className={styles.services__lead}>{t.lead}</p>
         </header>
 
-        <ul className={styles.grid}>
+        <ul className={styles.services__grid}>
           {t.items.map((item, i) => (
-            <li key={item.title} className={cx(styles.card, "reveal")}>
-              <span className={styles.num}>{String(i + 1).padStart(2, "0")}</span>
-              <h3 className={styles.cardTitle}>{item.title}</h3>
-              <p className={styles.text}>{item.text}</p>
-              <div className={styles.tags}>
+            <li key={item.title} className={cx(styles.services__card, "reveal")}>
+              <span className={styles.services__num}>{String(i + 1).padStart(2, "0")}</span>
+              <h3 className={styles["services__card-title"]}>{item.title}</h3>
+              <p className={styles.services__text}>{item.text}</p>
+              <div className={styles.services__tags}>
                 {item.tags.map((tag) => (
                   <Tag key={tag} variant="feature">
                     {tag}
                   </Tag>
                 ))}
               </div>
-              <div className={styles.footer}>
-                <span className={styles.price}>
-                  <span className={styles.from}>{t.from} </span>
-                  <span className={styles.amount}>{item.price}</span>
-                  <span className={styles.term}>{item.term}</span>
+              <div className={styles.services__footer}>
+                <span className={styles.services__price}>
+                  <span className={styles.services__from}>{t.from} </span>
+                  <span className={styles.services__amount}>{item.price}</span>
+                  <span className={styles.services__term}>{item.term}</span>
                 </span>
                 <ChooseService index={i} href={`${home}#contact`} label={t.choose} />
               </div>

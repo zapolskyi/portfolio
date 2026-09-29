@@ -54,30 +54,35 @@ export function ContactForm({ t }: Props) {
 
   const error = (name: Field) =>
     errors[name] && (
-      <span id={`${id}-${name}-error`} className={styles.error}>
+      <span id={`${id}-${name}-error`} className={styles.contact__error}>
         {errors[name]}
       </span>
     );
 
   return (
-    <form className={cx(styles.form, "reveal")} aria-label={t.label} noValidate onSubmit={onSubmit}>
-      <div className={styles.row}>
-        <div className={styles.field}>
+    <form
+      className={cx(styles.contact__form, "reveal")}
+      aria-label={t.label}
+      noValidate
+      onSubmit={onSubmit}
+    >
+      <div className={styles.contact__row}>
+        <div className={styles.contact__field}>
           <label htmlFor={`${id}-name`}>{t.name}</label>
           <input
             {...field("name")}
-            className={styles.input}
+            className={styles.contact__input}
             type="text"
             autoComplete="name"
             placeholder={t.namePh}
           />
           {error("name")}
         </div>
-        <div className={styles.field}>
+        <div className={styles.contact__field}>
           <label htmlFor={`${id}-contact`}>{t.contact}</label>
           <input
             {...field("contact")}
-            className={styles.input}
+            className={styles.contact__input}
             type="text"
             autoComplete="email"
             placeholder={t.contactPh}
@@ -86,9 +91,9 @@ export function ContactForm({ t }: Props) {
         </div>
       </div>
 
-      <fieldset className={styles.fieldset}>
+      <fieldset className={styles.contact__fieldset}>
         <legend>{t.type}</legend>
-        <div className={styles.chips}>
+        <div className={styles.contact__chips}>
           {t.types.map((label, i) => (
             <Chip key={label} selected={type === i} onClick={() => setProjectType(i)}>
               {label}
@@ -98,9 +103,9 @@ export function ContactForm({ t }: Props) {
         <input type="hidden" name="type" value={type === null ? "" : t.types[type]} />
       </fieldset>
 
-      <fieldset className={styles.fieldset}>
+      <fieldset className={styles.contact__fieldset}>
         <legend>{t.budget}</legend>
-        <div className={styles.chips}>
+        <div className={styles.contact__chips}>
           {t.budgets.map((label, i) => (
             <Chip key={label} selected={budget === i} onClick={() => setBudget(i)}>
               {label}
@@ -110,27 +115,27 @@ export function ContactForm({ t }: Props) {
         <input type="hidden" name="budget" value={t.budgets[budget]} />
       </fieldset>
 
-      <div className={styles.field}>
+      <div className={styles.contact__field}>
         <label htmlFor={`${id}-message`}>{t.message}</label>
         <textarea
           {...field("message")}
-          className={cx(styles.input, styles.textarea)}
+          className={cx(styles.contact__input, styles["contact__input--textarea"])}
           rows={4}
           placeholder={t.messagePh}
         />
         {error("message")}
       </div>
 
-      <button type="submit" className={styles.submit}>
+      <button type="submit" className={styles.contact__submit}>
         {t.submit}
-        <span className={styles.submitArrow} aria-hidden="true">
+        <span className={styles["contact__submit-arrow"]} aria-hidden="true">
           →
         </span>
       </button>
-      <p className={styles.status} role="status">
+      <p className={styles.contact__status} role="status">
         {status}
       </p>
-      <span className={styles.note}>{t.note}</span>
+      <span className={styles.contact__note}>{t.note}</span>
     </form>
   );
 }

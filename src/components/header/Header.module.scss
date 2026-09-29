@@ -21,14 +21,14 @@
   }
 }
 
-.solid {
+.header--solid {
   background: rgb(11 11 12 / 82%);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom-color: var(--line);
 }
 
-.logo {
+.header__logo {
   font-size: 16px;
   font-weight: 700;
 
@@ -37,12 +37,12 @@
   }
 }
 
-.dot {
+.header__dot {
   color: var(--accent);
 }
 
 // Десктопне меню
-.nav {
+.header__nav {
   display: none;
 
   @include mixins.up(xl) {
@@ -52,17 +52,17 @@
   }
 }
 
-.navLink {
+.header__nav-link {
   position: relative;
   color: var(--muted);
   transition: color 0.2s;
 
   &:hover,
-  &.active {
+  &.header__nav-link--active {
     color: var(--text);
   }
 
-  &.active::after {
+  &.header__nav-link--active::after {
     content: "";
     position: absolute;
     left: 50%;
@@ -75,7 +75,7 @@
   }
 }
 
-.actions {
+.header__actions {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -86,14 +86,14 @@
 }
 
 // Перемикач мов
-.lang {
+.header__lang {
   display: flex;
   overflow: hidden;
   border: 1px solid var(--line-2);
   border-radius: var(--radius-sm);
 }
 
-.langLink {
+.header__lang-link {
   height: 36px;
   min-width: 42px;
   padding-inline: 10px;
@@ -118,7 +118,7 @@
   }
 }
 
-.cta {
+.header__cta {
   display: none;
 
   @include mixins.up(xl) {
@@ -127,10 +127,10 @@
 }
 
 // Мобільна кнопка «Написати» — з'являється в другій половині сторінки.
-.ctaShort {
+.header__cta-short {
   display: none;
 
-  &.visible {
+  &.header__cta-short--visible {
     display: inline-flex;
   }
 
@@ -139,7 +139,7 @@
   }
 }
 
-.burger {
+.header__burger {
   position: relative;
   width: 48px;
   height: 48px;
@@ -165,16 +165,16 @@
   }
 }
 
-.burgerOpen span:first-child {
+.header__burger--open span:first-child {
   transform: translateY(4px) rotate(45deg);
 }
 
-.burgerOpen span:last-child {
+.header__burger--open span:last-child {
   transform: translateY(-4px) rotate(-45deg);
 }
 
 // Лінія прогресу прокрутки
-.progress {
+.header__progress {
   position: absolute;
   left: 0;
   right: 0;
@@ -186,7 +186,7 @@
 }
 
 // Мобільне меню
-.menu {
+.header__menu {
   position: fixed;
   inset: 64px 0 0;
   padding: 32px 24px 40px;
@@ -206,7 +206,7 @@
   }
 }
 
-.menuOpen {
+.header__menu--open {
   @include mixins.motion-safe {
     animation: menu-in 0.35s var(--ease-out) both;
   }
@@ -219,12 +219,12 @@
   }
 }
 
-.menuNav {
+.header__menu-nav {
   display: flex;
   flex-direction: column;
 }
 
-.menuLink {
+.header__menu-link {
   padding-block: 14px;
   border-bottom: 1px solid var(--line);
   font-size: 28px;

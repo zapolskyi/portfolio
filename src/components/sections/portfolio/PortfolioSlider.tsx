@@ -108,13 +108,13 @@ export function PortfolioSlider({ cards, t, heading, home }: Props) {
 
   return (
     <>
-      <div className={cx(styles.titleRow, "reveal")}>
+      <div className={cx(styles["portfolio__title-row"], "reveal")}>
         <TypingHeading
           lines={heading.lines}
-          className={styles.title}
-          after={<span className={styles.count}>({pad(shown.length)})</span>}
+          className={styles.portfolio__title}
+          after={<span className={styles.portfolio__count}>({pad(shown.length)})</span>}
         />
-        <div role="group" aria-label={t.filterLabel} className={styles.filters}>
+        <div role="group" aria-label={t.filterLabel} className={styles.portfolio__filters}>
           {t.filters.map((label, i) => (
             <Chip key={label} selected={filter === i} onClick={() => pickFilter(i)}>
               {label}
@@ -128,7 +128,7 @@ export function PortfolioSlider({ cards, t, heading, home }: Props) {
         role="region"
         aria-label={t.trackLabel}
         tabIndex={0}
-        className={cx(styles.track, dragging && styles.dragging)}
+        className={cx(styles.portfolio__track, dragging && styles["portfolio__track--dragging"])}
         onScroll={measure}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
@@ -141,69 +141,79 @@ export function PortfolioSlider({ cards, t, heading, home }: Props) {
           const name = card.name ?? t.cards.react.name;
           const index = cards.indexOf(card) + 1;
           return (
-            <article key={card.id} className={cx(styles.card, styles.swap)}>
+            <article
+              key={card.id}
+              className={cx(styles.portfolio__card, styles["portfolio__card--enter"])}
+            >
               <a
                 href={card.href}
                 draggable={false}
-                className={cx(styles.media, card.media === "react" && styles.mediaDashed)}
+                className={cx(
+                  styles.portfolio__media,
+                  card.media === "react" && styles["portfolio__media--dashed"],
+                )}
               >
                 <span className="visually-hidden">{name} — </span>
-                <span className={styles.zoom}>
+                <span className={styles.portfolio__zoom}>
                   <CardMedia card={card} t={t} />
                 </span>
-                <span className={styles.badge}>
+                <span className={styles.portfolio__badge}>
                   {pad(index)} · {copy.tag}
                 </span>
-                <span className={styles.cta} aria-hidden="true">
+                <span className={styles.portfolio__cta} aria-hidden="true">
                   {card.link === "demo" ? t.demo : "GitHub"} ↗
                 </span>
               </a>
-              <div className={styles.cardHead}>
-                <h3 className={styles.cardName}>{name}</h3>
-                <span className={styles.cardStack}>{card.stack}</span>
+              <div className={styles["portfolio__card-head"]}>
+                <h3 className={styles["portfolio__card-name"]}>{name}</h3>
+                <span className={styles["portfolio__card-stack"]}>{card.stack}</span>
               </div>
-              <p className={styles.cardText}>{copy.text}</p>
+              <p className={styles["portfolio__card-text"]}>{copy.text}</p>
             </article>
           );
         })}
 
-        <article className={styles.card}>
-          <a href={`${home}#contact`} draggable={false} className={cx(styles.media, styles.next)}>
-            <span className={styles.nextKicker}>{t.next.kicker}</span>
-            <span className={cx(styles.nextTitle, styles.zoom)}>
+        <article className={styles.portfolio__card}>
+          <a
+            href={`${home}#contact`}
+            draggable={false}
+            className={cx(styles.portfolio__media, styles["portfolio__media--next"])}
+          >
+            <span className={styles["portfolio__next-kicker"]}>{t.next.kicker}</span>
+            <span className={cx(styles["portfolio__next-title"], styles.portfolio__zoom)}>
               {t.next.title.map((line) => (
                 <span key={line}>{line}</span>
               ))}
             </span>
-            <span className={styles.nextCta}>
+            <span className={styles["portfolio__next-cta"]}>
               {t.next.cta}
-              <span className={styles.nextArrow} aria-hidden="true">
+              <span className={styles["portfolio__next-arrow"]} aria-hidden="true">
                 ↗
               </span>
             </span>
           </a>
-          <div className={styles.cardHead}>
-            <h3 className={styles.cardName}>{t.next.name}</h3>
-            <span className={styles.cardStack}>{t.next.year}</span>
+          <div className={styles["portfolio__card-head"]}>
+            <h3 className={styles["portfolio__card-name"]}>{t.next.name}</h3>
+            <span className={styles["portfolio__card-stack"]}>{t.next.year}</span>
           </div>
-          <p className={styles.cardText}>{t.next.text}</p>
+          <p className={styles["portfolio__card-text"]}>{t.next.text}</p>
         </article>
       </div>
 
-      <div className={cx(styles.controls, "reveal")}>
-        <div className={styles.bar} aria-hidden="true">
+      <div className={cx(styles.portfolio__controls, "reveal")}>
+        <div className={styles.portfolio__bar} aria-hidden="true">
           <span
-            className={styles.barFill}
+            className={styles["portfolio__bar-fill"]}
             style={{ left: `${track.progress * (100 - width)}%`, width: `${width}%` }}
           />
         </div>
-        <span className={styles.counter} aria-hidden="true">
+        <span className={styles.portfolio__counter} aria-hidden="true">
           {pad(Math.min(total, track.index + 1))} / {pad(total)}
         </span>
-        <div className={styles.arrows}>
+        <div className={styles.portfolio__arrows}>
           <button
             type="button"
-            className={styles.arrow}
+            className={styles.portfolio__arrow}
             aria-label={t.arrowPrev}
             onClick={() => trackRef.current?.scrollBy({ left: -step() })}
           >
@@ -211,7 +221,7 @@ export function PortfolioSlider({ cards, t, heading, home }: Props) {
           </button>
           <button
             type="button"
-            className={styles.arrow}
+            className={styles.portfolio__arrow}
             aria-label={t.arrowNext}
             onClick={() => trackRef.current?.scrollBy({ left: step() })}
           >
@@ -226,43 +236,49 @@ export function PortfolioSlider({ cards, t, heading, home }: Props) {
 function CardMedia({ card, t }: { card: PortfolioCard; t: Dictionary["portfolio"] }) {
   if (card.media === "brix") {
     return (
-      <span className={styles.brix} aria-hidden="true">
-        <span className={styles.brixCopy}>
-          <span className={styles.brixKicker}>ЛОТ ТИЖНЯ</span>
-          <span className={styles.brixTitle}>
+      <span className={styles.portfolio__brix} aria-hidden="true">
+        <span className={styles["portfolio__brix-copy"]}>
+          <span className={styles["portfolio__brix-kicker"]}>ЛОТ ТИЖНЯ</span>
+          <span className={styles["portfolio__brix-title"]}>
             Зібрано
             <br />
             при <span>22°Bx</span>
           </span>
         </span>
-        <span className={styles.brixBackdrop} />
-        <span className={styles.brixPack}>
-          <span className={styles.brixPackTop}>
+        <span className={styles["portfolio__brix-backdrop"]} />
+        <span className={styles["portfolio__brix-pack"]}>
+          <span className={styles["portfolio__brix-pack-top"]}>
             <span>BRIX 22°</span>
             <span>NATURAL</span>
           </span>
-          <span className={styles.brixPackName}>Ethiopia Guji Hambela</span>
+          <span className={styles["portfolio__brix-pack-name"]}>Ethiopia Guji Hambela</span>
         </span>
       </span>
     );
   }
   if (card.media === "react") {
     return (
-      <span className={`${styles.placeholder} hatch`}>
-        <svg width="64" height="64" viewBox="0 0 24 24" aria-hidden="true" className={styles.atom}>
+      <span className={`${styles.portfolio__placeholder} hatch`}>
+        <svg
+          width="64"
+          height="64"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          className={styles.portfolio__atom}
+        >
           <ellipse cx="12" cy="12" rx="10" ry="4" />
           <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
           <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
           <circle cx="12" cy="12" r="1.5" />
         </svg>
-        <span className={styles.placeholderHint}>{t.cards.react.shot}</span>
+        <span className={styles["portfolio__placeholder-hint"]}>{t.cards.react.shot}</span>
       </span>
     );
   }
   return (
-    <span className={`${styles.placeholder} hatch`}>
-      <span className={styles.placeholderTitle}>{card.placeholderTitle}</span>
-      <span className={styles.placeholderHint}>
+    <span className={`${styles.portfolio__placeholder} hatch`}>
+      <span className={styles["portfolio__placeholder-title"]}>{card.placeholderTitle}</span>
+      <span className={styles["portfolio__placeholder-hint"]}>
         [{t.screenshot} {card.domain}]
       </span>
     </span>

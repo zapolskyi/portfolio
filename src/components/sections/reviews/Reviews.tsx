@@ -8,12 +8,12 @@ type Props = { t: Dictionary["reviews"]; heading: Dictionary["headings"]["review
 
 export function Reviews({ t, heading }: Props) {
   return (
-    <section id="reviews" className={styles.section}>
-      <div className={`${styles.inner} reveal`}>
-        <div className={styles.intro}>
+    <section id="reviews" className={styles.reviews}>
+      <div className={`${styles.reviews__inner} reveal`}>
+        <div className={styles.reviews__intro}>
           <SectionLabel index={5}>{heading.label}</SectionLabel>
-          <TypingHeading lines={heading.lines} className={styles.title} />
-          <p className={styles.lead}>{t.lead}</p>
+          <TypingHeading lines={heading.lines} className={styles.reviews__title} />
+          <p className={styles.reviews__lead}>{t.lead}</p>
         </div>
         <ReviewsCarousel t={t} />
       </div>

@@ -1,10 +1,10 @@
 @use "@/styles/mixins";
 
-.section {
+.services {
   @include mixins.section;
 }
 
-.inner {
+.services__inner {
   @include mixins.inner;
   display: flex;
   flex-direction: column;
@@ -15,7 +15,7 @@
   }
 }
 
-.header {
+.services__header {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -28,7 +28,7 @@
   }
 }
 
-.titles {
+.services__titles {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -38,7 +38,7 @@
   }
 }
 
-.title {
+.services__title {
   font-size: 28px;
   line-height: 1.15;
 
@@ -52,7 +52,7 @@
   }
 }
 
-.lead {
+.services__lead {
   max-width: 360px;
   font-size: 14px;
   color: var(--muted);
@@ -62,7 +62,7 @@
   }
 }
 
-.grid {
+.services__grid {
   padding: 0;
   list-style: none;
   display: grid;
@@ -74,7 +74,7 @@
   }
 }
 
-.card {
+.services__card {
   padding: 22px;
   display: flex;
   flex-direction: column;
@@ -98,7 +98,7 @@
   }
 }
 
-.num {
+.services__num {
   font-size: 12px;
   color: var(--accent);
 
@@ -107,7 +107,7 @@
   }
 }
 
-.cardTitle {
+.services__card-title {
   font-size: 18px;
   line-height: 1.2;
 
@@ -117,7 +117,7 @@
   }
 }
 
-.text {
+.services__text {
   font-size: 14px;
   line-height: 1.55;
   color: var(--muted);
@@ -128,7 +128,7 @@
   }
 }
 
-.tags {
+.services__tags {
   display: none;
 
   @include mixins.up(md) {
@@ -138,7 +138,7 @@
   }
 }
 
-.footer {
+.services__footer {
   margin-top: auto;
   padding-top: 14px;
   display: flex;
@@ -153,7 +153,11 @@
   }
 }
 
-.from {
+.services__price {
+  white-space: nowrap;
+}
+
+.services__from {
   font-size: 13px;
   color: var(--muted-2);
 
@@ -162,7 +166,7 @@
   }
 }
 
-.amount {
+.services__amount {
   font-size: 15px;
   font-weight: 700;
 
@@ -171,7 +175,7 @@
   }
 }
 
-.term {
+.services__term {
   margin-left: 14px;
   font-size: 12px;
   color: var(--muted);

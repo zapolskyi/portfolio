@@ -1,12 +1,12 @@
 @use "@/styles/mixins";
 
-.section {
+.reviews {
   @include mixins.section(96px);
 }
 
 // Мобільна: заголовок → картка → стрілки. Десктоп: ліва колонка 420px зі
 // стрілками внизу, праворуч картка.
-.inner {
+.reviews__inner {
   @include mixins.inner;
   display: grid;
   grid-template-areas: "intro" "card" "nav";
@@ -21,7 +21,7 @@
   }
 }
 
-.intro {
+.reviews__intro {
   grid-area: intro;
   display: flex;
   flex-direction: column;
@@ -32,7 +32,7 @@
   }
 }
 
-.title {
+.reviews__title {
   font-size: 28px;
   line-height: 1.15;
 
@@ -46,7 +46,7 @@
   }
 }
 
-.lead {
+.reviews__lead {
   font-size: 14px;
   color: var(--muted);
 
@@ -55,7 +55,7 @@
   }
 }
 
-.nav {
+.reviews__nav {
   grid-area: nav;
   display: flex;
   align-items: center;
@@ -67,7 +67,7 @@
   }
 }
 
-.arrow {
+.reviews__arrow {
   width: 44px;
   height: 44px;
   display: flex;
@@ -95,13 +95,13 @@
   }
 }
 
-.counter {
+.reviews__counter {
   margin-left: 8px;
   font-size: 13px;
   color: var(--muted-2);
 }
 
-.card {
+.reviews__card {
   grid-area: card;
   position: relative;
   padding: 24px;
@@ -122,7 +122,7 @@
   }
 }
 
-.mark {
+.reviews__mark {
   position: absolute;
   right: 20px;
   top: 0;
@@ -138,7 +138,7 @@
   }
 }
 
-.figure {
+.reviews__figure {
   position: relative;
   margin: 0;
   display: flex;
@@ -150,7 +150,7 @@
   }
 }
 
-.quote {
+.reviews__quote {
   margin: 0;
   font-size: 18px;
   line-height: 1.5;
@@ -162,7 +162,7 @@
   }
 }
 
-.caption {
+.reviews__caption {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -170,13 +170,13 @@
   gap: 16px 20px;
 }
 
-.person {
+.reviews__person {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-.avatar {
+.reviews__avatar {
   width: 48px;
   height: 48px;
   flex-shrink: 0;
@@ -194,23 +194,23 @@
   }
 }
 
-.who {
+.reviews__who {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.name {
+.reviews__name {
   font-size: 15px;
   font-weight: 600;
 }
 
-.role {
+.reviews__role {
   font-size: 14px;
   color: var(--muted-2);
 }
 
-.project {
+.reviews__project {
   padding: 6px 12px;
   border: 1px solid #2f3034;
   border-radius: var(--radius-sm);
@@ -218,20 +218,20 @@
   color: var(--text-2);
 }
 
-.footer {
+.reviews__footer {
   position: relative;
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-.dots {
+.reviews__dots {
   display: flex;
   gap: 6px;
 }
 
 // Кнопка-точка з більшою зоною натискання (24px), видима точка — 8px.
-.dot {
+.reviews__dot {
   position: relative;
   width: 8px;
   height: 8px;
@@ -250,13 +250,13 @@
   }
 }
 
-.dotOn {
+.reviews__dot--active {
   width: 28px;
   border-radius: 8px;
   background: var(--accent);
 }
 
-.progress {
+.reviews__progress {
   flex-grow: 1;
   height: 2px;
   overflow: hidden;
@@ -264,14 +264,14 @@
   background: var(--line);
 }
 
-.progressFill {
+.reviews__progress-fill {
   display: block;
   height: 2px;
   background: var(--accent);
   animation: progress 6.5s linear both;
 }
 
-.paused {
+.reviews__progress-fill--paused {
   animation-play-state: paused;
 }
 
@@ -293,7 +293,7 @@
 }
 
 @include mixins.motion-safe {
-  .figure {
+  .reviews__figure {
     animation: swap-in 0.5s var(--ease-out) both;
   }
 }

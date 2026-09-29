@@ -23,10 +23,18 @@ export function Button({
   ...rest
 }: Props) {
   return (
-    <Link className={cx(styles.button, styles[variant], styles[size], className)} {...rest}>
+    <Link
+      className={cx(
+        styles.button,
+        styles[`button--${variant}`],
+        styles[`button--${size}`],
+        className,
+      )}
+      {...rest}
+    >
       {children}
       {arrow && (
-        <span className={styles.arrow} aria-hidden="true">
+        <span className={styles.button__arrow} aria-hidden="true">
           →
         </span>
       )}

@@ -36,7 +36,7 @@ export function PhotoTilt({ photo, children, className }: Props) {
 
   return (
     <div className={className} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
-      <div ref={card} className={styles.photo}>
+      <div ref={card} className={styles.hero__photo}>
         {photo}
       </div>
       {children}

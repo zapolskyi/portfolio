@@ -16,7 +16,7 @@ export function Scene({ children, className, threshold = 0.4 }: Props) {
   return (
     <div
       ref={ref}
-      className={cx(styles.scene, typed && styles.typed, className)}
+      className={cx(styles.scene, typed && styles["scene--typed"], className)}
       aria-hidden="true"
     >
       {children}

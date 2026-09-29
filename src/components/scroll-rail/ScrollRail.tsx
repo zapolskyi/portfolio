@@ -66,34 +66,41 @@ export function ScrollRail({ t, sectionNames }: Props) {
   };
 
   return (
-    <aside className={styles.root} aria-label={t.label}>
-      <div className={styles.rail}>
-        <span className={styles.track} aria-hidden="true" />
-        <span className={styles.fill} style={{ height: pillTop + PILL_H / 2 }} aria-hidden="true" />
+    <aside className={styles["scroll-rail"]} aria-label={t.label}>
+      <div className={styles["scroll-rail__rail"]}>
+        <span className={styles["scroll-rail__track"]} aria-hidden="true" />
+        <span
+          className={styles["scroll-rail__fill"]}
+          style={{ height: pillTop + PILL_H / 2 }}
+          aria-hidden="true"
+        />
 
         {offsets.map((o, i) => (
           <button
             key={o.id}
             type="button"
             className={cx(
-              styles.marker,
-              i === activeIdx && styles.markerOn,
-              i < activeIdx && styles.markerPast,
+              styles["scroll-rail__marker"],
+              i === activeIdx && styles["scroll-rail__marker--on"],
+              i < activeIdx && styles["scroll-rail__marker--past"],
             )}
             style={{ top: Math.round((o.top / max) * range + PILL_H / 2) }}
             aria-label={t.goTo.replace("{name}", sectionNames[o.id])}
             aria-current={i === activeIdx ? "location" : undefined}
             onClick={() => document.getElementById(o.id)?.scrollIntoView()}
           >
-            <span className={styles.markerDot} />
-            <span className={styles.markerLabel} aria-hidden="true">
+            <span className={styles["scroll-rail__marker-dot"]} />
+            <span className={styles["scroll-rail__marker-label"]} aria-hidden="true">
               {sectionNames[o.id]}
             </span>
           </button>
         ))}
 
         <div
-          className={cx(styles.pill, dragging && styles.dragging)}
+          className={cx(
+            styles["scroll-rail__pill"],
+            dragging && styles["scroll-rail__pill--dragging"],
+          )}
           style={{ transform: `translateY(${pillTop}px)` }}
         >
           <div
@@ -105,23 +112,23 @@ export function ScrollRail({ t, sectionNames }: Props) {
             aria-valuemax={100}
             aria-valuenow={pct}
             aria-label={t.grip.replace("{pct}", `${pct}%`)}
-            className={styles.grip}
+            className={styles["scroll-rail__grip"]}
             onKeyDown={onKeyDown}
             {...gripHandlers}
           >
             <i />
             <i />
           </div>
-          <a className={styles.icon} href={socials.github} aria-label="GitHub">
+          <a className={styles["scroll-rail__icon"]} href={socials.github} aria-label="GitHub">
             <GitHubIcon />
           </a>
-          <a className={styles.icon} href={socials.linkedin} aria-label="LinkedIn">
+          <a className={styles["scroll-rail__icon"]} href={socials.linkedin} aria-label="LinkedIn">
             <LinkedInIcon />
           </a>
-          <a className={styles.icon} href={socials.telegram} aria-label="Telegram">
+          <a className={styles["scroll-rail__icon"]} href={socials.telegram} aria-label="Telegram">
             <TelegramIcon />
           </a>
-          <div className={styles.grip} aria-hidden="true" {...gripHandlers}>
+          <div className={styles["scroll-rail__grip"]} aria-hidden="true" {...gripHandlers}>
             {String(pct).padStart(2, "0")}
           </div>
         </div>
@@ -130,7 +137,7 @@ export function ScrollRail({ t, sectionNames }: Props) {
       {progress > 0.12 && (
         <button
           type="button"
-          className={styles.toTop}
+          className={styles["scroll-rail__to-top"]}
           aria-label={t.toTop}
           onClick={() => window.scrollTo({ top: 0 })}
         >

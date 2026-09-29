@@ -13,7 +13,7 @@ const delay = (s: number) => ({ "--delay": `${s}s` }) as CSSProperties;
 export function Hero({ t, home }: Props) {
   return (
     <section id="top" className={styles.hero}>
-      <svg className={styles.grain} aria-hidden="true">
+      <svg className={styles.hero__grain} aria-hidden="true">
         <filter id="hero-grain">
           <feTurbulence
             type="fractalNoise"
@@ -25,15 +25,15 @@ export function Hero({ t, home }: Props) {
         <rect width="100%" height="100%" filter="url(#hero-grain)" />
       </svg>
 
-      <div className={styles.inner}>
-        <div className={styles.intro}>
+      <div className={styles.hero__inner}>
+        <div className={styles.hero__intro}>
           <TypingHeading
             as="p"
             trigger="load"
             cursor={false}
-            className={styles.greeting}
+            className={styles.hero__greeting}
             before={
-              <span className={styles.prompt} aria-hidden="true">
+              <span className={styles.hero__prompt} aria-hidden="true">
                 &gt;
               </span>
             }
@@ -43,7 +43,7 @@ export function Hero({ t, home }: Props) {
           <TypingHeading
             as="h1"
             trigger="load"
-            className={styles.title}
+            className={styles.hero__title}
             lines={t.title}
             linesMobile={t.titleMobile}
             effect="ghost"
@@ -51,34 +51,39 @@ export function Hero({ t, home }: Props) {
             delay={0.35}
             lineGap={0.06}
           />
-          <p className={`${styles.role} enter`} style={delay(0.35)}>
+          <p className={`${styles.hero__role} enter`} style={delay(0.35)}>
             {t.role}
           </p>
         </div>
 
         <PhotoTilt
-          className={`${styles.visual} enter`}
+          className={`${styles.hero__visual} enter`}
           photo={
             <>
-              <div className={`${styles.placeholder} hatch`}>
+              <div className={`${styles.hero__placeholder} hatch`}>
                 <svg width="56" height="56" viewBox="0 0 24 24" aria-hidden="true">
                   <circle cx="12" cy="8" r="4" />
                   <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />
                 </svg>
                 <span>{t.photo}</span>
-                <span className={styles.placeholderHint}>{t.photoHint}</span>
+                <span className={styles["hero__placeholder-hint"]}>{t.photoHint}</span>
               </div>
-              <span className={styles.glare} aria-hidden="true" />
-              <span className={styles.status}>
-                <span className={styles.pulse} aria-hidden="true" />
+              <span className={styles.hero__glare} aria-hidden="true" />
+              <span className={styles.hero__status}>
+                <span className={styles.hero__pulse} aria-hidden="true" />
                 {t.status}
               </span>
             </>
           }
         >
           {/* Дублює головну кнопку hero — для клавіатури й скрінрідерів прихований. */}
-          <a href={`${home}#contact`} className={styles.badge} aria-hidden="true" tabIndex={-1}>
-            <svg className={styles.badgeText} viewBox="0 0 132 132" aria-hidden="true">
+          <a
+            href={`${home}#contact`}
+            className={styles.hero__badge}
+            aria-hidden="true"
+            tabIndex={-1}
+          >
+            <svg className={styles["hero__badge-text"]} viewBox="0 0 132 132" aria-hidden="true">
               <defs>
                 <path id="badge-circle" d="M66,66 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0" />
               </defs>
@@ -87,16 +92,16 @@ export function Hero({ t, home }: Props) {
                 <textPath href="#badge-circle">{t.badge}</textPath>
               </text>
             </svg>
-            <span className={styles.badgeCore} aria-hidden="true">
+            <span className={styles["hero__badge-core"]} aria-hidden="true">
               ↗
             </span>
           </a>
           <SpeedCard t={t.speed} />
         </PhotoTilt>
 
-        <div className={styles.body}>
-          <p className={styles.lead}>{t.lead}</p>
-          <div className={`${styles.actions} enter`} style={delay(0.55)}>
+        <div className={styles.hero__body}>
+          <p className={styles.hero__lead}>{t.lead}</p>
+          <div className={`${styles.hero__actions} enter`} style={delay(0.55)}>
             <Button href={`${home}#contact`} size="xl" arrow>
               {t.ctaPrimary}
             </Button>
@@ -104,12 +109,12 @@ export function Hero({ t, home }: Props) {
               href={`${home}#work`}
               size="xl"
               variant="secondary"
-              className={styles.secondary}
+              className={styles["hero__cta-secondary"]}
             >
               {t.ctaSecondary}
             </Button>
           </div>
-          <ul className={`${styles.trust} enter`} style={delay(0.65)}>
+          <ul className={`${styles.hero__trust} enter`} style={delay(0.65)}>
             {t.trust.map((item) => (
               <li key={item}>{item}</li>
             ))}

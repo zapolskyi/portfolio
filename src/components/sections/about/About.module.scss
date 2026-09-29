@@ -1,11 +1,11 @@
 @use "@/styles/mixins";
 
-.section {
+.about {
   @include mixins.section;
 }
 
 // Мобільна: текст → стек. Десктоп: стек 520px ліворуч, текст праворуч.
-.inner {
+.about__inner {
   @include mixins.inner;
   display: flex;
   flex-direction: column-reverse;
@@ -19,7 +19,7 @@
   }
 }
 
-.stack {
+.about__stack {
   padding: 22px;
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@
   }
 }
 
-.stackTitle {
+.about__stack-title {
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -43,18 +43,18 @@
   color: var(--muted);
 }
 
-.group {
+.about__group {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.groupName {
+.about__group-name {
   font-size: 12px;
   color: var(--accent);
 }
 
-.chips {
+.about__chips {
   padding: 0;
   list-style: none;
   display: flex;
@@ -62,7 +62,7 @@
   gap: 8px;
 }
 
-.chip {
+.about__chip {
   padding: 7px 12px;
   border: 1px solid var(--line-2);
   border-radius: var(--radius-sm);
@@ -82,7 +82,7 @@
   }
 }
 
-.content {
+.about__content {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -92,7 +92,7 @@
   }
 }
 
-.title {
+.about__title {
   font-size: 28px;
   line-height: 1.15;
 
@@ -106,7 +106,7 @@
   }
 }
 
-.text {
+.about__text {
   max-width: 640px;
   font-size: 15px;
   line-height: 1.65;
@@ -117,13 +117,13 @@
   }
 }
 
-.perks {
+.about__perks {
   padding: 0;
   list-style: none;
   border-top: 1px solid var(--line);
 }
 
-.perk {
+.about__perk {
   padding: 16px 0;
   display: grid;
   grid-template-columns: 32px minmax(0, 1fr);
@@ -137,7 +137,7 @@
   }
 }
 
-.icon {
+.about__icon {
   width: 24px;
   height: 24px;
   fill: none;
@@ -152,7 +152,7 @@
   }
 }
 
-.perkTitle {
+.about__perk-title {
   font-size: 14px;
   font-weight: 600;
 
@@ -161,14 +161,14 @@
   }
 }
 
-.perkText {
+.about__perk-text {
   margin-top: 4px;
   font-size: 14px;
   line-height: 1.55;
   color: var(--muted);
 }
 
-.links {
+.about__links {
   display: flex;
   gap: 10px;
 }

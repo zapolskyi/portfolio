@@ -4,7 +4,7 @@ type Props = { index: number; children: string };
 
 export function SectionLabel({ index, children }: Props) {
   return (
-    <span className={styles.label}>
+    <span className={styles["section-label"]}>
       [ {String(index).padStart(2, "0")} ] {children}
     </span>
   );

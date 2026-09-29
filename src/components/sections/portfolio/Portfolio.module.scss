@@ -8,7 +8,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   @return math.div($px, 16) * 1em;
 }
 
-.section {
+.portfolio {
   padding-block: 56px;
   display: flex;
   flex-direction: column;
@@ -21,13 +21,13 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   }
 }
 
-.labelRow,
-.titleRow,
-.controls {
+.portfolio__label-row,
+.portfolio__title-row,
+.portfolio__controls {
   margin-inline: $inset;
 }
 
-.labelRow {
+.portfolio__label-row {
   padding-bottom: 14px;
   display: flex;
   justify-content: space-between;
@@ -39,7 +39,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   }
 }
 
-.hint {
+.portfolio__hint {
   display: none;
   font-size: 13px;
   color: var(--muted-2);
@@ -51,7 +51,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   }
 }
 
-.titleRow {
+.portfolio__title-row {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -65,7 +65,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   }
 }
 
-.title {
+.portfolio__title {
   font-size: 36px;
   line-height: 1.05;
 
@@ -79,7 +79,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   }
 }
 
-.count {
+.portfolio__count {
   align-self: flex-start;
   margin-left: 12px;
   font-size: 14px;
@@ -92,7 +92,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   }
 }
 
-.filters {
+.portfolio__filters {
   display: flex;
   gap: 8px;
   overflow-x: auto;
@@ -110,7 +110,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
 }
 
 // Доріжка з картками
-.track {
+.portfolio__track {
   display: flex;
   gap: 16px;
   padding: 4px $inset 8px;
@@ -138,7 +138,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   }
 }
 
-.dragging {
+.portfolio__track--dragging {
   cursor: grabbing;
   scroll-snap-type: none;
 
@@ -147,7 +147,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   }
 }
 
-.card {
+.portfolio__card {
   flex: 0 0 min(300px, 78vw);
   scroll-snap-align: start;
   display: flex;
@@ -164,7 +164,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   }
 }
 
-.media {
+.portfolio__media {
   position: relative;
   display: block;
   aspect-ratio: 420 / 470;
@@ -175,28 +175,28 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   background: #15161a;
   transition: border-color 0.3s;
 
-  .card:hover & {
+  .portfolio__card:hover & {
     border-color: var(--accent);
   }
 }
 
-.mediaDashed {
+.portfolio__media--dashed {
   border-style: dashed;
   border-color: var(--line-3);
   background: var(--surface-1);
 }
 
-.zoom {
+.portfolio__zoom {
   position: absolute;
   inset: 0;
   transition: transform 0.8s var(--ease-out);
 
-  .card:hover & {
+  .portfolio__card:hover & {
     transform: scale(1.05);
   }
 }
 
-.badge {
+.portfolio__badge {
   position: absolute;
   left: 16px;
   top: 16px;
@@ -208,7 +208,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
 }
 
 // Кругла кнопка «Демо ↗» при наведенні / фокусі
-.cta {
+.portfolio__cta {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -226,20 +226,20 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   transform: scale(0);
   transition: transform 0.45s var(--ease-out);
 
-  .card:hover &,
-  .media:focus-visible & {
+  .portfolio__card:hover &,
+  .portfolio__media:focus-visible & {
     transform: scale(1);
   }
 }
 
-.cardHead {
+.portfolio__card-head {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 12px;
 }
 
-.cardName {
+.portfolio__card-name {
   font-size: 20px;
 
   @include mixins.up(xl) {
@@ -247,20 +247,20 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   }
 }
 
-.cardStack {
+.portfolio__card-stack {
   flex-shrink: 0;
   font-size: 12px;
   color: var(--muted-2);
 }
 
-.cardText {
+.portfolio__card-text {
   font-size: 14px;
   line-height: 1.55;
   color: var(--muted);
 }
 
 // Заглушки та макет BRIX (розміри в em від ширини картки 420px)
-.placeholder {
+.portfolio__placeholder {
   position: absolute;
   inset: 0;
   display: flex;
@@ -270,26 +270,26 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   gap: 12px;
 }
 
-.placeholderTitle {
+.portfolio__placeholder-title {
   font-size: clamp(36px, 14cqw, 64px);
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
-.placeholderHint {
+.portfolio__placeholder-hint {
   padding-inline: 16px;
   text-align: center;
   font-size: 11px;
   color: var(--muted-2);
 }
 
-.atom {
+.portfolio__atom {
   fill: none;
   stroke: var(--accent);
   stroke-width: 1;
 }
 
-.brix {
+.portfolio__brix {
   position: absolute;
   inset: 0;
   font-size: calc(100cqw / 26.25); // 420 / 16
@@ -297,7 +297,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   color: #1a1a18;
 }
 
-.brixCopy {
+.portfolio__brix-copy {
   position: absolute;
   left: u(28);
   top: u(72);
@@ -306,13 +306,13 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   gap: u(10);
 }
 
-.brixKicker {
+.portfolio__brix-kicker {
   font-size: u(9);
   letter-spacing: 0.14em;
   color: #6b6860;
 }
 
-.brixTitle {
+.portfolio__brix-title {
   font-size: u(40);
   line-height: 1;
   font-weight: 700;
@@ -323,7 +323,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   }
 }
 
-.brixBackdrop {
+.portfolio__brix-backdrop {
   position: absolute;
   left: u(120);
   top: u(210);
@@ -333,7 +333,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   background: #f1d9dc;
 }
 
-.brixPack {
+.portfolio__brix-pack {
   position: absolute;
   left: u(150);
   top: u(190);
@@ -350,21 +350,21 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   box-shadow: 0 u(30) u(50) rgb(60 10 20 / 35%);
 }
 
-.brixPackTop {
+.portfolio__brix-pack-top {
   display: flex;
   justify-content: space-between;
   font-size: u(8);
   letter-spacing: 0.14em;
 }
 
-.brixPackName {
+.portfolio__brix-pack-name {
   font-size: u(15);
   line-height: 1.1;
   font-weight: 700;
 }
 
 // Остання картка-акцент
-.next {
+.portfolio__media--next {
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -378,13 +378,13 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   }
 }
 
-.nextKicker {
+.portfolio__next-kicker {
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.nextTitle {
+.portfolio__next-title {
   position: static;
   display: flex;
   flex-direction: column;
@@ -396,7 +396,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   transform-origin: left center;
 }
 
-.nextCta {
+.portfolio__next-cta {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -404,7 +404,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   font-weight: 600;
 }
 
-.nextArrow {
+.portfolio__next-arrow {
   width: 56px;
   height: 56px;
   display: flex;
@@ -417,7 +417,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
 }
 
 // Прогрес, лічильник і стрілки
-.controls {
+.portfolio__controls {
   margin-top: 16px;
   display: flex;
   align-items: center;
@@ -428,7 +428,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   }
 }
 
-.bar {
+.portfolio__bar {
   position: relative;
   flex-grow: 1;
   height: 2px;
@@ -436,7 +436,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   background: var(--line);
 }
 
-.barFill {
+.portfolio__bar-fill {
   position: absolute;
   top: -1px;
   height: 4px;
@@ -444,19 +444,19 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   background: var(--accent);
 }
 
-.counter {
+.portfolio__counter {
   min-width: 64px;
   text-align: right;
   font-size: 13px;
   color: var(--muted-2);
 }
 
-.arrows {
+.portfolio__arrows {
   display: flex;
   gap: 8px;
 }
 
-.arrow {
+.portfolio__arrow {
   width: 44px;
   height: 44px;
   display: flex;
@@ -492,7 +492,7 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
 }
 
 @include mixins.motion-safe {
-  .swap {
+  .portfolio__card--enter {
     animation: swap-in 0.5s var(--ease-out) both;
   }
 }

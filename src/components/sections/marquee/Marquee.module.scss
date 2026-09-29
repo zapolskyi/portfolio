@@ -12,7 +12,7 @@
   }
 }
 
-.track {
+.marquee__track {
   display: flex;
   width: max-content;
   white-space: nowrap;
@@ -34,7 +34,7 @@
   }
 }
 
-.sep {
+.marquee__sep {
   color: var(--accent);
 }
 
@@ -45,11 +45,11 @@
 }
 
 @include mixins.motion-safe {
-  .track {
+  .marquee__track {
     animation: marquee 38s linear infinite;
   }
 
-  .marquee:hover .track {
+  .marquee:hover .marquee__track {
     animation-play-state: paused;
   }
 }

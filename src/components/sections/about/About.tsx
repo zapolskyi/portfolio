@@ -32,16 +32,16 @@ const icons: Record<string, React.ReactNode> = {
 
 export function About({ t, heading }: Props) {
   return (
-    <section id="about" className={styles.section}>
-      <div className={styles.inner}>
-        <div className={`${styles.stack} reveal`}>
-          <h3 className={styles.stackTitle}>{t.stackTitle}</h3>
+    <section id="about" className={styles.about}>
+      <div className={styles.about__inner}>
+        <div className={`${styles.about__stack} reveal`}>
+          <h3 className={styles["about__stack-title"]}>{t.stackTitle}</h3>
           {t.stack.map(({ group, items }) => (
-            <div key={group} className={styles.group}>
-              <span className={styles.groupName}>{group}</span>
-              <ul className={styles.chips}>
+            <div key={group} className={styles.about__group}>
+              <span className={styles["about__group-name"]}>{group}</span>
+              <ul className={styles.about__chips}>
                 {items.map((item) => (
-                  <li key={item} className={styles.chip}>
+                  <li key={item} className={styles.about__chip}>
                     {item}
                   </li>
                 ))}
@@ -50,24 +50,24 @@ export function About({ t, heading }: Props) {
           ))}
         </div>
 
-        <div className={`${styles.content} reveal`}>
+        <div className={`${styles.about__content} reveal`}>
           <SectionLabel index={6}>{heading.label}</SectionLabel>
-          <TypingHeading lines={heading.lines} className={styles.title} />
-          <p className={styles.text}>{t.text}</p>
-          <ul className={styles.perks}>
+          <TypingHeading lines={heading.lines} className={styles.about__title} />
+          <p className={styles.about__text}>{t.text}</p>
+          <ul className={styles.about__perks}>
             {t.perks.map((perk) => (
-              <li key={perk.title} className={styles.perk}>
-                <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true">
+              <li key={perk.title} className={styles.about__perk}>
+                <svg className={styles.about__icon} viewBox="0 0 24 24" aria-hidden="true">
                   {icons[perk.icon]}
                 </svg>
                 <div>
-                  <div className={styles.perkTitle}>{perk.title}</div>
-                  <div className={styles.perkText}>{perk.text}</div>
+                  <div className={styles["about__perk-title"]}>{perk.title}</div>
+                  <div className={styles["about__perk-text"]}>{perk.text}</div>
                 </div>
               </li>
             ))}
           </ul>
-          <div className={styles.links}>
+          <div className={styles.about__links}>
             <Button href={socials.github} variant="secondary" size="md">
               GitHub <span aria-hidden="true">↗</span>
             </Button>

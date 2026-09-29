@@ -1,10 +1,10 @@
 @use "@/styles/mixins";
 
-.section {
+.faq {
   @include mixins.section;
 }
 
-.inner {
+.faq__inner {
   @include mixins.inner;
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@
   }
 }
 
-.intro {
+.faq__intro {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -27,7 +27,7 @@
   }
 }
 
-.title {
+.faq__title {
   font-size: 28px;
   line-height: 1.15;
 
@@ -41,7 +41,7 @@
   }
 }
 
-.lead {
+.faq__lead {
   font-size: 14px;
   color: var(--muted);
 
@@ -50,15 +50,15 @@
   }
 }
 
-.list {
+.faq__list {
   border-top: 1px solid var(--line-2);
 }
 
-.item {
+.faq__item {
   border-bottom: 1px solid var(--line-2);
 }
 
-.question {
+.faq__question {
   min-height: 72px;
   display: flex;
   justify-content: space-between;
@@ -77,12 +77,12 @@
   }
 }
 
-.q {
+.faq__question-text {
   font-size: 15px;
   font-weight: 500;
   transition: color 0.2s;
 
-  .question:hover & {
+  .faq__question:hover & {
     color: var(--accent);
   }
 
@@ -91,7 +91,7 @@
   }
 }
 
-.icon {
+.faq__icon {
   width: 40px;
   height: 40px;
   flex-shrink: 0;
@@ -106,7 +106,7 @@
     background-color 0.3s,
     color 0.3s;
 
-  .item[open] & {
+  .faq__item[open] & {
     transform: rotate(45deg);
     border-color: var(--accent);
     background: var(--accent);
@@ -114,7 +114,7 @@
   }
 }
 
-.answer {
+.faq__answer {
   padding: 0 0 22px;
   font-size: 14px;
   line-height: 1.6;
@@ -135,7 +135,7 @@
 }
 
 @include mixins.motion-safe {
-  .item[open] .answer {
+  .faq__item[open] .faq__answer {
     animation: swap-in 0.5s var(--ease-out) both;
   }
 }

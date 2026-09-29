@@ -9,18 +9,20 @@ type Props = { t: Dictionary["work"]; heading: Dictionary["headings"]["work"]; h
 
 export function Projects({ t, heading, home }: Props) {
   return (
-    <section id="work" className={styles.section}>
-      <div className={styles.inner}>
-        <header className={`${styles.header} reveal`}>
-          <div className={styles.labelRow}>
+    <section id="work" className={styles.projects}>
+      <div className={styles.projects__inner}>
+        <header className={`${styles.projects__header} reveal`}>
+          <div className={styles["projects__label-row"]}>
             <SectionLabel index={1}>{heading.label}</SectionLabel>
-            <span className={styles.hint}>{t.hint}</span>
+            <span className={styles.projects__hint}>{t.hint}</span>
           </div>
           <TypingHeading
             lines={heading.lines}
-            className={styles.title}
+            className={styles.projects__title}
             after={
-              <span className={styles.count}>({String(projects.length).padStart(2, "0")})</span>
+              <span className={styles.projects__count}>
+                ({String(projects.length).padStart(2, "0")})
+              </span>
             }
           />
         </header>

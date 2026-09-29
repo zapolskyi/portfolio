@@ -1,10 +1,10 @@
 @use "@/styles/mixins";
 
-.section {
+.projects {
   @include mixins.section(96px);
 }
 
-.inner {
+.projects__inner {
   @include mixins.inner;
   display: flex;
   flex-direction: column;
@@ -15,7 +15,7 @@
   }
 }
 
-.header {
+.projects__header {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -25,7 +25,7 @@
   }
 }
 
-.labelRow {
+.projects__label-row {
   padding-bottom: 14px;
   display: flex;
   justify-content: space-between;
@@ -37,7 +37,7 @@
   }
 }
 
-.hint {
+.projects__hint {
   display: none;
   font-size: 13px;
   color: var(--muted-2);
@@ -47,7 +47,7 @@
   }
 }
 
-.title {
+.projects__title {
   font-size: 36px;
   line-height: 1.05;
 
@@ -61,7 +61,7 @@
   }
 }
 
-.count {
+.projects__count {
   align-self: flex-start;
   margin-left: 16px;
   font-size: 18px;
@@ -74,7 +74,7 @@
 }
 
 // Макет: список 500px + превью
-.showcase {
+.projects__showcase {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -87,7 +87,7 @@
   }
 }
 
-.list {
+.projects__list {
   display: none;
 
   @include mixins.up(xl) {
@@ -96,11 +96,11 @@
   }
 }
 
-.rows {
+.projects__rows {
   border-top: 1px solid var(--line);
 }
 
-.row {
+.projects__row {
   width: 100%;
   display: grid;
   grid-template-columns: 52px minmax(0, 1fr) 32px;
@@ -115,31 +115,31 @@
   transition: padding 0.35s var(--ease-out);
 }
 
-.rowIdx {
+.projects__row-idx {
   font-size: 13px;
   color: var(--muted-2);
   transition: color 0.3s;
 }
 
-.rowBody {
+.projects__row-body {
   min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.rowName {
+.projects__row-name {
   font-size: 34px;
   font-weight: 700;
   letter-spacing: -0.02em;
   transition: color 0.3s;
 
-  .row:hover & {
+  .projects__row:hover & {
     color: var(--text);
   }
 }
 
-.rowType {
+.projects__row-type {
   font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -147,7 +147,7 @@
   transition: color 0.3s;
 }
 
-.rowArrow {
+.projects__row-arrow {
   font-size: 24px;
   color: var(--accent);
   opacity: 0;
@@ -157,25 +157,25 @@
     transform 0.3s;
 }
 
-.rowOn {
+.projects__row--active {
   padding-left: 20px;
 
-  .rowName {
+  .projects__row-name {
     color: var(--text);
   }
 
-  .rowIdx,
-  .rowType {
+  .projects__row-idx,
+  .projects__row-type {
     color: var(--accent);
   }
 
-  .rowArrow {
+  .projects__row-arrow {
     opacity: 1;
     transform: none;
   }
 }
 
-.progress {
+.projects__progress {
   margin-top: 32px;
   display: flex;
   align-items: center;
@@ -184,12 +184,12 @@
   color: var(--muted-2);
 }
 
-.bars {
+.projects__bars {
   display: flex;
   gap: 6px;
 }
 
-.bar {
+.projects__bar {
   display: block;
   width: 28px;
   height: 3px;
@@ -200,12 +200,12 @@
     background-color 0.35s;
 }
 
-.barOn {
+.projects__bar--active {
   width: 56px;
   background: var(--accent);
 }
 
-.allCode {
+.projects__all-code {
   margin-top: 40px;
   display: flex;
   gap: 8px;
@@ -219,7 +219,7 @@
 }
 
 // Перемикач до 1280px
-.segmented {
+.projects__segmented {
   padding: 4px;
   display: flex;
   gap: 4px;
@@ -252,7 +252,7 @@
 }
 
 // Картка превью
-.card {
+.projects__card {
   padding: 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
@@ -264,7 +264,7 @@
   }
 }
 
-.swap {
+.projects__swap {
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -274,7 +274,7 @@
   }
 }
 
-.browser {
+.projects__browser {
   overflow: hidden;
   border: 1px solid var(--line-2);
   border-radius: var(--radius-sm);
@@ -285,7 +285,7 @@
   }
 }
 
-.browserBar {
+.projects__browser-bar {
   height: 28px;
   padding: 0 10px;
   display: flex;
@@ -300,7 +300,7 @@
   }
 }
 
-.dots {
+.projects__dots {
   display: flex;
   gap: 6px;
 
@@ -321,7 +321,7 @@
   }
 }
 
-.domain {
+.projects__domain {
   font-size: 10px;
   color: var(--muted-2);
 
@@ -331,7 +331,7 @@
 }
 
 // Екран превью 676×390 (десктоп) масштабується разом із шириною.
-.screen {
+.projects__screen {
   position: relative;
   aspect-ratio: 676 / 390;
   overflow: hidden;
@@ -341,12 +341,12 @@
     transition: transform 0.6s var(--ease-out);
   }
 
-  .card:hover & > * {
+  .projects__card:hover & > * {
     transform: scale(1.03);
   }
 }
 
-.placeholder {
+.projects__placeholder {
   position: absolute;
   inset: 0;
   display: flex;
@@ -357,20 +357,20 @@
   background-color: #15161a;
 }
 
-.placeholderTitle {
+.projects__placeholder-title {
   font-size: clamp(32px, 10cqw, 72px);
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
-.placeholderHint {
+.projects__placeholder-hint {
   padding-inline: 16px;
   text-align: center;
   font-size: 12px;
   color: var(--muted-2);
 }
 
-.details {
+.projects__details {
   padding: 0 6px 6px;
   display: flex;
   flex-direction: column;
@@ -382,7 +382,7 @@
   }
 }
 
-.cardHead {
+.projects__card-head {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -392,16 +392,16 @@
   }
 }
 
-.cardName {
+.projects__card-name {
   font-size: 24px;
 }
 
-.cardType {
+.projects__card-type {
   font-size: 11px;
   color: var(--muted-2);
 }
 
-.cardText {
+.projects__card-text {
   font-size: 14px;
   color: var(--muted);
 
@@ -410,7 +410,7 @@
   }
 }
 
-.meta {
+.projects__meta {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -423,7 +423,7 @@
   }
 }
 
-.metrics {
+.projects__metrics {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   border-block: 1px solid var(--line);
@@ -463,12 +463,12 @@
   }
 }
 
-.links {
+.projects__links {
   display: flex;
   gap: 8px;
 }
 
-.caseLink {
+.projects__case-link {
   flex-grow: 1;
   justify-content: center;
 
@@ -477,7 +477,7 @@
   }
 }
 
-.caseShort {
+.projects__case-short {
   display: none;
 
   @include mixins.up(xl) {
@@ -485,13 +485,13 @@
   }
 }
 
-.caseLong {
+.projects__case-long {
   @include mixins.up(xl) {
     display: none;
   }
 }
 
-.githubLink {
+.projects__github-link {
   display: none;
 
   @include mixins.up(md) {
@@ -507,7 +507,7 @@
 }
 
 @include mixins.motion-safe {
-  .swap {
+  .projects__swap {
     animation: swap-in 0.5s var(--ease-out) both;
   }
 }

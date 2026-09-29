@@ -13,7 +13,7 @@
   }
 }
 
-.grain {
+.hero__grain {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -22,7 +22,7 @@
   pointer-events: none;
 }
 
-.inner {
+.hero__inner {
   position: relative;
   flex: 1;
   width: 100%;
@@ -42,7 +42,7 @@
 }
 
 // Текст
-.intro {
+.hero__intro {
   grid-area: intro;
   display: flex;
   flex-direction: column;
@@ -54,7 +54,7 @@
   }
 }
 
-.greeting {
+.hero__greeting {
   font-size: 13px;
   color: var(--muted);
 
@@ -63,12 +63,12 @@
   }
 }
 
-.prompt {
+.hero__prompt {
   margin-right: 1ch;
   color: var(--accent);
 }
 
-.title {
+.hero__title {
   font-size: 36px;
   line-height: 1.12;
 
@@ -82,7 +82,7 @@
   }
 }
 
-.role {
+.hero__role {
   display: none;
   font-size: 14px;
   color: var(--muted-2);
@@ -96,7 +96,7 @@
   }
 }
 
-.body {
+.hero__body {
   grid-area: body;
   display: flex;
   flex-direction: column;
@@ -108,7 +108,7 @@
   }
 }
 
-.lead {
+.hero__lead {
   max-width: 660px;
   font-size: 15px;
   color: var(--text-2);
@@ -118,7 +118,7 @@
   }
 }
 
-.actions {
+.hero__actions {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -133,14 +133,14 @@
   }
 }
 
-.secondary {
+.hero__cta-secondary {
   border-color: rgb(232 230 227 / 22%);
   background: rgb(11 11 12 / 35%);
   backdrop-filter: blur(6px);
   font-weight: 500;
 }
 
-.trust {
+.hero__trust {
   display: flex;
   flex-wrap: wrap;
   gap: 4px 16px;
@@ -169,7 +169,7 @@
 }
 
 // Фото і плашки
-.visual {
+.hero__visual {
   grid-area: visual;
   position: relative;
   width: 100%;
@@ -186,7 +186,7 @@
   }
 }
 
-.photo {
+.hero__photo {
   position: absolute;
   inset: 0 0 var(--photo-bottom) 0;
   overflow: hidden;
@@ -204,7 +204,7 @@
   }
 }
 
-.placeholder {
+.hero__placeholder {
   position: absolute;
   inset: 0;
   display: flex;
@@ -224,12 +224,12 @@
   }
 }
 
-.placeholderHint {
+.hero__placeholder-hint {
   font-size: 11px;
   color: var(--muted-2);
 }
 
-.glare {
+.hero__glare {
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -240,7 +240,7 @@
   );
 }
 
-.status {
+.hero__status {
   position: absolute;
   left: 14px;
   top: 14px;
@@ -264,7 +264,7 @@
   }
 }
 
-.pulse {
+.hero__pulse {
   display: block;
   width: 8px;
   height: 8px;
@@ -273,7 +273,7 @@
 }
 
 // Кругла кнопка з текстом по колу
-.badge {
+.hero__badge {
   position: absolute;
   right: -6px;
   bottom: 6px;
@@ -292,7 +292,7 @@
   }
 }
 
-.badgeText {
+.hero__badge-text {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -310,7 +310,7 @@
   }
 }
 
-.badgeCore {
+.hero__badge-core {
   position: relative;
   width: 38px;
   height: 38px;
@@ -323,7 +323,7 @@
   font-size: 15px;
   transition: transform 0.35s var(--ease-out);
 
-  .badge:hover & {
+  .hero__badge:hover & {
     transform: scale(1.1) rotate(45deg);
   }
 
@@ -335,7 +335,7 @@
 }
 
 // Картка «Швидкість сайту» (десктоп) і коротка плашка (до 1280px)
-.speed {
+.hero__speed {
   display: none;
 
   @include mixins.up(xl) {
@@ -354,32 +354,32 @@
   }
 }
 
-.speedHead {
+.hero__speed-head {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 12px;
 }
 
-.speedTitle {
+.hero__speed-title {
   font-size: 14px;
   font-weight: 600;
 }
 
-.speedLcp {
+.hero__speed-lcp {
   font-size: 12px;
   font-weight: 600;
   white-space: nowrap;
   color: var(--accent);
 }
 
-.speedSub {
+.hero__speed-sub {
   margin-top: -10px;
   font-size: 12px;
   color: var(--muted-2);
 }
 
-.rings {
+.hero__rings {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
@@ -388,14 +388,14 @@
   color: var(--accent);
 }
 
-.ringItem {
+.hero__ring-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
 }
 
-.ring {
+.hero__ring {
   position: relative;
   width: 56px;
   height: 56px;
@@ -405,24 +405,24 @@
   }
 }
 
-.ringTrack,
-.ringValue {
+.hero__ring-track,
+.hero__ring-value {
   fill: none;
   stroke-width: 9;
 }
 
-.ringTrack {
+.hero__ring-track {
   stroke: var(--line);
 }
 
-.ringValue {
+.hero__ring-value {
   stroke: currentColor;
   stroke-linecap: round;
   stroke-dasharray: 301.6;
   stroke-dashoffset: var(--offset);
 }
 
-.ringNum {
+.hero__ring-num {
   position: absolute;
   inset: 0;
   display: flex;
@@ -432,12 +432,12 @@
   font-weight: 700;
 }
 
-.ringLabel {
+.hero__ring-label {
   font-size: 11px;
   color: var(--muted);
 }
 
-.speedShort {
+.hero__speed-short {
   position: absolute;
   left: 12px;
   bottom: 0;
@@ -454,13 +454,13 @@
   }
 }
 
-.speedShortNum {
+.hero__speed-short-num {
   font-size: 22px;
   font-weight: 700;
   color: var(--accent);
 }
 
-.speedShortText {
+.hero__speed-short-text {
   max-width: 120px;
   font-size: 10px;
   line-height: 1.4;
@@ -496,26 +496,26 @@
 }
 
 @include mixins.motion-safe {
-  .pulse {
+  .hero__pulse {
     animation: pulse 2s infinite;
   }
 
-  .badgeText {
+  .hero__badge-text {
     animation: spin 16s linear infinite;
   }
 
-  .ringValue {
+  .hero__ring-value {
     animation: ring 1.6s cubic-bezier(0.3, 0.7, 0.2, 1) both;
   }
 }
 
 // Нахил фото — лише для миші і коли рух дозволено.
 @media (hover: none), (prefers-reduced-motion: reduce) {
-  .photo {
+  .hero__photo {
     transform: none;
   }
 
-  .glare {
+  .hero__glare {
     display: none;
   }
 }

@@ -5,7 +5,7 @@
   @return math.div($px, 16) * 1em;
 }
 
-.mock {
+.brix-mock {
   position: absolute;
   inset: 0;
   display: flex;
@@ -15,7 +15,7 @@
   color: #1a1a18;
 }
 
-.topbar {
+.brix-mock__topbar {
   height: u(20);
   flex-shrink: 0;
   display: flex;
@@ -27,7 +27,7 @@
   letter-spacing: 0.12em;
 }
 
-.nav {
+.brix-mock__nav {
   height: u(44);
   flex-shrink: 0;
   padding: 0 u(24);
@@ -38,7 +38,7 @@
   font-size: u(10);
 }
 
-.logo {
+.brix-mock__logo {
   font-size: u(13);
   font-weight: 700;
 
@@ -48,16 +48,16 @@
   }
 }
 
-.menu {
+.brix-mock__menu {
   display: flex;
   gap: u(16);
 }
 
-.locale {
+.brix-mock__locale {
   font-size: u(9);
 }
 
-.hero {
+.brix-mock__hero {
   flex-grow: 1;
   display: grid;
   grid-template-columns: minmax(0, 1fr) u(260);
@@ -66,19 +66,19 @@
   padding: u(20) u(24);
 }
 
-.copy {
+.brix-mock__copy {
   display: flex;
   flex-direction: column;
   gap: u(12);
 }
 
-.kicker {
+.brix-mock__kicker {
   font-size: u(8);
   letter-spacing: 0.14em;
   color: #6b6860;
 }
 
-.title {
+.brix-mock__title {
   font-size: u(42);
   line-height: 1;
   font-weight: 700;
@@ -89,21 +89,21 @@
   }
 }
 
-.text {
+.brix-mock__text {
   max-width: u(300);
   font-size: u(11);
   line-height: 1.5;
   color: #4a4842;
 }
 
-.buttons {
+.brix-mock__buttons {
   display: flex;
   gap: u(8);
   font-size: u(11);
 }
 
-.primary,
-.secondary {
+.brix-mock__primary,
+.brix-mock__secondary {
   height: u(30);
   padding: 0 u(16);
   display: flex;
@@ -112,28 +112,28 @@
   white-space: nowrap;
 }
 
-.primary {
+.brix-mock__primary {
   background: #a8283a;
   color: #fff;
 }
 
-.secondary {
+.brix-mock__secondary {
   border: 1px solid #1a1a18;
 }
 
-.art {
+.brix-mock__art {
   position: relative;
   height: u(270);
 }
 
-.backdrop {
+.brix-mock__backdrop {
   position: absolute;
   inset: u(8) 0 0 u(26);
   border-radius: u(6);
   background: #f1d9dc;
 }
 
-.pack {
+.brix-mock__pack {
   position: absolute;
   left: u(40);
   top: u(24);
@@ -150,14 +150,14 @@
   box-shadow: 0 u(24) u(40) rgb(60 10 20 / 35%);
 }
 
-.packTop {
+.brix-mock__pack-top {
   display: flex;
   justify-content: space-between;
   font-size: u(7);
   letter-spacing: 0.14em;
 }
 
-.packBrix {
+.brix-mock__pack-brix {
   align-self: flex-end;
   width: u(46);
   height: u(46);
@@ -169,13 +169,13 @@
   font-size: u(10);
 }
 
-.packName {
+.brix-mock__pack-name {
   font-size: u(14);
   line-height: 1.1;
   font-weight: 700;
 }
 
-.meter {
+.brix-mock__meter {
   position: absolute;
   left: 0;
   bottom: u(16);

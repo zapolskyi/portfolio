@@ -14,68 +14,68 @@ const navIds = ["work", "portfolio", "services", "reviews", "faq"] as const;
 export function Footer({ t, copy, home }: Props) {
   return (
     <footer className={styles.footer}>
-      <div className={styles.inner}>
-        <div className={styles.top}>
-          <div className={styles.cta}>
-            <TypingHeading as="h2" lines={t.title} className={styles.title} />
+      <div className={styles.footer__inner}>
+        <div className={styles.footer__top}>
+          <div className={styles.footer__cta}>
+            <TypingHeading as="h2" lines={t.title} className={styles.footer__title} />
             <Button href={`${home}#contact`} arrow>
               {t.cta}
             </Button>
-            <span className={styles.status}>
-              <span className={styles.pulse} aria-hidden="true" />
+            <span className={styles.footer__status}>
+              <span className={styles.footer__pulse} aria-hidden="true" />
               {t.status}
             </span>
           </div>
 
-          <nav aria-label={t.navLabel} className={styles.col}>
-            <span className={styles.colTitle}>{t.navTitle}</span>
+          <nav aria-label={t.navLabel} className={styles.footer__col}>
+            <span className={styles["footer__col-title"]}>{t.navTitle}</span>
             {navIds.map((id) => (
-              <a key={id} href={`${home}#${id}`} className={styles.link}>
+              <a key={id} href={`${home}#${id}`} className={styles.footer__link}>
                 {t.nav[id]}
               </a>
             ))}
           </nav>
 
-          <div className={styles.col}>
-            <span className={styles.colTitle}>{t.socialTitle}</span>
-            <a className={styles.social} href={socials.github}>
+          <div className={styles.footer__col}>
+            <span className={styles["footer__col-title"]}>{t.socialTitle}</span>
+            <a className={styles.footer__social} href={socials.github}>
               <GitHubIcon /> GitHub
             </a>
-            <a className={styles.social} href={socials.linkedin}>
+            <a className={styles.footer__social} href={socials.linkedin}>
               <LinkedInIcon size={18} /> LinkedIn
             </a>
-            <a className={styles.social} href={socials.telegram}>
+            <a className={styles.footer__social} href={socials.telegram}>
               <TelegramIcon size={18} /> Telegram
             </a>
           </div>
 
-          <div className={styles.col}>
-            <span className={styles.colTitle}>{t.contactsTitle}</span>
+          <div className={styles.footer__col}>
+            <span className={styles["footer__col-title"]}>{t.contactsTitle}</span>
             <CopyButton
               text={contacts.email}
               label={` · ${copy.copy}`}
               copiedLabel={` · ${copy.copied}`}
-              className={styles.link}
-              labelClassName={styles.copy}
+              className={styles.footer__link}
+              labelClassName={styles.footer__copy}
             >
               {contacts.email}
             </CopyButton>
-            <span className={styles.text}>{contacts.telegram}</span>
-            <span className={styles.muted}>{t.location}</span>
+            <span className={styles.footer__text}>{contacts.telegram}</span>
+            <span className={styles.footer__muted}>{t.location}</span>
           </div>
         </div>
 
-        <div className={styles.city}>
+        <div className={styles.footer__city}>
           <CityScene />
-          <div className={styles.wordmark} aria-hidden="true">
+          <div className={styles.footer__wordmark} aria-hidden="true">
             Zapolskyi
           </div>
         </div>
 
-        <div className={styles.bottom}>
+        <div className={styles.footer__bottom}>
           <span>{t.copyright}</span>
-          <span className={styles.made}>{t.madeWith}</span>
-          <a href={`${home}#top`} className={styles.link}>
+          <span className={styles.footer__made}>{t.madeWith}</span>
+          <a href={`${home}#top`} className={styles.footer__link}>
             {t.toTop}
           </a>
         </div>

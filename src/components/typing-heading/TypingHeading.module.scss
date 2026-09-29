@@ -1,20 +1,20 @@
 @use "@/styles/mixins";
 
 // Ширина рядка рахується в ch, тому трекінг має бути 0.
-.heading {
+.typing-heading {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   letter-spacing: 0;
 }
 
-.group {
+.typing-heading__group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.desktop {
+.typing-heading__group--desktop {
   display: none;
 
   @include mixins.up(md) {
@@ -22,18 +22,18 @@
   }
 }
 
-.mobile {
+.typing-heading__group--mobile {
   @include mixins.up(md) {
     display: none;
   }
 }
 
-.line {
+.typing-heading__line {
   display: flex;
   align-items: center;
 }
 
-.text {
+.typing-heading__text {
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
@@ -42,11 +42,11 @@
   border-right: 0.08em solid transparent;
 }
 
-.accent {
+.typing-heading__text--accent {
   color: var(--accent);
 }
 
-.cursor {
+.typing-heading__cursor {
   display: inline-block;
   flex-shrink: 0;
   width: 0.56em;
@@ -56,7 +56,7 @@
 }
 
 // Секційні заголовки: без руху курсор не показуємо.
-.finite .cursor {
+.typing-heading--finite .typing-heading__cursor {
   display: none;
 }
 
@@ -87,7 +87,7 @@
 
 // ghost: справжній текст — блідий силует на своєму місці з першого кадру,
 // над ним — яскравий шар, що друкується (width у ch + steps).
-.ghost .text {
+.typing-heading--ghost .typing-heading__text {
   position: relative;
   width: auto;
   overflow: visible;
@@ -95,12 +95,12 @@
   color: rgb(232 230 227 / 14%);
 }
 
-.ghost .accent {
+.typing-heading--ghost .typing-heading__text--accent {
   color: color-mix(in srgb, var(--accent) 24%, transparent);
 }
 
 // Яскравий шар — псевдоелемент: його немає в DOM-тексті (пошук, копіювання, скрінрідери).
-.ghost .text::after {
+.typing-heading--ghost .typing-heading__text::after {
   content: attr(data-text);
   position: absolute;
   left: 0;
@@ -112,45 +112,47 @@
   color: var(--text);
 }
 
-.ghost .accent::after {
+.typing-heading--ghost .typing-heading__text--accent::after {
   color: var(--accent);
 }
 
 @include mixins.motion-safe {
-  .ghost.typed .text {
+  .typing-heading--ghost.typing-heading--typed .typing-heading__text {
     animation: none;
   }
 
-  .ghost.typed .text::after {
+  .typing-heading--ghost.typing-heading--typed .typing-heading__text::after {
     animation:
       type var(--t) steps(var(--n)) var(--dl) both,
       caret var(--t) linear var(--dl);
   }
 
-  // Ховаємо текст до старту, лише якщо JS працює (клас .js ставить layout).
-  :global(.js) .heading:not(.typed):not(.ghost) .text {
+  // Ховаємо текст до старту, лише якщо JS працює (клас .typing-heading__js ставить layout).
+  :global(.js)
+    .typing-heading:not(.typing-heading--typed):not(.typing-heading--ghost)
+    .typing-heading__text {
     width: 0;
   }
 
-  .typed .text {
+  .typing-heading--typed .typing-heading__text {
     animation:
       type var(--t) steps(var(--n)) var(--dl) both,
       caret var(--t) linear var(--dl);
   }
 
-  .cursor {
+  .typing-heading__cursor {
     opacity: 0;
   }
 
-  .finite .cursor {
+  .typing-heading--finite .typing-heading__cursor {
     display: inline-block;
   }
 
-  .loop.typed .cursor {
+  .typing-heading--loop.typing-heading--typed .typing-heading__cursor {
     animation: blink 1.06s linear var(--dl) infinite;
   }
 
-  .finite.typed .cursor {
+  .typing-heading--finite.typing-heading--typed .typing-heading__cursor {
     animation: blink 1.06s linear var(--dl) 4 forwards;
   }
 }

@@ -12,23 +12,23 @@ type Props = { t: Dictionary["hero"]["speed"] };
 export function SpeedCard({ t }: Props) {
   return (
     <>
-      <div className={`${styles.speed} enter`} style={{ "--delay": "0.4s" } as CSSProperties}>
-        <div className={styles.speedHead}>
-          <span className={styles.speedTitle}>{t.title}</span>
-          <span className={styles.speedLcp}>{t.lcp}</span>
+      <div className={`${styles.hero__speed} enter`} style={{ "--delay": "0.4s" } as CSSProperties}>
+        <div className={styles["hero__speed-head"]}>
+          <span className={styles["hero__speed-title"]}>{t.title}</span>
+          <span className={styles["hero__speed-lcp"]}>{t.lcp}</span>
         </div>
-        <span className={styles.speedSub}>{t.sub}</span>
-        <ul className={styles.rings}>
+        <span className={styles["hero__speed-sub"]}>{t.sub}</span>
+        <ul className={styles.hero__rings}>
           {scores.map((value, i) => (
-            <li key={t.labels[i]} className={styles.ringItem}>
-              <span className={styles.ring}>
+            <li key={t.labels[i]} className={styles["hero__ring-item"]}>
+              <span className={styles.hero__ring}>
                 <svg width="56" height="56" viewBox="0 0 112 112" aria-hidden="true">
-                  <circle cx="56" cy="56" r="48" className={styles.ringTrack} />
+                  <circle cx="56" cy="56" r="48" className={styles["hero__ring-track"]} />
                   <circle
                     cx="56"
                     cy="56"
                     r="48"
-                    className={styles.ringValue}
+                    className={styles["hero__ring-value"]}
                     style={
                       {
                         "--offset": CIRCUMFERENCE * (1 - value / 100),
@@ -37,17 +37,17 @@ export function SpeedCard({ t }: Props) {
                     }
                   />
                 </svg>
-                <span className={styles.ringNum}>{value}</span>
+                <span className={styles["hero__ring-num"]}>{value}</span>
               </span>
-              <span className={styles.ringLabel}>{t.labels[i]}</span>
+              <span className={styles["hero__ring-label"]}>{t.labels[i]}</span>
             </li>
           ))}
         </ul>
       </div>
 
-      <div className={styles.speedShort}>
-        <span className={styles.speedShortNum}>99</span>
-        <span className={styles.speedShortText}>{t.short}</span>
+      <div className={styles["hero__speed-short"]}>
+        <span className={styles["hero__speed-short-num"]}>99</span>
+        <span className={styles["hero__speed-short-text"]}>{t.short}</span>
       </div>
     </>
   );

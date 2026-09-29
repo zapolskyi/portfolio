@@ -35,10 +35,10 @@ export function ReviewsCarousel({ t }: { t: Dictionary["reviews"] }) {
 
   return (
     <>
-      <div className={styles.nav}>
+      <div className={styles.reviews__nav}>
         <button
           type="button"
-          className={styles.arrow}
+          className={styles.reviews__arrow}
           aria-label={t.prev}
           onClick={() => go(index - 1)}
         >
@@ -46,65 +46,68 @@ export function ReviewsCarousel({ t }: { t: Dictionary["reviews"] }) {
         </button>
         <button
           type="button"
-          className={styles.arrow}
+          className={styles.reviews__arrow}
           aria-label={t.next}
           onClick={() => go(index + 1)}
         >
           →
         </button>
-        <span className={styles.counter} aria-hidden="true">
+        <span className={styles.reviews__counter} aria-hidden="true">
           {pad(index + 1)} / {pad(count)}
         </span>
       </div>
 
       <div
-        className={styles.card}
+        className={styles.reviews__card}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onFocus={() => setPaused(true)}
         onBlur={() => setPaused(false)}
       >
-        <span className={styles.mark} aria-hidden="true">
+        <span className={styles.reviews__mark} aria-hidden="true">
           ”
         </span>
         <div aria-live={autoplay ? "off" : "polite"}>
-          <figure key={index} className={styles.figure}>
-            <blockquote className={styles.quote}>{item.quote}</blockquote>
-            <figcaption className={styles.caption}>
-              <span className={styles.person}>
-                <span className={`${styles.avatar} hatch`} aria-hidden="true">
+          <figure key={index} className={styles.reviews__figure}>
+            <blockquote className={styles.reviews__quote}>{item.quote}</blockquote>
+            <figcaption className={styles.reviews__caption}>
+              <span className={styles.reviews__person}>
+                <span className={`${styles.reviews__avatar} hatch`} aria-hidden="true">
                   {item.initials}
                 </span>
-                <span className={styles.who}>
-                  <span className={styles.name}>{item.name}</span>
-                  <span className={styles.role}>{item.role}</span>
+                <span className={styles.reviews__who}>
+                  <span className={styles.reviews__name}>{item.name}</span>
+                  <span className={styles.reviews__role}>{item.role}</span>
                 </span>
               </span>
-              <span className={styles.project}>
+              <span className={styles.reviews__project}>
                 {t.project}: {item.project}
               </span>
             </figcaption>
           </figure>
         </div>
 
-        <div className={styles.footer}>
-          <div className={styles.dots}>
+        <div className={styles.reviews__footer}>
+          <div className={styles.reviews__dots}>
             {t.items.map((_, i) => (
               <button
                 key={i}
                 type="button"
-                className={cx(styles.dot, i === index && styles.dotOn)}
+                className={cx(styles.reviews__dot, i === index && styles["reviews__dot--active"])}
                 aria-label={t.goTo.replace("{n}", String(i + 1))}
                 aria-current={i === index ? "true" : undefined}
                 onClick={() => go(i)}
               />
             ))}
           </div>
-          <div className={styles.progress} aria-hidden="true">
+          <div className={styles.reviews__progress} aria-hidden="true">
             {!reduced && (
               <span
                 key={`${index}-${cycle}`}
-                className={cx(styles.progressFill, paused && styles.paused)}
+                className={cx(
+                  styles["reviews__progress-fill"],
+                  paused && styles["reviews__progress-fill--paused"],
+                )}
                 onAnimationEnd={() => setIndex((i) => (i + 1) % count)}
               />
             )}

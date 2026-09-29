@@ -1,7 +1,7 @@
 @use "@/styles/mixins";
 
 // Лише десктоп з мишею: на тач-пристроях лишається нативна прокрутка.
-.root {
+.scroll-rail {
   display: none;
 
   @media (width >= 1024px) and (hover: hover) and (pointer: fine) {
@@ -9,7 +9,7 @@
   }
 }
 
-.rail {
+.scroll-rail__rail {
   position: fixed;
   right: 14px;
   top: 104px;
@@ -19,8 +19,8 @@
   pointer-events: none;
 }
 
-.track,
-.fill {
+.scroll-rail__track,
+.scroll-rail__fill {
   position: absolute;
   left: 21px;
   top: 0;
@@ -28,17 +28,17 @@
   border-radius: 2px;
 }
 
-.track {
+.scroll-rail__track {
   bottom: 0;
   background: rgb(232 230 227 / 7%);
 }
 
-.fill {
+.scroll-rail__fill {
   background: color-mix(in srgb, var(--accent) 55%, transparent);
 }
 
 // Точки секцій
-.marker {
+.scroll-rail__marker {
   position: absolute;
   left: 0;
   z-index: 2;
@@ -54,7 +54,7 @@
   pointer-events: auto;
 }
 
-.markerDot {
+.scroll-rail__marker-dot {
   display: block;
   width: 7px;
   height: 7px;
@@ -64,22 +64,22 @@
     transform 0.25s,
     background-color 0.25s;
 
-  .marker:hover & {
+  .scroll-rail__marker:hover & {
     transform: scale(1.6);
     background: var(--text);
   }
 
-  .markerPast & {
+  .scroll-rail__marker--past & {
     background: var(--muted-2);
   }
 
-  .markerOn & {
+  .scroll-rail__marker--on & {
     transform: scale(1.5);
     background: var(--accent);
   }
 }
 
-.markerLabel {
+.scroll-rail__marker-label {
   position: absolute;
   right: 52px;
   top: 50%;
@@ -103,15 +103,15 @@
     opacity 0.2s,
     transform 0.2s;
 
-  .marker:hover &,
-  .marker:focus-visible & {
+  .scroll-rail__marker:hover &,
+  .scroll-rail__marker:focus-visible & {
     opacity: 1;
     transform: none;
   }
 }
 
 // Капсула
-.pill {
+.scroll-rail__pill {
   position: absolute;
   left: 0;
   top: 0;
@@ -132,13 +132,13 @@
     box-shadow 0.25s;
 
   &:hover,
-  &.dragging {
+  &.scroll-rail__pill--dragging {
     border-color: var(--accent);
     box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 14%, transparent);
   }
 }
 
-.grip {
+.scroll-rail__grip {
   width: 36px;
   height: 26px;
   display: flex;
@@ -162,11 +162,11 @@
   }
 
   &:hover,
-  .dragging & {
+  .scroll-rail__pill--dragging & {
     color: var(--accent);
   }
 
-  .dragging & {
+  .scroll-rail__pill--dragging & {
     cursor: grabbing;
   }
 
@@ -176,7 +176,7 @@
   }
 }
 
-.icon {
+.scroll-rail__icon {
   width: 36px;
   height: 36px;
   display: flex;
@@ -199,7 +199,7 @@
 }
 
 // Кнопка «нагору»
-.toTop {
+.scroll-rail__to-top {
   position: fixed;
   right: 76px;
   bottom: 28px;

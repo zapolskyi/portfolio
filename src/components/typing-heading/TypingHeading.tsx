@@ -71,10 +71,13 @@ export function TypingHeading({
     return timed.map((line, i) => {
       const last = i === timed.length - 1;
       return (
-        <span key={i} className={styles.line}>
+        <span key={i} className={styles["typing-heading__line"]}>
           {i === 0 && before}
           <span
-            className={cx(styles.text, line.accent && styles.accent)}
+            className={cx(
+              styles["typing-heading__text"],
+              line.accent && styles["typing-heading__text--accent"],
+            )}
             // Для ghost яскравий шар малює ::after із цього атрибута — без дубля тексту в DOM.
             data-text={effect === "ghost" ? line.text : undefined}
             style={
@@ -89,7 +92,7 @@ export function TypingHeading({
           </span>
           {last && cursor && (
             <span
-              className={styles.cursor}
+              className={styles["typing-heading__cursor"]}
               style={{ "--dl": `${end + 0.08}s` } as CSSProperties}
               aria-hidden="true"
             />
@@ -105,17 +108,28 @@ export function TypingHeading({
       ref={ref}
       id={id}
       className={cx(
-        styles.heading,
-        typed && styles.typed,
-        effect === "ghost" && styles.ghost,
-        trigger === "load" ? styles.loop : styles.finite,
+        styles["typing-heading"],
+        typed && styles["typing-heading--typed"],
+        effect === "ghost" && styles["typing-heading--ghost"],
+        trigger === "load" ? styles["typing-heading--loop"] : styles["typing-heading--finite"],
         className,
       )}
     >
       {linesMobile ? (
         <>
-          <span className={cx(styles.group, styles.desktop)}>{renderLines(lines)}</span>
-          <span className={cx(styles.group, styles.mobile)}>{renderLines(linesMobile)}</span>
+          <span
+            className={cx(
+              styles["typing-heading__group"],
+              styles["typing-heading__group--desktop"],
+            )}
+          >
+            {renderLines(lines)}
+          </span>
+          <span
+            className={cx(styles["typing-heading__group"], styles["typing-heading__group--mobile"])}
+          >
+            {renderLines(linesMobile)}
+          </span>
         </>
       ) : (
         renderLines(lines)

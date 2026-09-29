@@ -115,7 +115,7 @@ export function PointField() {
   return (
     <canvas
       ref={canvasRef}
-      className={styles.canvas}
+      className={styles["point-field"]}
       data-ready={ready || undefined}
       aria-hidden="true"
     />

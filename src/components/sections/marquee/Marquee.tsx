@@ -8,9 +8,9 @@ export function Marquee({ items }: Props) {
   const set = items.flatMap((item) => [item, "/"]);
   return (
     <div className={styles.marquee} aria-hidden="true">
-      <div className={styles.track}>
+      <div className={styles.marquee__track}>
         {[...set, ...set].map((item, i) => (
-          <span key={i} className={item === "/" ? styles.sep : undefined}>
+          <span key={i} className={item === "/" ? styles.marquee__sep : undefined}>
             {item}
           </span>
         ))}
