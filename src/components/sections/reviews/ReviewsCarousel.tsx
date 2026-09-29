@@ -5,13 +5,15 @@ import type { Dictionary } from "@/i18n/get-dictionary";
 import { cx } from "@/lib/cx";
 import styles from "./Reviews.module.scss";
 
-// Карусель відгуків: автопрокрутка 6.5 с, пауза при наведенні й фокусі,
-// без автопрокрутки при prefers-reduced-motion. Таймер — сама смуга прогресу:
+// Карусель відгуків за патерном APG Carousel: кнопка «зупинити/увімкнути»
+// першою у фокусі (WCAG 2.2.2), пауза при наведенні й фокусі, слайди з
+// підписом «1 з 3»; без автопрокрутки при prefers-reduced-motion. Таймер — сама смуга прогресу:
 // наступний відгук показуємо по animationend, пауза = animation-play-state.
 export function ReviewsCarousel({ t }: { t: Dictionary["reviews"] }) {
   const count = t.items.length;
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [paused, setPaused] = useState(false); // наведення / фокус усередині
+  const [stopped, setStopped] = useState(false); // користувач зупинив кнопкою
   const [reduced, setReduced] = useState(false);
   const [cycle, setCycle] = useState(0); // перезапуск смуги після ручного перемикання
 
@@ -23,7 +25,7 @@ export function ReviewsCarousel({ t }: { t: Dictionary["reviews"] }) {
     return () => mq.removeEventListener("change", update);
   }, []);
 
-  const autoplay = !paused && !reduced;
+  const autoplay = !paused && !stopped && !reduced;
 
   const go = (i: number) => {
     setIndex((i + count) % count);
@@ -34,8 +36,23 @@ export function ReviewsCarousel({ t }: { t: Dictionary["reviews"] }) {
   const pad = (n: number) => String(n).padStart(2, "0");
 
   return (
-    <>
+    <div
+      className={styles.reviews__carousel}
+      role="group"
+      aria-roledescription="carousel"
+      aria-label={t.carousel}
+    >
       <div className={styles.reviews__nav}>
+        {!reduced && (
+          <button
+            type="button"
+            className={styles.reviews__arrow}
+            aria-label={stopped ? t.play : t.pause}
+            onClick={() => setStopped((v) => !v)}
+          >
+            <span aria-hidden="true">{stopped ? "▶" : "❚❚"}</span>
+          </button>
+        )}
         <button
           type="button"
           className={styles.reviews__arrow}
@@ -68,23 +85,30 @@ export function ReviewsCarousel({ t }: { t: Dictionary["reviews"] }) {
           ”
         </span>
         <div aria-live={autoplay ? "off" : "polite"}>
-          <figure key={index} className={styles.reviews__figure}>
-            <blockquote className={styles.reviews__quote}>{item.quote}</blockquote>
-            <figcaption className={styles.reviews__caption}>
-              <span className={styles.reviews__person}>
-                <span className={`${styles.reviews__avatar} hatch`} aria-hidden="true">
-                  {item.initials}
+          <div
+            key={index}
+            role="group"
+            aria-roledescription="slide"
+            aria-label={t.slide.replace("{n}", String(index + 1)).replace("{total}", String(count))}
+          >
+            <figure className={styles.reviews__figure}>
+              <blockquote className={styles.reviews__quote}>{item.quote}</blockquote>
+              <figcaption className={styles.reviews__caption}>
+                <span className={styles.reviews__person}>
+                  <span className={`${styles.reviews__avatar} hatch`} aria-hidden="true">
+                    {item.initials}
+                  </span>
+                  <span className={styles.reviews__who}>
+                    <span className={styles.reviews__name}>{item.name}</span>
+                    <span className={styles.reviews__role}>{item.role}</span>
+                  </span>
                 </span>
-                <span className={styles.reviews__who}>
-                  <span className={styles.reviews__name}>{item.name}</span>
-                  <span className={styles.reviews__role}>{item.role}</span>
+                <span className={styles.reviews__project}>
+                  {t.project}: {item.project}
                 </span>
-              </span>
-              <span className={styles.reviews__project}>
-                {t.project}: {item.project}
-              </span>
-            </figcaption>
-          </figure>
+              </figcaption>
+            </figure>
+          </div>
         </div>
 
         <div className={styles.reviews__footer}>
@@ -101,7 +125,7 @@ export function ReviewsCarousel({ t }: { t: Dictionary["reviews"] }) {
             ))}
           </div>
           <div className={styles.reviews__progress} aria-hidden="true">
-            {!reduced && (
+            {!reduced && !stopped && (
               <span
                 key={`${index}-${cycle}`}
                 className={cx(
@@ -114,6 +138,6 @@ export function ReviewsCarousel({ t }: { t: Dictionary["reviews"] }) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

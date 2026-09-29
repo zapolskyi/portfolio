@@ -21,6 +21,11 @@
   }
 }
 
+// Обгортка з роллю «карусель» не ламає сітку: її діти — клітинки .reviews__inner.
+.reviews__carousel {
+  display: contents;
+}
+
 .reviews__intro {
   grid-area: intro;
   display: flex;
