@@ -31,7 +31,7 @@ const lines: Line[] = [
 export function PlotScene({ className }: { className?: string }) {
   return (
     <Scene className={className}>
-      <svg viewBox="0 0 460 300" width="460" height="300">
+      <svg viewBox="0 0 460 300" width="460" height="300" data-point-shape="plot">
         <defs>
           <linearGradient id="plot-horizon" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0" stopColor="#E8E6E3" stopOpacity="0" />

@@ -62,7 +62,12 @@ export function ProcessScene({ children }: Props) {
 
   return (
     <div ref={ref} className={cx(styles.scene, typed && styles.typed, "reveal")}>
-      <svg className={styles.drawing} viewBox="0 0 1280 214" aria-hidden="true">
+      <svg
+        className={styles.drawing}
+        viewBox="0 0 1280 214"
+        aria-hidden="true"
+        data-point-shape="process"
+      >
         {lines.map(([d, kind, delay], i) => (
           <path
             key={i}

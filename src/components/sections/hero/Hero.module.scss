@@ -6,33 +6,10 @@
   display: flex;
   overflow: hidden;
   padding: 96px var(--gutter) 48px;
-  background: radial-gradient(ellipse 90% 40% at 85% 5%, #15130e 0%, var(--bg) 70%);
 
   @include mixins.up(xl) {
     min-height: 900px;
     padding: 120px var(--gutter) 64px;
-    background: radial-gradient(ellipse 60% 55% at 64% 22%, #15130e 0%, var(--bg) 72%);
-  }
-}
-
-// WebGL-рельєф (HeroCanvas): з'являється плавно, коли перший кадр готовий.
-// Ліва частина приглушена маскою, щоб текст лишався читабельним.
-.canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 1.2s ease;
-  mask-image: linear-gradient(180deg, rgb(0 0 0 / 25%) 0%, #000 45%);
-  pointer-events: none;
-
-  &[data-ready] {
-    opacity: 1;
-  }
-
-  @include mixins.up(xl) {
-    mask-image: linear-gradient(90deg, rgb(0 0 0 / 45%) 0%, rgb(0 0 0 / 70%) 35%, #000 60%);
   }
 }
 

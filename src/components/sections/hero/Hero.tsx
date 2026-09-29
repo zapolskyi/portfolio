@@ -2,7 +2,6 @@ import type { CSSProperties } from "react";
 import { TypingHeading } from "@/components/typing-heading/TypingHeading";
 import { Button } from "@/components/ui/Button";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import { HeroCanvas } from "./HeroCanvas";
 import styles from "./Hero.module.scss";
 import { PhotoTilt } from "./PhotoTilt";
 import { SpeedCard } from "./SpeedCard";
@@ -14,7 +13,6 @@ const delay = (s: number) => ({ "--delay": `${s}s` }) as CSSProperties;
 export function Hero({ t, home }: Props) {
   return (
     <section id="top" className={styles.hero}>
-      <HeroCanvas />
       <svg className={styles.grain} aria-hidden="true">
         <filter id="hero-grain">
           <feTurbulence
@@ -94,9 +92,7 @@ export function Hero({ t, home }: Props) {
         </PhotoTilt>
 
         <div className={styles.body}>
-          <p className={styles.lead}>
-            {t.lead}
-          </p>
+          <p className={styles.lead}>{t.lead}</p>
           <div className={`${styles.actions} enter`} style={delay(0.55)}>
             <Button href={`${home}#contact`} size="xl" arrow>
               {t.ctaPrimary}

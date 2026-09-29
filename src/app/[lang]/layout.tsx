@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/footer/Footer";
 import { Header } from "@/components/header/Header";
+import { PointField } from "@/components/point-field/PointField";
 import { ScrollRail } from "@/components/scroll-rail/ScrollRail";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { locales } from "@/i18n/config";
@@ -36,6 +37,7 @@ export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
         />
       </head>
       <body>
+        <PointField />
         <Header lang={locale} nav={dict.nav} t={dict.header} />
         {children}
         <Footer t={dict.footer} copy={dict.contact} home={locale === "en" ? "/en" : "/"} />

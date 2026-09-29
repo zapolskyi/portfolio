@@ -5,7 +5,6 @@
   overflow: hidden;
   padding: 56px var(--gutter) 28px;
   border-top: 1px solid var(--line);
-  background: var(--bg-deep);
 
   @include mixins.up(xl) {
     padding: 96px var(--gutter) 36px;

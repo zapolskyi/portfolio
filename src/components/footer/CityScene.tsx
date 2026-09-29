@@ -116,7 +116,7 @@ const draw = (delay: number) => ({ animationDelay: `${delay}s` });
 export function CityScene({ className }: { className?: string }) {
   return (
     <Scene className={className} threshold={0.3}>
-      <svg viewBox="0 -30 1280 200" width="1280" height="200">
+      <svg viewBox="0 -30 1280 200" width="1280" height="200" data-point-shape="city">
         <path d="M0 168 H1280" pathLength={1} className={cx(s.draw, s.main)} style={draw(0)} />
         {buildings.map((b) => (
           <g key={b.x}>
