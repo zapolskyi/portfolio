@@ -30,7 +30,11 @@
     "lead": "I build websites, landing pages and online stores that load in a second, work great on phones and bring in leads. Clean code, no page builders, and an admin panel where you edit content yourself.",
     "ctaPrimary": "Let's talk",
     "ctaSecondary": "See my work",
-    "trust": ["Reply within [24 h]", "Live demo of every project", "Open code on GitHub"],
+    "trust": [
+      "Reply within [24 h]",
+      "Live demo of every project",
+      "Open code on GitHub"
+    ],
     "status": "Taking projects for [MONTH]",
     "photo": "[Your photo · 4:5 portrait]",
     "photoHint": "1200 × 1500 · dark background",
@@ -244,28 +248,44 @@
       {
         "title": "WooCommerce online store",
         "text": "A catalog with filters, LiqPay or monobank payments, Nova Poshta delivery, several languages and currencies. You add products yourself.",
-        "tags": ["Checkout for Ukraine", "Subscriptions", "Wholesale prices"],
+        "tags": [
+          "Checkout for Ukraine",
+          "Subscriptions",
+          "Wholesale prices"
+        ],
         "price": "[$ PRICE]",
         "term": "[X–Y wks]"
       },
       {
         "title": "Company or service website",
         "text": "A multi-page site with online booking, a price list, case studies and reviews. Everything is edited from the admin, no code.",
-        "tags": ["Online booking", "Leads to Telegram", "SEO markup"],
+        "tags": [
+          "Online booking",
+          "Leads to Telegram",
+          "SEO markup"
+        ],
         "price": "[$ PRICE]",
         "term": "[X–Y wks]"
       },
       {
         "title": "Landing page for ads",
         "text": "A single page that loads in under a second and turns traffic into leads. UTM tags and spam-protected forms.",
-        "tags": ["LCP < 1 s", "Calculator", "Anti-spam"],
+        "tags": [
+          "LCP < 1 s",
+          "Calculator",
+          "Anti-spam"
+        ],
         "price": "[$ PRICE]",
         "term": "[X–Y wks]"
       },
       {
         "title": "Speed-up and site fixes",
         "text": "A Core Web Vitals audit, bug fixes, theme and plugin updates without breakage. A good way to get to know each other before a bigger project.",
-        "tags": ["Speed audit", "Bug fixes", "Support"],
+        "tags": [
+          "Speed audit",
+          "Bug fixes",
+          "Support"
+        ],
         "price": "[$ PRICE]",
         "term": "[X days]"
       }
@@ -298,11 +318,21 @@
   "portfolio": {
     "hint": "Drag the cards or use the arrows",
     "filterLabel": "Filter work",
-    "filters": ["All", "Stores", "Websites", "Landings", "React"],
+    "filters": [
+      "All",
+      "Stores",
+      "Websites",
+      "Landings",
+      "React"
+    ],
     "trackLabel": "Work cards",
     "next": {
       "kicker": "Next project",
-      "title": ["Your site", "could be", "here"],
+      "title": [
+        "Your site",
+        "could be",
+        "here"
+      ],
       "cta": "Let's talk",
       "name": "Your business",
       "year": "2026",
@@ -370,7 +400,13 @@
     "stack": [
       {
         "group": "Front-end",
-        "items": ["HTML", "SCSS · BEM", "Vanilla JS", "React", "Vite"]
+        "items": [
+          "HTML",
+          "SCSS · BEM",
+          "Vanilla JS",
+          "React",
+          "Vite"
+        ]
       },
       {
         "group": "WordPress",
@@ -384,11 +420,23 @@
       },
       {
         "group": "Integrations",
-        "items": ["LiqPay", "monobank", "Nova Poshta API", "Brevo", "Telegram"]
+        "items": [
+          "LiqPay",
+          "monobank",
+          "Nova Poshta API",
+          "Brevo",
+          "Telegram"
+        ]
       },
       {
         "group": "Quality",
-        "items": ["Lighthouse", "axe-core · WCAG 2.2", "PHPCS", "GitHub Actions", "Puppeteer"]
+        "items": [
+          "Lighthouse",
+          "axe-core · WCAG 2.2",
+          "PHPCS",
+          "GitHub Actions",
+          "Puppeteer"
+        ]
       }
     ],
     "text": "Front-end and WordPress developer from [CITY]. I write themes by hand — no Elementor or WPBakery — so sites are fast, secure and don't break after a plugin update. I document every technical decision so the site stays easy to maintain for years.",
@@ -451,9 +499,19 @@
       "contact": "Telegram or email",
       "contactPh": "@username or email",
       "type": "What you need",
-      "types": ["Store", "Service site", "Landing", "Site fixes"],
+      "types": [
+        "Store",
+        "Service site",
+        "Landing",
+        "Site fixes"
+      ],
       "budget": "Budget",
-      "budgets": ["Up to [$X]", "[$X–$Y]", "[$Y]+", "Not sure yet"],
+      "budgets": [
+        "Up to [$X]",
+        "[$X–$Y]",
+        "[$Y]+",
+        "Not sure yet"
+      ],
       "message": "About the task",
       "messagePh": "What's the business, what should the site do, is there a design and a deadline",
       "submit": "Send request",
@@ -491,7 +549,7 @@
     "contactsTitle": "Contacts",
     "location": "[CITY], Ukraine · working remotely",
     "copyright": "© 2026 Nazar Zapolskyi",
-    "madeWith": "Handmade · Next.js · no extra JS",
+    "madeWith": "Handmade · Next.js · Three.js",
     "toTop": "Back to top ↑"
   }
 }
