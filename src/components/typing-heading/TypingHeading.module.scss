@@ -85,9 +85,20 @@
   }
 }
 
+// none: текст статичний (без друку й рамки-курсора), блимає лише блоковий курсор.
+.static .text {
+  width: auto;
+  overflow: visible;
+  border-right: 0;
+}
+
 @include mixins.motion-safe {
+  .static.typed .text {
+    animation: none;
+  }
+
   // Ховаємо текст до старту, лише якщо JS працює (клас .js ставить layout).
-  :global(.js) .heading:not(.typed) .text {
+  :global(.js) .heading:not(.typed):not(.static) .text {
     width: 0;
   }
 

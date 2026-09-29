@@ -199,13 +199,13 @@
   max-width: 520px;
   height: 380px;
   --photo-bottom: 40px;
+  --delay: 0.2s;
 
   @include mixins.up(xl) {
     max-width: none;
     height: 600px;
     align-self: center;
     --photo-bottom: 56px;
-    --delay: 0.24s;
   }
 }
 

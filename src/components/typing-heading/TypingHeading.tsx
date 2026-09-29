@@ -18,6 +18,9 @@ type Props = {
   before?: ReactNode;
   after?: ReactNode;
   cursor?: boolean;
+  // type — друк посимвольно; none — текст видно з першого кадру, блимає лише
+  // курсор (для LCP-заголовка hero: будь-яка поява з маски відкладає LCP).
+  effect?: "type" | "none";
   charTime?: number; // с на символ
   delay?: number; // с до старту
   lineGap?: number; // пауза між рядками, с
@@ -47,6 +50,7 @@ export function TypingHeading({
   before,
   after,
   cursor = true,
+  effect = "type",
   charTime = 0.045,
   delay = 0,
   lineGap = 0.08,
@@ -58,7 +62,8 @@ export function TypingHeading({
   const timing = { charTime, delay, lineGap };
 
   const renderLines = (set: TypingLine[]) => {
-    const { timed, end } = timeLines(set, timing);
+    const { timed, end: typedEnd } = timeLines(set, timing);
+    const end = effect === "none" ? delay : typedEnd;
     return timed.map((line, i) => {
       const last = i === timed.length - 1;
       return (
@@ -66,7 +71,13 @@ export function TypingHeading({
           {i === 0 && before}
           <span
             className={cx(styles.text, line.accent && styles.accent)}
-            style={{ "--n": line.n, "--t": `${line.t}s`, "--dl": `${line.dl}s` } as CSSProperties}
+            style={
+              {
+                "--n": line.n,
+                "--t": `${line.t}s`,
+                "--dl": `${line.dl}s`,
+              } as CSSProperties
+            }
           >
             {line.text}
           </span>
@@ -89,6 +100,7 @@ export function TypingHeading({
       className={cx(
         styles.heading,
         typed && styles.typed,
+        effect === "none" && styles.static,
         trigger === "load" ? styles.loop : styles.finite,
         className,
       )}

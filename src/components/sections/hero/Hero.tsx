@@ -40,8 +40,7 @@ export function Hero({ t, home }: Props) {
               </span>
             }
             lines={[{ text: t.greeting }]}
-            charTime={0.05}
-            delay={0.3}
+            charTime={0.03}
           />
           <TypingHeading
             as="h1"
@@ -49,11 +48,9 @@ export function Hero({ t, home }: Props) {
             className={styles.title}
             lines={t.title}
             linesMobile={t.titleMobile}
-            charTime={0.085}
-            delay={1.25}
-            lineGap={0.1}
+            effect="none"
           />
-          <p className={`${styles.role} enter`} style={delay(3.44)}>
+          <p className={`${styles.role} enter`} style={delay(0.35)}>
             {t.role}
           </p>
         </div>
@@ -96,10 +93,10 @@ export function Hero({ t, home }: Props) {
         </PhotoTilt>
 
         <div className={styles.body}>
-          <p className={`${styles.lead} enter`} style={delay(3.64)}>
+          <p className={styles.lead}>
             {t.lead}
           </p>
-          <div className={`${styles.actions} enter`} style={delay(3.84)}>
+          <div className={`${styles.actions} enter`} style={delay(0.55)}>
             <Button href={`${home}#contact`} size="xl" arrow>
               {t.ctaPrimary}
             </Button>
@@ -112,7 +109,7 @@ export function Hero({ t, home }: Props) {
               {t.ctaSecondary}
             </Button>
           </div>
-          <ul className={`${styles.trust} enter`} style={delay(4.04)}>
+          <ul className={`${styles.trust} enter`} style={delay(0.65)}>
             {t.trust.map((item) => (
               <li key={item}>{item}</li>
             ))}

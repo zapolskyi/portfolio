@@ -138,7 +138,7 @@ p {
 // Поява елементів одразу після завантаження (hero): затримка через --delay.
 @include mixins.motion-safe {
   .enter {
-    animation: fade-up 0.8s var(--ease-out) var(--delay, 0s) both;
+    animation: fade-up 0.6s var(--ease-out) var(--delay, 0s) both;
   }
 }
 

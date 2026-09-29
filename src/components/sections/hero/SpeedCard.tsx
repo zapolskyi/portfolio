@@ -15,7 +15,7 @@ type Props = { t: Dictionary["hero"]["speed"] };
 export function SpeedCard({ t }: Props) {
   return (
     <>
-      <div className={`${styles.speed} enter`} style={{ "--delay": "0.6s" } as CSSProperties}>
+      <div className={`${styles.speed} enter`} style={{ "--delay": "0.4s" } as CSSProperties}>
         <div className={styles.speedHead}>
           <span className={styles.speedTitle}>{t.title}</span>
           <span className={styles.speedLcp}>{t.lcp}</span>
@@ -35,7 +35,7 @@ export function SpeedCard({ t }: Props) {
                     style={
                       {
                         "--offset": CIRCUMFERENCE * (1 - value / 100),
-                        animationDelay: i < 2 ? "0.72s" : "0.84s",
+                        animationDelay: i < 2 ? "0.5s" : "0.6s",
                       } as CSSProperties
                     }
                   />
