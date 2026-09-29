@@ -434,5 +434,64 @@
         "a": "[X] days of free edits, then support by agreement: updates, backups, improvements."
       }
     ]
+  },
+  "contact": {
+    "lead": "Describe the task in a few sentences — I'll reply with questions, a rough price and a timeline.",
+    "channelsLabel": "Contact channels",
+    "copy": "Copy",
+    "copied": "Copied ✓",
+    "quote": {
+      "text": "[First client's review: what the task was and what changed after launch — 2–3 sentences]",
+      "author": "[Name, role · Company]"
+    },
+    "form": {
+      "label": "Project request",
+      "name": "Name",
+      "namePh": "What should I call you",
+      "contact": "Telegram or email",
+      "contactPh": "@username or email",
+      "type": "What you need",
+      "types": ["Store", "Service site", "Landing", "Site fixes"],
+      "budget": "Budget",
+      "budgets": ["Up to [$X]", "[$X–$Y]", "[$Y]+", "Not sure yet"],
+      "message": "About the task",
+      "messagePh": "What's the business, what should the site do, is there a design and a deadline",
+      "submit": "Send request",
+      "note": "I reply within [24 hours] · Your data stays with me",
+      "errors": {
+        "name": "Tell me what to call you",
+        "contact": "Add a Telegram (@username) or an email",
+        "message": "Describe the task in at least one sentence"
+      },
+      "pending": "Sending is being connected — for now, message me on Telegram or by email."
+    }
+  },
+  "footer": {
+    "title": [
+      {
+        "text": "Got an idea?"
+      },
+      {
+        "text": "Let's build it.",
+        "accent": true
+      }
+    ],
+    "cta": "Let's talk",
+    "status": "Taking projects for [MONTH]",
+    "navTitle": "Navigation",
+    "navLabel": "Footer navigation",
+    "nav": {
+      "work": "Latest projects",
+      "portfolio": "Portfolio",
+      "services": "Services",
+      "reviews": "Reviews",
+      "faq": "FAQ"
+    },
+    "socialTitle": "Social",
+    "contactsTitle": "Contacts",
+    "location": "[CITY], Ukraine · working remotely",
+    "copyright": "© 2026 Nazar Zapolskyi",
+    "madeWith": "Handmade · Next.js · no extra JS",
+    "toTop": "Back to top ↑"
   }
 }

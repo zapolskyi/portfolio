@@ -1,0 +1,138 @@
+@use "@/styles/mixins";
+
+// Спільні стилі лінійних сцен (контакт, футер).
+// .draw — лінія, що малюється (pathLength=1, затримка — animation-delay),
+// .fade — поява (--fd), .light — вікно, що загоряється (--wd).
+
+.scene {
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+}
+
+.draw {
+  fill: none;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.main {
+  stroke: var(--scene-line);
+}
+
+.sub {
+  stroke: var(--scene-line-2);
+}
+
+.accent {
+  stroke: var(--accent);
+}
+
+.cable {
+  stroke: rgb(232 230 227 / 55%);
+}
+
+.plot {
+  fill: none;
+  stroke: var(--accent);
+  stroke-opacity: 0.8;
+  stroke-dasharray: 5 5;
+  vector-effect: non-scaling-stroke;
+}
+
+.fill,
+.beacon {
+  fill: var(--accent);
+}
+
+.light {
+  fill: var(--accent);
+  opacity: 0.9;
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes light-on {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.9;
+  }
+}
+
+@keyframes sway {
+  from {
+    transform: rotate(-3deg);
+  }
+
+  to {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes beacon {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@include mixins.motion-safe {
+  :global(.js) .scene:not(.typed) {
+    .draw {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+    }
+
+    .fade,
+    .light {
+      opacity: 0;
+    }
+  }
+
+  .typed {
+    .draw {
+      stroke-dasharray: 1;
+      animation: draw 1.2s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    .fade {
+      animation: fade-in 0.8s ease var(--fd, 0s) both;
+    }
+
+    .light {
+      animation: light-on 0.35s ease var(--wd, 0s) both;
+    }
+
+    .sway {
+      animation: sway 2.6s ease-in-out 1.6s infinite alternate;
+    }
+  }
+
+  .beacon {
+    animation: beacon 2.4s ease-in-out infinite;
+  }
+}

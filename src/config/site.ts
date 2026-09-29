@@ -25,6 +25,12 @@ export const navOrder = [
   "faq",
 ] as const satisfies readonly SectionId[];
 
+// TODO(фаза 6): реальні контакти.
+export const contacts = {
+  email: "[EMAIL]",
+  telegram: "[@username]",
+} as const;
+
 export const socials = {
   github: "https://github.com/zapolskyi",
   linkedin: "https://www.linkedin.com/in/nazarzapolskyi/",
