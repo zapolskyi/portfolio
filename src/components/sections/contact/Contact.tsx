@@ -11,12 +11,16 @@ type Props = { t: Dictionary["contact"]; heading: Dictionary["headings"]["contac
 
 export function Contact({ t, heading }: Props) {
   return (
-    <section id="contact" className={styles.contact}>
+    <section id="contact" className={styles.contact} aria-labelledby="contact-title">
       <div className={styles.contact__inner}>
         <PlotScene className={styles.contact__scene} />
         <header className={styles.contact__header}>
           <SectionLabel index={8}>{heading.label}</SectionLabel>
-          <TypingHeading lines={heading.lines} className={styles.contact__title} />
+          <TypingHeading
+            id="contact-title"
+            lines={heading.lines}
+            className={styles.contact__title}
+          />
         </header>
 
         <div className={styles.contact__grid}>

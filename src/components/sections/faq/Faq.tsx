@@ -9,11 +9,11 @@ type Props = { t: Dictionary["faq"]; heading: Dictionary["headings"]["faq"] };
 // клавіатура й скрінрідери підтримуються браузером.
 export function Faq({ t, heading }: Props) {
   return (
-    <section id="faq" className={styles.faq}>
+    <section id="faq" className={styles.faq} aria-labelledby="faq-title">
       <div className={styles.faq__inner}>
         <div className={`${styles.faq__intro} reveal`}>
           <SectionLabel index={7}>{heading.label}</SectionLabel>
-          <TypingHeading lines={heading.lines} className={styles.faq__title} />
+          <TypingHeading id="faq-title" lines={heading.lines} className={styles.faq__title} />
           <p className={styles.faq__lead}>{t.lead}</p>
         </div>
 

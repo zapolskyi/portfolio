@@ -110,9 +110,14 @@ export function PortfolioSlider({ cards, t, heading, home }: Props) {
     <>
       <div className={cx(styles["portfolio__title-row"], "reveal")}>
         <TypingHeading
+          id="portfolio-title"
           lines={heading.lines}
           className={styles.portfolio__title}
-          after={<span className={styles.portfolio__count}>({pad(shown.length)})</span>}
+          after={
+            <span className={styles.portfolio__count} aria-hidden="true">
+              ({pad(shown.length)})
+            </span>
+          }
         />
         <div role="group" aria-label={t.filterLabel} className={styles.portfolio__filters}>
           {t.filters.map((label, i) => (

@@ -65,7 +65,9 @@ export function TypingHeading({
   const typed = trigger === "load" || inView;
   const timing = { charTime, delay, lineGap };
 
-  const renderLines = (set: TypingLine[]) => {
+  // presentational: копія з іншою розбивкою рядків — текст малює ::before з data-text,
+  // тож у DOM (пошук, копіювання, скрінрідери) заголовок лише один раз.
+  const renderLines = (set: TypingLine[], presentational = false) => {
     const { timed, end: typedEnd } = timeLines(set, timing);
     const end = typedEnd;
     return timed.map((line, i) => {
@@ -77,9 +79,10 @@ export function TypingHeading({
             className={cx(
               styles["typing-heading__text"],
               line.accent && styles["typing-heading__text--accent"],
+              presentational && styles["typing-heading__text--pseudo"],
             )}
             // Для ghost яскравий шар малює ::after із цього атрибута — без дубля тексту в DOM.
-            data-text={effect === "ghost" ? line.text : undefined}
+            data-text={effect === "ghost" || presentational ? line.text : undefined}
             style={
               {
                 "--n": line.n,
@@ -88,7 +91,8 @@ export function TypingHeading({
               } as CSSProperties
             }
           >
-            {line.text}
+            {/* Пробіл між рядками — щоб у тексті заголовка слова не злипались. */}
+            {presentational ? null : last ? line.text : `${line.text} `}
           </span>
           {last && cursor && (
             <span
@@ -127,8 +131,9 @@ export function TypingHeading({
           </span>
           <span
             className={cx(styles["typing-heading__group"], styles["typing-heading__group--mobile"])}
+            aria-hidden="true"
           >
-            {renderLines(linesMobile)}
+            {renderLines(linesMobile, true)}
           </span>
         </>
       ) : (

@@ -14,11 +14,11 @@
   align-items: flex-start;
 }
 
+// Основна розбивка: на вузьких екранах лише візуально прихована (лишається для
+// скрінрідерів і пошуку); мобільна — презентаційна копія, прихована від них.
 .typing-heading__group--desktop {
-  display: none;
-
-  @include mixins.up(md) {
-    display: flex;
+  @media (width < 768px) {
+    @include mixins.visually-hidden;
   }
 }
 
@@ -26,6 +26,10 @@
   @include mixins.up(md) {
     display: none;
   }
+}
+
+.typing-heading__text--pseudo::before {
+  content: attr(data-text);
 }
 
 .typing-heading__line {

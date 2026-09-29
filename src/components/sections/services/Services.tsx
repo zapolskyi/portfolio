@@ -14,12 +14,16 @@ type Props = {
 
 export function Services({ t, heading, home }: Props) {
   return (
-    <section id="services" className={styles.services}>
+    <section id="services" className={styles.services} aria-labelledby="services-title">
       <div className={styles.services__inner}>
         <header className={cx(styles.services__header, "reveal")}>
           <div className={styles.services__titles}>
             <SectionLabel index={2}>{heading.label}</SectionLabel>
-            <TypingHeading lines={heading.lines} className={styles.services__title} />
+            <TypingHeading
+              id="services-title"
+              lines={heading.lines}
+              className={styles.services__title}
+            />
           </div>
           <p className={styles.services__lead}>{t.lead}</p>
         </header>
@@ -38,11 +42,11 @@ export function Services({ t, heading, home }: Props) {
                 ))}
               </div>
               <div className={styles.services__footer}>
-                <span className={styles.services__price}>
+                <p className={styles.services__price}>
                   <span className={styles.services__from}>{t.from} </span>
                   <span className={styles.services__amount}>{item.price}</span>
                   <span className={styles.services__term}>{item.term}</span>
-                </span>
+                </p>
                 <ChooseService index={i} href={`${home}#contact`} label={t.choose} />
               </div>
             </li>

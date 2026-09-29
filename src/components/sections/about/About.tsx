@@ -32,27 +32,11 @@ const icons: Record<string, React.ReactNode> = {
 
 export function About({ t, heading }: Props) {
   return (
-    <section id="about" className={styles.about}>
+    <section id="about" className={styles.about} aria-labelledby="about-title">
       <div className={styles.about__inner}>
-        <div className={`${styles.about__stack} reveal`}>
-          <h3 className={styles["about__stack-title"]}>{t.stackTitle}</h3>
-          {t.stack.map(({ group, items }) => (
-            <div key={group} className={styles.about__group}>
-              <span className={styles["about__group-name"]}>{group}</span>
-              <ul className={styles.about__chips}>
-                {items.map((item) => (
-                  <li key={item} className={styles.about__chip}>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
         <div className={`${styles.about__content} reveal`}>
           <SectionLabel index={6}>{heading.label}</SectionLabel>
-          <TypingHeading lines={heading.lines} className={styles.about__title} />
+          <TypingHeading id="about-title" lines={heading.lines} className={styles.about__title} />
           <p className={styles.about__text}>{t.text}</p>
           <ul className={styles.about__perks}>
             {t.perks.map((perk) => (
@@ -75,6 +59,22 @@ export function About({ t, heading }: Props) {
               LinkedIn <span aria-hidden="true">↗</span>
             </Button>
           </div>
+        </div>
+
+        <div className={`${styles.about__stack} reveal`}>
+          <h3 className={styles["about__stack-title"]}>{t.stackTitle}</h3>
+          {t.stack.map(({ group, items }) => (
+            <div key={group} className={styles.about__group}>
+              <span className={styles["about__group-name"]}>{group}</span>
+              <ul className={styles.about__chips}>
+                {items.map((item) => (
+                  <li key={item} className={styles.about__chip}>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </section>

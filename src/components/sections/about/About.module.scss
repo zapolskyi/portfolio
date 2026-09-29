@@ -8,18 +8,22 @@
 .about__inner {
   @include mixins.inner;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   gap: 32px;
 
+  // У DOM спершу текст (h2), потім стек (h3) — на десктопі стек візуально ліворуч.
   @include mixins.up(xl) {
     display: grid;
     grid-template-columns: 520px minmax(0, 1fr);
+    grid-template-areas: "stack content";
     gap: 96px;
     align-items: center;
   }
 }
 
 .about__stack {
+  grid-area: stack;
+
   padding: 22px;
   display: flex;
   flex-direction: column;
@@ -83,6 +87,8 @@
 }
 
 .about__content {
+  grid-area: content;
+
   display: flex;
   flex-direction: column;
   gap: 20px;

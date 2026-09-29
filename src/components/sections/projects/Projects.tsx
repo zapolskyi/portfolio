@@ -9,7 +9,7 @@ type Props = { t: Dictionary["work"]; heading: Dictionary["headings"]["work"]; h
 
 export function Projects({ t, heading, home }: Props) {
   return (
-    <section id="work" className={styles.projects}>
+    <section id="work" className={styles.projects} aria-labelledby="work-title">
       <div className={styles.projects__inner}>
         <header className={`${styles.projects__header} reveal`}>
           <div className={styles["projects__label-row"]}>
@@ -17,10 +17,11 @@ export function Projects({ t, heading, home }: Props) {
             <span className={styles.projects__hint}>{t.hint}</span>
           </div>
           <TypingHeading
+            id="work-title"
             lines={heading.lines}
             className={styles.projects__title}
             after={
-              <span className={styles.projects__count}>
+              <span className={styles.projects__count} aria-hidden="true">
                 ({String(projects.length).padStart(2, "0")})
               </span>
             }

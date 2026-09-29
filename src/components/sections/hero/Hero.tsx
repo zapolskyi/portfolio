@@ -12,7 +12,7 @@ const delay = (s: number) => ({ "--delay": `${s}s` }) as CSSProperties;
 
 export function Hero({ t, home }: Props) {
   return (
-    <section id="top" className={styles.hero}>
+    <section id="top" className={styles.hero} aria-labelledby="hero-title">
       <svg className={styles.hero__grain} aria-hidden="true">
         <filter id="hero-grain">
           <feTurbulence
@@ -42,6 +42,7 @@ export function Hero({ t, home }: Props) {
           />
           <TypingHeading
             as="h1"
+            id="hero-title"
             trigger="load"
             className={styles.hero__title}
             lines={t.title}
