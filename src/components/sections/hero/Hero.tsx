@@ -75,7 +75,8 @@ export function Hero({ t, home }: Props) {
             </>
           }
         >
-          <a href={`${home}#contact`} className={styles.badge} aria-label={t.ctaPrimary}>
+          {/* Дублює головну кнопку hero — для клавіатури й скрінрідерів прихований. */}
+          <a href={`${home}#contact`} className={styles.badge} aria-hidden="true" tabIndex={-1}>
             <svg className={styles.badgeText} viewBox="0 0 132 132" aria-hidden="true">
               <defs>
                 <path id="badge-circle" d="M66,66 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0" />

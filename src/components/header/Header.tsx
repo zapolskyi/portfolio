@@ -49,7 +49,7 @@ export function Header({ lang, nav, t }: Props) {
       className={cx(styles.header, (scroll.y > 8 || open) && styles.solid)}
       style={{ "--progress": scroll.progress } as CSSProperties}
     >
-      <Link href={`${home}#top`} className={styles.logo} aria-label={t.home} onClick={close}>
+      <Link href={`${home}#top`} className={styles.logo} onClick={close}>
         zapolskyi<span className={styles.dot}>.</span>
       </Link>
 

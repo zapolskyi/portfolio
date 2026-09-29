@@ -146,11 +146,8 @@ export function PortfolioSlider({ cards, t, heading, home }: Props) {
                 href={card.href}
                 draggable={false}
                 className={cx(styles.media, card.media === "react" && styles.mediaDashed)}
-                aria-label={(card.link === "demo" ? t.openDemo : t.openGithub).replace(
-                  "{name}",
-                  name,
-                )}
               >
+                <span className="visually-hidden">{name} — </span>
                 <span className={styles.zoom}>
                   <CardMedia card={card} t={t} />
                 </span>
