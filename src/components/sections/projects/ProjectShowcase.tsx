@@ -124,16 +124,18 @@ export function ProjectShowcase({ projects, t, home }: Props) {
                 ))}
               </dl>
               <div className={styles.projects__links}>
-                {/* TODO(фаза 9): сторінки кейсів */}
-                <Button
-                  href={`${home}#work`}
-                  size="md"
-                  arrow
-                  className={styles["projects__case-link"]}
-                >
-                  <span className={styles["projects__case-short"]}>{t.case}</span>
-                  <span className={styles["projects__case-long"]}>{t.caseLong}</span>
-                </Button>
+                {/* Без сторінки кейсу кнопки немає — жодних посилань «в нікуди» (фаза 9). */}
+                {project.caseHref && (
+                  <Button
+                    href={`${home === "/" ? "" : home}${project.caseHref}`}
+                    size="md"
+                    arrow
+                    className={styles["projects__case-link"]}
+                  >
+                    <span className={styles["projects__case-short"]}>{t.case}</span>
+                    <span className={styles["projects__case-long"]}>{t.caseLong}</span>
+                  </Button>
+                )}
                 <Button href={`https://${project.domain}`} size="md" variant="secondary">
                   {t.demo} <span aria-hidden="true">↗</span>
                 </Button>

@@ -7,6 +7,7 @@ export type Project = {
   short: string; // назва в мобільному перемикачі
   domain: string;
   github: string;
+  caseHref?: string; // сторінка кейсу; поки немає — кнопку «Кейс» не показуємо
   metrics: [Metric, Metric, Metric];
   // Превью: намальований макет (brix) або заглушка до появи скріншота.
   preview: { kind: "brix" } | { kind: "placeholder"; title: string };
