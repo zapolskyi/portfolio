@@ -1,0 +1,299 @@
+@use "@/styles/mixins";
+
+.section {
+  @include mixins.section(96px);
+}
+
+// Мобільна: заголовок → картка → стрілки. Десктоп: ліва колонка 420px зі
+// стрілками внизу, праворуч картка.
+.inner {
+  @include mixins.inner;
+  display: grid;
+  grid-template-areas: "intro" "card" "nav";
+  gap: 24px;
+
+  @include mixins.up(xl) {
+    grid-template-columns: 420px minmax(0, 1fr);
+    grid-template-rows: 1fr auto;
+    grid-template-areas: "intro card" "nav card";
+    column-gap: 80px;
+    row-gap: 0;
+  }
+}
+
+.intro {
+  grid-area: intro;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  @include mixins.up(xl) {
+    gap: 22px;
+  }
+}
+
+.title {
+  font-size: 28px;
+  line-height: 1.15;
+
+  @include mixins.up(md) {
+    font-size: 44px;
+  }
+
+  @include mixins.up(xl) {
+    font-size: 52px;
+    line-height: 1.12;
+  }
+}
+
+.lead {
+  font-size: 14px;
+  color: var(--muted);
+
+  @include mixins.up(xl) {
+    font-size: 15px;
+  }
+}
+
+.nav {
+  grid-area: nav;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  @include mixins.up(xl) {
+    align-self: end;
+    gap: 16px;
+  }
+}
+
+.arrow {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line-3);
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--text);
+  font-size: 18px;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s;
+
+  &:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+
+  @include mixins.up(xl) {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+.counter {
+  margin-left: 8px;
+  font-size: 13px;
+  color: var(--muted-2);
+}
+
+.card {
+  grid-area: card;
+  position: relative;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-1);
+
+  @include mixins.up(xl) {
+    min-height: 420px;
+    padding: 48px;
+    gap: 32px;
+    border-radius: var(--radius-lg);
+  }
+}
+
+.mark {
+  position: absolute;
+  right: 20px;
+  top: 0;
+  font-size: 120px;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.14;
+
+  @include mixins.up(xl) {
+    right: 40px;
+    top: 10px;
+    font-size: 200px;
+  }
+}
+
+.figure {
+  position: relative;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include mixins.up(xl) {
+    gap: 36px;
+  }
+}
+
+.quote {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 500;
+  text-wrap: pretty;
+
+  @include mixins.up(xl) {
+    font-size: 26px;
+  }
+}
+
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 20px;
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line-3);
+  border-radius: 50%;
+  font-size: 12px;
+  color: var(--muted);
+
+  @include mixins.up(xl) {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+.who {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.role {
+  font-size: 14px;
+  color: var(--muted-2);
+}
+
+.project {
+  padding: 6px 12px;
+  border: 1px solid #2f3034;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+// Кнопка-точка з більшою зоною натискання (24px), видима точка — 8px.
+.dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--line-3);
+  transition:
+    width 0.3s,
+    background-color 0.3s;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -8px -4px;
+  }
+}
+
+.dotOn {
+  width: 28px;
+  border-radius: 8px;
+  background: var(--accent);
+}
+
+.progress {
+  flex-grow: 1;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--line);
+}
+
+.progressFill {
+  display: block;
+  height: 2px;
+  background: var(--accent);
+  animation: progress 6.5s linear both;
+}
+
+.paused {
+  animation-play-state: paused;
+}
+
+@keyframes progress {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes swap-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+}
+
+@include mixins.motion-safe {
+  .figure {
+    animation: swap-in 0.5s var(--ease-out) both;
+  }
+}

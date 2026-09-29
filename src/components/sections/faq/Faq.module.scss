@@ -1,0 +1,141 @@
+@use "@/styles/mixins";
+
+.section {
+  @include mixins.section;
+}
+
+.inner {
+  @include mixins.inner;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include mixins.up(xl) {
+    display: grid;
+    grid-template-columns: 420px minmax(0, 1fr);
+    gap: 96px;
+  }
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  @include mixins.up(xl) {
+    gap: 20px;
+  }
+}
+
+.title {
+  font-size: 28px;
+  line-height: 1.15;
+
+  @include mixins.up(md) {
+    font-size: 44px;
+  }
+
+  @include mixins.up(xl) {
+    font-size: 48px;
+    line-height: 1.12;
+  }
+}
+
+.lead {
+  font-size: 14px;
+  color: var(--muted);
+
+  @include mixins.up(xl) {
+    font-size: 15px;
+  }
+}
+
+.list {
+  border-top: 1px solid var(--line-2);
+}
+
+.item {
+  border-bottom: 1px solid var(--line-2);
+}
+
+.question {
+  min-height: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  list-style: none;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  @include mixins.up(xl) {
+    min-height: 84px;
+    gap: 24px;
+  }
+}
+
+.q {
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s;
+
+  .question:hover & {
+    color: var(--accent);
+  }
+
+  @include mixins.up(xl) {
+    font-size: 18px;
+  }
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line-3);
+  border-radius: var(--radius-sm);
+  font-size: 20px;
+  transition:
+    transform 0.3s,
+    background-color 0.3s,
+    color 0.3s;
+
+  .item[open] & {
+    transform: rotate(45deg);
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+}
+
+.answer {
+  padding: 0 0 22px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+
+  @include mixins.up(xl) {
+    padding: 0 64px 28px 0;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+}
+
+@keyframes swap-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+}
+
+@include mixins.motion-safe {
+  .item[open] .answer {
+    animation: swap-in 0.5s var(--ease-out) both;
+  }
+}

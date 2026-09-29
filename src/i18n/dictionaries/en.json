@@ -334,5 +334,105 @@
     "screenshot": "Screenshot",
     "arrowPrev": "Previous work",
     "arrowNext": "Next work"
+  },
+  "reviews": {
+    "lead": "How we worked together — from the first message to launch.",
+    "prev": "Previous review",
+    "next": "Next review",
+    "goTo": "Review {n}",
+    "project": "Project",
+    "items": [
+      {
+        "quote": "[Client review #1: the task they came with, how the work went and what changed after launch — 2–3 sentences]",
+        "initials": "[AB]",
+        "name": "[Full name]",
+        "role": "[Role, company]",
+        "project": "[name]"
+      },
+      {
+        "quote": "[Client review #2: what they liked about the process — timing, communication, result]",
+        "initials": "[CD]",
+        "name": "[Full name]",
+        "role": "[Role, company]",
+        "project": "[name]"
+      },
+      {
+        "quote": "[Client review #3: a concrete result — more leads, a faster site, an easy admin]",
+        "initials": "[EF]",
+        "name": "[Full name]",
+        "role": "[Role, company]",
+        "project": "[name]"
+      }
+    ]
+  },
+  "about": {
+    "stackTitle": "My stack",
+    "stack": [
+      {
+        "group": "Front-end",
+        "items": ["HTML", "SCSS · BEM", "Vanilla JS", "React", "Vite"]
+      },
+      {
+        "group": "WordPress",
+        "items": [
+          "Custom themes",
+          "WooCommerce",
+          "Gutenberg blocks",
+          "Secure Custom Fields",
+          "WP-CLI"
+        ]
+      },
+      {
+        "group": "Integrations",
+        "items": ["LiqPay", "monobank", "Nova Poshta API", "Brevo", "Telegram"]
+      },
+      {
+        "group": "Quality",
+        "items": ["Lighthouse", "axe-core · WCAG 2.2", "PHPCS", "GitHub Actions", "Puppeteer"]
+      }
+    ],
+    "text": "Front-end and WordPress developer from [CITY]. I write themes by hand — no Elementor or WPBakery — so sites are fast, secure and don't break after a plugin update. I document every technical decision so the site stays easy to maintain for years.",
+    "perks": [
+      {
+        "icon": "edit",
+        "title": "You manage the content",
+        "text": "Texts, prices, photos and cases change from the admin — you can't break the layout."
+      },
+      {
+        "icon": "truck",
+        "title": "Ukraine out of the box",
+        "text": "LiqPay, monobank, Nova Poshta, UA / EN, hryvnia and euro — no paid plugins."
+      },
+      {
+        "icon": "shield",
+        "title": "Security and privacy",
+        "text": "Protected forms, an honest cookie consent, API keys kept out of the database."
+      }
+    ]
+  },
+  "faq": {
+    "lead": "Didn't find an answer? Write to me — I'll reply within [24 hours].",
+    "items": [
+      {
+        "q": "How much does a website cost?",
+        "a": "A landing page starts at [$ PRICE], a service site at [$ PRICE], a WooCommerce store at [$ PRICE]. I give the exact price after the brief and fix it in the contract."
+      },
+      {
+        "q": "How long does development take?",
+        "a": "A landing page takes [X] weeks, a service site [X] weeks, a store from [X] weeks. Timing also depends on how ready the texts and photos are."
+      },
+      {
+        "q": "Can I edit the content myself?",
+        "a": "Yes. Texts, prices, photos, products and cases are edited from the WordPress admin. After launch I show you how everything works."
+      },
+      {
+        "q": "Do you work with an existing design?",
+        "a": "Yes, from a Figma layout or your references. If there's no design, I propose the structure and visuals myself."
+      },
+      {
+        "q": "What happens after launch?",
+        "a": "[X] days of free edits, then support by agreement: updates, backups, improvements."
+      }
+    ]
   }
 }
