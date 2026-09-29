@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Footer } from "@/components/footer/Footer";
 import { Header } from "@/components/header/Header";
 import { ScrollRail } from "@/components/scroll-rail/ScrollRail";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
@@ -37,6 +38,7 @@ export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
       <body>
         <Header lang={locale} nav={dict.nav} t={dict.header} />
         {children}
+        <Footer t={dict.footer} copy={dict.contact} home={locale === "en" ? "/en" : "/"} />
         <ScrollRail t={dict.rail} sectionNames={dict.sections} />
       </body>
     </html>
