@@ -1,10 +1,11 @@
 @use "@/styles/mixins";
 
-.section {
+// Блок process: заголовок секції, сцена «еволюція сторінки» і 4 кроки.
+.process {
   @include mixins.section;
 }
 
-.inner {
+.process__inner {
   @include mixins.inner;
   display: flex;
   flex-direction: column;
@@ -15,7 +16,7 @@
   }
 }
 
-.header {
+.process__header {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -25,7 +26,7 @@
   }
 }
 
-.title {
+.process__title {
   font-size: 28px;
   line-height: 1.15;
 
@@ -39,60 +40,60 @@
   }
 }
 
-.scene {
+// Сцена
+.process__scene {
   display: flex;
   flex-direction: column;
   gap: 24px;
 
   @include mixins.up(lg) {
-    gap: 4px;
+    gap: 12px;
   }
 }
 
-.drawing {
+.process__drawing {
   display: block;
   width: 100%;
   height: auto;
   overflow: visible;
 }
 
-.draw {
+.process__stroke {
   fill: none;
   stroke-width: 1;
   vector-effect: non-scaling-stroke;
 }
 
-.main {
+.process__stroke--main {
   stroke: var(--scene-line);
 }
 
-.sub {
+.process__stroke--sub {
   stroke: var(--scene-line-2);
 }
 
-.accent {
+.process__stroke--accent {
   stroke: var(--accent);
 }
 
-.plot {
-  fill: none;
-  stroke: var(--accent);
-  stroke-opacity: 0.75;
-  stroke-dasharray: 4 4;
-  vector-effect: non-scaling-stroke;
+.process__stroke--dashed {
+  stroke-dasharray: 2 4;
 }
 
-.fill,
-.light {
+.process__fill--block {
+  fill: rgb(232 230 227 / 14%);
+}
+
+.process__fill--accent {
   fill: var(--accent);
 }
 
-.light {
-  opacity: 0.9;
+.process__fill--ok {
+  fill: var(--ok);
 }
 
 // Кроки: на мобільному — вертикальна лінія зліва, від 1024px — 4 колонки.
-.steps {
+.process__steps {
   margin: 0;
   padding: 0 0 0 22px;
   list-style: none;
@@ -110,7 +111,7 @@
   }
 }
 
-.step {
+.process__step {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -123,7 +124,7 @@
   }
 }
 
-.dot {
+.process__dot {
   position: absolute;
   left: -28px;
   top: 6px;
@@ -133,7 +134,7 @@
   background: var(--accent);
   transition: transform 0.3s;
 
-  .step:hover & {
+  .process__step:hover & {
     transform: scale(1.7);
   }
 
@@ -143,7 +144,7 @@
   }
 }
 
-.kicker {
+.process__kicker {
   font-size: 12px;
   color: var(--muted-2);
 
@@ -152,12 +153,12 @@
   }
 }
 
-.stepTitle {
+.process__step-title {
   font-size: 18px;
   line-height: 1.25;
   transition: color 0.25s;
 
-  .step:hover & {
+  .process__step:hover & {
     color: var(--accent);
   }
 
@@ -166,12 +167,12 @@
   }
 }
 
-.text {
+.process__text {
   font-size: 14px;
   color: var(--muted);
 }
 
-// Анімації: запускаються один раз, коли сцена з'являється (клас .typed).
+// Анімації: запускаються один раз, коли сцена з'являється (модифікатор --typed).
 @keyframes draw {
   from {
     stroke-dashoffset: 1;
@@ -188,13 +189,9 @@
   }
 }
 
-@keyframes light-on {
-  from {
+@keyframes blink {
+  50% {
     opacity: 0;
-  }
-
-  to {
-    opacity: 0.9;
   }
 }
 
@@ -219,45 +216,49 @@
 }
 
 @include mixins.motion-safe {
-  :global(.js) .scene:not(.typed) {
-    .draw {
-      stroke-dasharray: 1;
-      stroke-dashoffset: 1;
-    }
-
-    .fade,
-    .light {
+  :global(.js) .process__scene:not(.process__scene--typed) {
+    .process__stroke {
       opacity: 0;
     }
 
-    .dot {
+    .process__fill {
+      opacity: 0;
+    }
+
+    .process__dot {
       background-color: var(--line-3);
     }
 
-    .step {
+    .process__step {
       opacity: 0.3;
     }
   }
 
-  .typed {
-    .draw {
+  .process__scene--typed {
+    .process__stroke:not(.process__stroke--dashed) {
       stroke-dasharray: 1;
       animation: draw 1.2s cubic-bezier(0.4, 0, 0.2, 1) both;
     }
 
-    .fade {
-      animation: fade-in 0.8s ease var(--fd, 0s) both;
+    .process__stroke--dashed {
+      animation: fade-in 0.8s ease both;
     }
 
-    .light {
-      animation: light-on 0.35s ease var(--wd, 0s) both;
+    .process__fill {
+      animation: fade-in 0.6s ease var(--fd, 0s) both;
     }
 
-    .dot {
+    .process__fill--blink {
+      animation:
+        fade-in 0.6s ease var(--fd, 0s) both,
+        blink 1.06s steps(1) calc(var(--fd, 0s) + 0.6s) infinite;
+    }
+
+    .process__dot {
       animation: dot-on 0.7s ease var(--sd, 0s) both;
     }
 
-    .step {
+    .process__step {
       animation: step-on 0.6s ease var(--sd, 0s) both;
     }
   }

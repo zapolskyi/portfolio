@@ -40,10 +40,10 @@ export function PointField() {
       }
     };
 
-    // Колір акценту в rgb() — щоб розпізнати акцентні лінії у SVG.
-    const accentColor = () => {
+    // Кольори токенів у rgb() — щоб розпізнати акцентні й «онлайн»-лінії у SVG.
+    const tokenColor = (token: string) => {
       const probe = document.createElement("span");
-      probe.style.color = "var(--accent)";
+      probe.style.color = `var(${token})`;
       document.body.append(probe);
       const rgb = getComputedStyle(probe).color;
       probe.remove();
@@ -58,9 +58,13 @@ export function PointField() {
       ]);
       if (cancelled) return;
 
-      const accent = accentColor();
-      field = createPointField({ canvas, accent, dense: window.innerWidth >= 1024 });
-      const loadShapes = () => field?.setShapes(sampleShapes(accent));
+      const palette = {
+        accent: tokenColor("--accent"),
+        ok: tokenColor("--ok"),
+        sub: tokenColor("--scene-line-2"),
+      };
+      field = createPointField({ canvas, ...palette, dense: window.innerWidth >= 1024 });
+      const loadShapes = () => field?.setShapes(sampleShapes(palette));
       await document.fonts.ready; // розміри SVG залежать від верстки зі шрифтом
       loadShapes();
       await field.compile();

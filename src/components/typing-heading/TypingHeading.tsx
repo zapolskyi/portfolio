@@ -9,6 +9,7 @@ export type TypingLine = { text: string; accent?: boolean };
 
 type Props = {
   as?: "h1" | "h2" | "h3" | "p" | "div";
+  id?: string; // для aria-labelledby секції
   lines: TypingLine[];
   // Інше розбиття на рядки для вузьких екранів (< 768px), якщо довгі рядки не влазять.
   linesMobile?: TypingLine[];
@@ -46,6 +47,7 @@ function timeLines(lines: TypingLine[], { charTime, delay, lineGap }: Timing) {
 
 export function TypingHeading({
   as: Tag = "h2",
+  id,
   lines,
   linesMobile,
   trigger = "view",
@@ -101,6 +103,7 @@ export function TypingHeading({
   return (
     <Tag
       ref={ref}
+      id={id}
       className={cx(
         styles.heading,
         typed && styles.typed,

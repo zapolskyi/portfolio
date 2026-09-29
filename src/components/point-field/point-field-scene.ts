@@ -23,6 +23,7 @@ const vertexShader = /* glsl */ `
   uniform vec3 uBase;
   uniform vec3 uLine;
   uniform vec3 uAccent;
+  uniform vec3 uOk;
 
   attribute vec3 aRand;
   attribute vec3 aShape0;
@@ -112,11 +113,15 @@ const vertexShader = /* glsl */ `
       vec2 wobble = vec2(sin(aRand.y * 6.2831 + uTime), cos(aRand.z * 6.2831 + uTime)) * 0.06 * swirl;
       ndc = mix(ndc, target, wp) + wobble;
 
-      float twinkle = s.z > 0.5 ? 0.8 + 0.2 * sin(uTime * 2.0 + aRand.y * 40.0) : 1.0;
-      float shapeAlpha = used ? (s.z > 0.5 ? 1.0 : 0.6) * twinkle : 0.0;
+      // Тон: 0 — лінія, 1 — акцент, 2 — «онлайн», 3 — другорядна лінія.
+      bool sub = s.z > 2.5;
+      bool tinted = s.z > 0.5 && !sub;
+      vec3 tone = s.z > 1.5 && !sub ? uOk : (tinted ? uAccent : uLine);
+      float twinkle = tinted ? 0.8 + 0.2 * sin(uTime * 2.0 + aRand.y * 40.0) : 1.0;
+      float shapeAlpha = used ? (tinted ? 1.0 : (sub ? 0.28 : 0.6)) * twinkle : 0.0;
       alpha = mix(alpha, shapeAlpha, wp);
-      color = mix(color, s.z > 0.5 ? uAccent : uLine, wp);
-      size = mix(size, uShapeSize * (s.z > 0.5 ? 1.25 : 1.0), wp);
+      color = mix(color, tone, wp);
+      size = mix(size, uShapeSize * (tinted ? 1.25 : 1.0), wp);
     }
 
     vColor = color;
@@ -148,9 +153,9 @@ export type PointField = {
   dispose: () => void;
 };
 
-type Options = { canvas: HTMLCanvasElement; accent: string; dense: boolean };
+type Options = { canvas: HTMLCanvasElement; accent: string; ok: string; dense: boolean };
 
-export function createPointField({ canvas, accent, dense }: Options): PointField {
+export function createPointField({ canvas, accent, ok, dense }: Options): PointField {
   const renderer = new THREE.WebGLRenderer({
     canvas,
     alpha: true,
@@ -203,6 +208,7 @@ export function createPointField({ canvas, accent, dense }: Options): PointField
     uBase: { value: new THREE.Color("#9a9ba0") },
     uLine: { value: new THREE.Color("#cfcdc8") },
     uAccent: { value: new THREE.Color(accent) },
+    uOk: { value: new THREE.Color(ok) },
   };
   const material = new THREE.ShaderMaterial({
     vertexShader,
