@@ -37,6 +37,9 @@ export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
         />
       </head>
       <body>
+        <a href="#main" className="skip-link">
+          {dict.header.skip}
+        </a>
         <PointField />
         <Header lang={locale} nav={dict.nav} t={dict.header} />
         {children}

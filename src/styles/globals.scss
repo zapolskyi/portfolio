@@ -87,6 +87,29 @@ p {
   outline-offset: 3px;
 }
 
+// Посилання «Перейти до змісту»: видно лише у фокусі з клавіатури.
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: 12px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+  transform: translateY(-160%);
+  transition: transform 0.2s;
+
+  &:focus-visible {
+    transform: none;
+  }
+}
+
+main:focus {
+  outline: none;
+}
+
 .visually-hidden {
   @include mixins.visually-hidden;
 }

@@ -29,7 +29,7 @@ export default async function Home() {
   const home = (await getLocale()) === "en" ? "/en" : "/";
 
   return (
-    <main id="main">
+    <main id="main" tabIndex={-1}>
       <Hero t={hero} home={home} />
       <Marquee items={marquee} />
       <Stats t={stats} />

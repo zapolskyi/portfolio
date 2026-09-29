@@ -40,7 +40,8 @@
       "sub": "Google's score for the TORQ site on a phone",
       "lcp": "loads in 2.2 s",
       "short": "Google score · TORQ",
-      "labels": ["Speed", "Usability", "Reliability", "Google"]
+      "labels": ["Speed", "Usability", "Reliability", "Google"],
+      "of": "out of 100"
     }
   },
   "nav": {
@@ -57,7 +58,9 @@
     "ctaShort": "Contact",
     "langLabel": "Site language",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "skip": "Skip to content",
+    "menu": "Menu"
   },
   "rail": {
     "label": "Page navigation",
@@ -361,7 +364,11 @@
         "role": "[Role, company]",
         "project": "[name]"
       }
-    ]
+    ],
+    "carousel": "Client reviews",
+    "slide": "{n} of {total}",
+    "pause": "Stop rotating reviews",
+    "play": "Start rotating reviews"
   },
   "about": {
     "stackTitle": "My stack",

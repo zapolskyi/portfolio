@@ -33,10 +33,14 @@ export function Header({ lang, nav, t }: Props) {
     const burger = burgerRef.current;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     document.documentElement.style.overflow = "hidden";
+    // Решта сторінки недоступна з клавіатури й для скрінрідерів, поки меню відкрите.
+    const behind = document.querySelectorAll<HTMLElement>("main, footer, body > aside");
+    behind.forEach((el) => (el.inert = true));
     document.addEventListener("keydown", onKey);
     menuRef.current?.querySelector("a")?.focus();
     return () => {
       document.documentElement.style.overflow = "";
+      behind.forEach((el) => (el.inert = false));
       document.removeEventListener("keydown", onKey);
       burger?.focus();
     };
@@ -130,7 +134,7 @@ export function Header({ lang, nav, t }: Props) {
         className={cx(styles.header__menu, open && styles["header__menu--open"])}
         hidden={!open}
       >
-        <nav aria-label={nav.label} className={styles["header__menu-nav"]}>
+        <nav aria-label={t.menu} className={styles["header__menu-nav"]}>
           {navOrder.map((id) => (
             <Link key={id} href={href(id)} className={styles["header__menu-link"]} onClick={close}>
               {nav[id]}
