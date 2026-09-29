@@ -81,6 +81,7 @@ const fragmentShader = /* glsl */ `
 `;
 
 export type TerrainScene = {
+  compile: () => Promise<void>; // шейдери без блокування потоку (KHR_parallel_shader_compile)
   start: () => void;
   stop: () => void;
   setPointer: (x: number, y: number) => void; // NDC −1…1
@@ -106,8 +107,8 @@ export function createTerrainScene({ canvas, accent, animate, dense }: Options):
   camera.position.copy(baseCamera);
 
   // Сітка точок у площині XZ.
-  const cols = dense ? 240 : 130;
-  const rows = dense ? 150 : 90;
+  const cols = dense ? 240 : 110;
+  const rows = dense ? 150 : 70;
   const width = 30;
   const depth = 26;
   const positions = new Float32Array(cols * rows * 3);
@@ -156,6 +157,7 @@ export function createTerrainScene({ canvas, accent, animate, dense }: Options):
   let elapsed = 0;
   let frame = 0;
   let running = false;
+  let compiled = false; // до compileAsync не малюємо, інакше шейдери компілюються синхронно
 
   const render = () => {
     timer.update();
@@ -189,12 +191,16 @@ export function createTerrainScene({ canvas, accent, animate, dense }: Options):
     // На вузьких екранах відсуваємо камеру, щоб рельєф не був надто крупним.
     camera.position.z = baseCamera.z = w < 768 ? 11 : 8.5;
     camera.updateProjectionMatrix();
-    if (!running) render();
+    if (!running && compiled) render();
   };
 
   resize();
 
   return {
+    async compile() {
+      await renderer.compileAsync(scene, camera);
+      compiled = true;
+    },
     start() {
       if (running || !animate) {
         render();
