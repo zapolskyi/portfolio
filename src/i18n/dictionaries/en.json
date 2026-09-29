@@ -37,9 +37,10 @@
     "badge": "LET'S TALK · LET'S TALK · LET'S TALK · ",
     "speed": {
       "title": "Site speed",
-      "sub": "Lighthouse, mobile · torq / price",
-      "lcp": "LCP 2.2 s",
-      "short": "Lighthouse mobile · TORQ"
+      "sub": "Google's score for the TORQ site on a phone",
+      "lcp": "loads in 2.2 s",
+      "short": "Google score · TORQ",
+      "labels": ["Speed", "Usability", "Reliability", "Google"]
     }
   },
   "nav": {

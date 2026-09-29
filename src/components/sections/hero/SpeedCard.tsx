@@ -3,12 +3,9 @@ import type { Dictionary } from "@/i18n/get-dictionary";
 import styles from "./Hero.module.scss";
 
 const CIRCUMFERENCE = 301.6; // 2π × 48
-const scores = [
-  { label: "Perf", value: 99 },
-  { label: "A11y", value: 100 },
-  { label: "Best Pr.", value: 100 },
-  { label: "SEO", value: 100 },
-];
+// Lighthouse TORQ (мобільна): Performance, Accessibility, Best Practices, SEO.
+// Підписи — зрозумілою клієнту мовою (зі словника).
+const scores = [99, 100, 100, 100];
 
 type Props = { t: Dictionary["hero"]["speed"] };
 
@@ -22,8 +19,8 @@ export function SpeedCard({ t }: Props) {
         </div>
         <span className={styles.speedSub}>{t.sub}</span>
         <ul className={styles.rings}>
-          {scores.map(({ label, value }, i) => (
-            <li key={label} className={styles.ringItem}>
+          {scores.map((value, i) => (
+            <li key={t.labels[i]} className={styles.ringItem}>
               <span className={styles.ring}>
                 <svg width="56" height="56" viewBox="0 0 112 112" aria-hidden="true">
                   <circle cx="56" cy="56" r="48" className={styles.ringTrack} />
@@ -42,7 +39,7 @@ export function SpeedCard({ t }: Props) {
                 </svg>
                 <span className={styles.ringNum}>{value}</span>
               </span>
-              <span className={styles.ringLabel}>{label}</span>
+              <span className={styles.ringLabel}>{t.labels[i]}</span>
             </li>
           ))}
         </ul>

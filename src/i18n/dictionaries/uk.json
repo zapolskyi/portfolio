@@ -37,9 +37,10 @@
     "badge": "ОБГОВОРИТИ ПРОЄКТ · ОБГОВОРИТИ ПРОЄКТ · ",
     "speed": {
       "title": "Швидкість сайту",
-      "sub": "Lighthouse, мобільна версія · torq / price",
-      "lcp": "LCP 2.2 s",
-      "short": "Lighthouse mobile · TORQ"
+      "sub": "Оцінка Google для сайту TORQ на телефоні",
+      "lcp": "показ за 2.2 с",
+      "short": "Оцінка Google · TORQ",
+      "labels": ["Швидкість", "Зручність", "Надійність", "Google"]
     }
   },
   "nav": {
