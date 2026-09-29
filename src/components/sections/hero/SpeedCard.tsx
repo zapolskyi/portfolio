@@ -14,14 +14,17 @@ export function SpeedCard({ t }: Props) {
     <>
       <div className={`${styles.hero__speed} enter`} style={{ "--delay": "0.4s" } as CSSProperties}>
         <div className={styles["hero__speed-head"]}>
-          <span className={styles["hero__speed-title"]}>{t.title}</span>
-          <span className={styles["hero__speed-lcp"]}>{t.lcp}</span>
+          <p className={styles["hero__speed-title"]}>{t.title}</p>
+          <p className={styles["hero__speed-lcp"]}>{t.lcp}</p>
         </div>
-        <span className={styles["hero__speed-sub"]}>{t.sub}</span>
+        <p className={styles["hero__speed-sub"]}>{t.sub}</p>
         <ul className={styles.hero__rings}>
           {scores.map((value, i) => (
             <li key={t.labels[i]} className={styles["hero__ring-item"]}>
-              <span className={styles.hero__ring}>
+              <span className="visually-hidden">
+                {t.labels[i]}: {value} {t.of}
+              </span>
+              <span className={styles.hero__ring} aria-hidden="true">
                 <svg width="56" height="56" viewBox="0 0 112 112" aria-hidden="true">
                   <circle cx="56" cy="56" r="48" className={styles["hero__ring-track"]} />
                   <circle
@@ -39,16 +42,19 @@ export function SpeedCard({ t }: Props) {
                 </svg>
                 <span className={styles["hero__ring-num"]}>{value}</span>
               </span>
-              <span className={styles["hero__ring-label"]}>{t.labels[i]}</span>
+              <span className={styles["hero__ring-label"]} aria-hidden="true">
+                {t.labels[i]}
+              </span>
             </li>
           ))}
         </ul>
       </div>
 
-      <div className={styles["hero__speed-short"]}>
+      <p className={styles["hero__speed-short"]}>
         <span className={styles["hero__speed-short-num"]}>99</span>
+        <span className="visually-hidden"> {t.of} — </span>
         <span className={styles["hero__speed-short-text"]}>{t.short}</span>
-      </div>
+      </p>
     </>
   );
 }
