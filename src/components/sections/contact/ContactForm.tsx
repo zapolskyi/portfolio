@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState, type FormEvent } from "react";
-import { Chip } from "@/components/ui/Chip";
+import { ChoiceChip } from "@/components/ui/ChoiceChip";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { setProjectType, useProjectType } from "@/lib/contact-intent";
 import { cx } from "@/lib/cx";
@@ -47,6 +47,7 @@ export function ContactForm({ t }: Props) {
   const field = (name: Field) => ({
     id: `${id}-${name}`,
     name,
+    required: true, // aria-required; перевірку робимо самі (noValidate), з людськими текстами помилок
     "aria-invalid": errors[name] ? true : undefined,
     "aria-describedby": errors[name] ? `${id}-${name}-error` : undefined,
     onInput: () => errors[name] && setErrors((e) => ({ ...e, [name]: undefined })),
@@ -95,24 +96,34 @@ export function ContactForm({ t }: Props) {
         <legend>{t.type}</legend>
         <div className={styles.contact__chips}>
           {t.types.map((label, i) => (
-            <Chip key={label} selected={type === i} onClick={() => setProjectType(i)}>
+            <ChoiceChip
+              key={label}
+              name="type"
+              value={label}
+              checked={type === i}
+              onChange={() => setProjectType(i)}
+            >
               {label}
-            </Chip>
+            </ChoiceChip>
           ))}
         </div>
-        <input type="hidden" name="type" value={type === null ? "" : t.types[type]} />
       </fieldset>
 
       <fieldset className={styles.contact__fieldset}>
         <legend>{t.budget}</legend>
         <div className={styles.contact__chips}>
           {t.budgets.map((label, i) => (
-            <Chip key={label} selected={budget === i} onClick={() => setBudget(i)}>
+            <ChoiceChip
+              key={label}
+              name="budget"
+              value={label}
+              checked={budget === i}
+              onChange={() => setBudget(i)}
+            >
               {label}
-            </Chip>
+            </ChoiceChip>
           ))}
         </div>
-        <input type="hidden" name="budget" value={t.budgets[budget]} />
       </fieldset>
 
       <div className={styles.contact__field}>

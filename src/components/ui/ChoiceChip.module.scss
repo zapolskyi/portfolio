@@ -1,0 +1,40 @@
+@use "@/styles/mixins";
+
+.choice-chip {
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.choice-chip__input {
+  @include mixins.visually-hidden;
+}
+
+.choice-chip__label {
+  height: 44px;
+  padding-inline: 18px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line-3);
+  border-radius: var(--radius-sm);
+  color: var(--text-2);
+  font-size: 14px;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+
+  .choice-chip:hover & {
+    border-color: var(--muted-2);
+  }
+
+  .choice-chip__input:checked + & {
+    border-color: var(--text);
+    background: var(--text);
+    color: var(--on-accent);
+  }
+
+  .choice-chip__input:focus-visible + & {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+}
