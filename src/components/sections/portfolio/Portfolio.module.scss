@@ -1,0 +1,498 @@
+@use "sass:math";
+@use "@/styles/mixins";
+
+// Відступ, що вирівнює слайдер по контенту (1280px), а картки виходять за край.
+$inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
+
+@function u($px) {
+  @return math.div($px, 16) * 1em;
+}
+
+.section {
+  padding-block: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-top: 1px solid var(--line);
+
+  @include mixins.up(xl) {
+    padding-block: 96px 88px;
+    gap: 28px;
+  }
+}
+
+.labelRow,
+.titleRow,
+.controls {
+  margin-inline: $inset;
+}
+
+.labelRow {
+  padding-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+
+  @include mixins.up(xl) {
+    padding-bottom: 20px;
+  }
+}
+
+.hint {
+  display: none;
+  font-size: 13px;
+  color: var(--muted-2);
+
+  @media (hover: hover) and (pointer: fine) {
+    @include mixins.up(xl) {
+      display: block;
+    }
+  }
+}
+
+.titleRow {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @include mixins.up(xl) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    margin-bottom: 16px;
+  }
+}
+
+.title {
+  font-size: 36px;
+  line-height: 1.05;
+
+  @include mixins.up(md) {
+    font-size: 64px;
+  }
+
+  @include mixins.up(xl) {
+    font-size: 88px;
+    line-height: 1;
+  }
+}
+
+.count {
+  align-self: flex-start;
+  margin-left: 12px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--accent);
+
+  @include mixins.up(md) {
+    margin-left: 16px;
+    font-size: 18px;
+  }
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  > * {
+    flex-shrink: 0;
+  }
+
+  @include mixins.up(xl) {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: 560px;
+  }
+}
+
+// Доріжка з картками
+.track {
+  display: flex;
+  gap: 16px;
+  padding: 4px $inset 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: $inset;
+  scrollbar-width: none;
+  user-select: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    cursor: grab;
+  }
+
+  @include mixins.up(xl) {
+    gap: 24px;
+  }
+
+  &:focus-visible {
+    outline-offset: -2px;
+  }
+}
+
+.dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+
+  * {
+    pointer-events: none;
+  }
+}
+
+.card {
+  flex: 0 0 min(300px, 78vw);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  @include mixins.up(md) {
+    flex-basis: 360px;
+  }
+
+  @include mixins.up(xl) {
+    flex-basis: 420px;
+    gap: 18px;
+  }
+}
+
+.media {
+  position: relative;
+  display: block;
+  aspect-ratio: 420 / 470;
+  overflow: hidden;
+  container-type: inline-size;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #15161a;
+  transition: border-color 0.3s;
+
+  .card:hover & {
+    border-color: var(--accent);
+  }
+}
+
+.mediaDashed {
+  border-style: dashed;
+  border-color: var(--line-3);
+  background: var(--surface-1);
+}
+
+.zoom {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.8s var(--ease-out);
+
+  .card:hover & {
+    transform: scale(1.05);
+  }
+}
+
+.badge {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background: rgb(11 11 12 / 85%);
+  color: var(--text);
+  font-size: 11px;
+}
+
+// Кругла кнопка «Демо ↗» при наведенні / фокусі
+.cta {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 112px;
+  height: 112px;
+  margin: -56px 0 0 -56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 14px;
+  font-weight: 600;
+  transform: scale(0);
+  transition: transform 0.45s var(--ease-out);
+
+  .card:hover &,
+  .media:focus-visible & {
+    transform: scale(1);
+  }
+}
+
+.cardHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.cardName {
+  font-size: 20px;
+
+  @include mixins.up(xl) {
+    font-size: 24px;
+  }
+}
+
+.cardStack {
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--muted-2);
+}
+
+.cardText {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+// Заглушки та макет BRIX (розміри в em від ширини картки 420px)
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.placeholderTitle {
+  font-size: clamp(36px, 14cqw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.placeholderHint {
+  padding-inline: 16px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted-2);
+}
+
+.atom {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1;
+}
+
+.brix {
+  position: absolute;
+  inset: 0;
+  font-size: calc(100cqw / 26.25); // 420 / 16
+  background: #f2f0eb;
+  color: #1a1a18;
+}
+
+.brixCopy {
+  position: absolute;
+  left: u(28);
+  top: u(72);
+  display: flex;
+  flex-direction: column;
+  gap: u(10);
+}
+
+.brixKicker {
+  font-size: u(9);
+  letter-spacing: 0.14em;
+  color: #6b6860;
+}
+
+.brixTitle {
+  font-size: u(40);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+
+  span {
+    color: #a8283a;
+  }
+}
+
+.brixBackdrop {
+  position: absolute;
+  left: u(120);
+  top: u(210);
+  width: u(250);
+  height: u(220);
+  border-radius: u(8);
+  background: #f1d9dc;
+}
+
+.brixPack {
+  position: absolute;
+  left: u(150);
+  top: u(190);
+  width: u(180);
+  height: u(230);
+  padding: u(16);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: u(6);
+  background: #a62639;
+  color: #f6e9ea;
+  transform: rotate(-5deg);
+  box-shadow: 0 u(30) u(50) rgb(60 10 20 / 35%);
+}
+
+.brixPackTop {
+  display: flex;
+  justify-content: space-between;
+  font-size: u(8);
+  letter-spacing: 0.14em;
+}
+
+.brixPackName {
+  font-size: u(15);
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+// Остання картка-акцент
+.next {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+
+  @include mixins.up(xl) {
+    padding: 32px;
+  }
+}
+
+.nextKicker {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nextTitle {
+  position: static;
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(30px, 10.5cqw, 44px);
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  transform-origin: left center;
+}
+
+.nextCta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.nextArrow {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--on-accent);
+  color: var(--accent);
+  font-size: 22px;
+}
+
+// Прогрес, лічильник і стрілки
+.controls {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  @include mixins.up(xl) {
+    gap: 32px;
+  }
+}
+
+.bar {
+  position: relative;
+  flex-grow: 1;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--line);
+}
+
+.barFill {
+  position: absolute;
+  top: -1px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--accent);
+}
+
+.counter {
+  min-width: 64px;
+  text-align: right;
+  font-size: 13px;
+  color: var(--muted-2);
+}
+
+.arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.arrow {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line-3);
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--text);
+  font-size: 18px;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s;
+
+  &:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+
+  @include mixins.up(xl) {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@keyframes swap-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+}
+
+@include mixins.motion-safe {
+  .swap {
+    animation: swap-in 0.5s var(--ease-out) both;
+  }
+}

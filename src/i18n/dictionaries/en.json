@@ -294,5 +294,45 @@
         "text": "I move it to hosting, set up email and analytics, and show you how to run the site. [X] days of free edits."
       }
     ]
+  },
+  "portfolio": {
+    "hint": "Drag the cards or use the arrows",
+    "filterLabel": "Filter work",
+    "filters": ["All", "Stores", "Websites", "Landings", "React"],
+    "trackLabel": "Work cards",
+    "next": {
+      "kicker": "Next project",
+      "title": ["Your site", "could be", "here"],
+      "cta": "Let's talk",
+      "name": "Your business",
+      "year": "2026",
+      "text": "I'll reply with ideas, a price and a timeline within [24 hours]."
+    },
+    "demo": "Demo",
+    "openDemo": "{name} — open demo",
+    "openGithub": "{name} — open on GitHub",
+    "cards": {
+      "brix": {
+        "tag": "Store",
+        "text": "Specialty coffee store: lot passport, subscription, LiqPay and Nova Poshta."
+      },
+      "torq": {
+        "tag": "Service site",
+        "text": "Car service: booking on free slots, a price list of 184 services, maintenance calculator."
+      },
+      "ploshchyna": {
+        "tag": "Landing",
+        "text": "Renovation company landing: cost calculator, LCP 0.88 s."
+      },
+      "react": {
+        "tag": "React",
+        "name": "[Project name]",
+        "text": "[One line: what it is and what problem it solves]",
+        "shot": "[Screenshot of your React project]"
+      }
+    },
+    "screenshot": "Screenshot",
+    "arrowPrev": "Previous work",
+    "arrowNext": "Next work"
   }
 }
