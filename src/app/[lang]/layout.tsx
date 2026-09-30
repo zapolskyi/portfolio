@@ -4,6 +4,7 @@ import { Header } from "@/components/header/Header";
 import { PointField } from "@/components/point-field/PointField";
 import { ScrollRail } from "@/components/scroll-rail/ScrollRail";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
+import { siteUrl } from "@/config/site";
 import { locales } from "@/i18n/config";
 import { plexMono } from "../fonts";
 import "@/styles/globals.scss";
@@ -16,11 +17,28 @@ export function generateStaticParams() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const { meta } = await getDictionary();
+  const locale = await getLocale();
+  const path = locale === "en" ? "/en" : "/";
   return {
-    metadataBase: new URL("https://zapolskyi.com"),
+    metadataBase: new URL(siteUrl),
     title: meta.title,
     description: meta.description,
-    alternates: { languages: { uk: "/", en: "/en", "x-default": "/" } },
+    authors: [{ name: "Nazar Zapolskyi", url: siteUrl }],
+    alternates: {
+      canonical: path,
+      languages: { uk: "/", en: "/en", "x-default": "/" },
+    },
+    // og:image додає opengraph-image.tsx поруч.
+    openGraph: {
+      type: "website",
+      url: path,
+      siteName: "zapolskyi.com",
+      title: meta.title,
+      description: meta.description,
+      locale: locale === "en" ? "en_US" : "uk_UA",
+      alternateLocale: locale === "en" ? ["uk_UA"] : ["en_US"],
+    },
+    twitter: { card: "summary_large_image", title: meta.title, description: meta.description },
   };
 }
 

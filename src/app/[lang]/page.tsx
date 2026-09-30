@@ -9,7 +9,22 @@ import { Marquee } from "@/components/sections/marquee/Marquee";
 import { Reviews } from "@/components/sections/reviews/Reviews";
 import { Services } from "@/components/sections/services/Services";
 import { Stats } from "@/components/sections/stats/Stats";
+import { siteUrl, socials } from "@/config/site";
+import type { Locale } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
+
+function personJsonLd(locale: Locale, role: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: locale === "en" ? "Nazar Zapolskyi" : "Назар Заполський",
+    alternateName: locale === "en" ? "Назар Заполський" : "Nazar Zapolskyi",
+    url: locale === "en" ? `${siteUrl}/en` : siteUrl,
+    jobTitle: role,
+    sameAs: [socials.github, socials.linkedin],
+    knowsAbout: ["Next.js", "React", "WordPress", "WooCommerce", "Core Web Vitals", "WCAG 2.2"],
+  };
+}
 
 export default async function Home() {
   const {
@@ -31,6 +46,11 @@ export default async function Home() {
 
   return (
     <main id="main" tabIndex={-1}>
+      <script
+        type="application/ld+json"
+        // Структуровані дані: хто автор сайту і які в нього профілі.
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd(locale, hero.role)) }}
+      />
       <Hero t={hero} home={home} />
       <Marquee items={marquee} />
       <Stats t={stats} />
