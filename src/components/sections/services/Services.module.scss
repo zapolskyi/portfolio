@@ -16,40 +16,7 @@
 }
 
 .services__header {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-
-  @include mixins.up(lg) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 40px;
-  }
-}
-
-.services__titles {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-
-  @include mixins.up(xl) {
-    gap: 20px;
-  }
-}
-
-.services__title {
-  font-size: 28px;
-  line-height: 1.15;
-
-  @include mixins.up(md) {
-    font-size: 44px;
-  }
-
-  @include mixins.up(xl) {
-    font-size: 52px;
-    line-height: 1.12;
-  }
+  @include mixins.section-header;
 }
 
 .services__lead {

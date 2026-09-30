@@ -21,21 +21,18 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
   }
 }
 
-.portfolio__label-row,
 .portfolio__title-row,
 .portfolio__controls {
   margin-inline: $inset;
 }
 
-.portfolio__label-row {
-  padding-bottom: 14px;
+.portfolio__aside {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--line);
+  flex-direction: column;
+  gap: 12px;
 
-  @include mixins.up(xl) {
-    padding-bottom: 20px;
+  @include mixins.up(lg) {
+    align-items: flex-end;
   }
 }
 
@@ -52,43 +49,10 @@ $inset: max(var(--gutter), calc((100% - var(--content-width)) / 2));
 }
 
 .portfolio__title-row {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  @include mixins.section-header;
 
   @include mixins.up(xl) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 40px;
     margin-bottom: 16px;
-  }
-}
-
-.portfolio__title {
-  font-size: 36px;
-  line-height: 1.05;
-
-  @include mixins.up(md) {
-    font-size: 64px;
-  }
-
-  @include mixins.up(xl) {
-    font-size: 88px;
-    line-height: 1;
-  }
-}
-
-.portfolio__count {
-  align-self: flex-start;
-  margin-left: 12px;
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--accent);
-
-  @include mixins.up(md) {
-    margin-left: 16px;
-    font-size: 18px;
   }
 }
 

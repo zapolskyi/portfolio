@@ -46,3 +46,17 @@ $breakpoints: (
   max-width: var(--content-width);
   margin-inline: auto;
 }
+
+// Шапка секції: заголовок ліворуч, пояснення / фільтри праворуч (від 1024px).
+@mixin section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  @include up(lg) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+  }
+}

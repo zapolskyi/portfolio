@@ -16,25 +16,7 @@
 }
 
 .projects__header {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-
-  @include mixins.up(xl) {
-    gap: 28px;
-  }
-}
-
-.projects__label-row {
-  padding-bottom: 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--line);
-
-  @include mixins.up(xl) {
-    padding-bottom: 20px;
-  }
+  @include mixins.section-header;
 }
 
 .projects__hint {
@@ -44,32 +26,6 @@
 
   @include mixins.up(xl) {
     display: block;
-  }
-}
-
-.projects__title {
-  font-size: 36px;
-  line-height: 1.05;
-
-  @include mixins.up(md) {
-    font-size: 64px;
-  }
-
-  @include mixins.up(xl) {
-    font-size: 88px;
-    line-height: 1;
-  }
-}
-
-.projects__count {
-  align-self: flex-start;
-  margin-left: 16px;
-  font-size: 18px;
-  font-weight: 400;
-  color: var(--accent);
-
-  @media (width < 768px) {
-    display: none;
   }
 }
 

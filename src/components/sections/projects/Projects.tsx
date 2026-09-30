@@ -1,5 +1,4 @@
-import { TypingHeading } from "@/components/typing-heading/TypingHeading";
-import { SectionLabel } from "@/components/ui/SectionLabel";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { projects } from "@/content/projects";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { ProjectShowcase } from "./ProjectShowcase";
@@ -12,20 +11,8 @@ export function Projects({ t, heading, home }: Props) {
     <section id="work" className={styles.projects} aria-labelledby="work-title">
       <div className={styles.projects__inner}>
         <header className={`${styles.projects__header} reveal`}>
-          <div className={styles["projects__label-row"]}>
-            <SectionLabel index={1}>{heading.label}</SectionLabel>
-            <span className={styles.projects__hint}>{t.hint}</span>
-          </div>
-          <TypingHeading
-            id="work-title"
-            lines={heading.lines}
-            className={styles.projects__title}
-            after={
-              <span className={styles.projects__count} aria-hidden="true">
-                ({String(projects.length).padStart(2, "0")})
-              </span>
-            }
-          />
+          <SectionHeading index={1} id="work-title" heading={heading} />
+          <p className={styles.projects__hint}>{t.hint}</p>
         </header>
         <div className="reveal">
           <ProjectShowcase projects={projects} t={t} home={home} />

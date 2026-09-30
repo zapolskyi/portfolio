@@ -1,6 +1,5 @@
-import { TypingHeading } from "@/components/typing-heading/TypingHeading";
 import { Button } from "@/components/ui/Button";
-import { SectionLabel } from "@/components/ui/SectionLabel";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { socials } from "@/config/site";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import styles from "./About.module.scss";
@@ -35,8 +34,7 @@ export function About({ t, heading }: Props) {
     <section id="about" className={styles.about} aria-labelledby="about-title">
       <div className={styles.about__inner}>
         <div className={`${styles.about__content} reveal`}>
-          <SectionLabel index={6}>{heading.label}</SectionLabel>
-          <TypingHeading id="about-title" lines={heading.lines} className={styles.about__title} />
+          <SectionHeading index={6} id="about-title" heading={heading} />
           <p className={styles.about__text}>{t.text}</p>
           <ul className={styles.about__perks}>
             {t.perks.map((perk) => (

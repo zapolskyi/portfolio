@@ -44,20 +44,6 @@
   }
 }
 
-.contact__title {
-  font-size: 32px;
-  line-height: 1.02;
-  text-transform: uppercase;
-
-  @include mixins.up(md) {
-    font-size: 64px;
-  }
-
-  @include mixins.up(xl) {
-    font-size: 104px;
-  }
-}
-
 .contact__grid {
   order: 3;
   display: flex;

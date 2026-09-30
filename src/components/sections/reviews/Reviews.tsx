@@ -1,5 +1,4 @@
-import { TypingHeading } from "@/components/typing-heading/TypingHeading";
-import { SectionLabel } from "@/components/ui/SectionLabel";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import styles from "./Reviews.module.scss";
 import { ReviewsCarousel } from "./ReviewsCarousel";
@@ -11,12 +10,7 @@ export function Reviews({ t, heading }: Props) {
     <section id="reviews" className={styles.reviews} aria-labelledby="reviews-title">
       <div className={`${styles.reviews__inner} reveal`}>
         <div className={styles.reviews__intro}>
-          <SectionLabel index={5}>{heading.label}</SectionLabel>
-          <TypingHeading
-            id="reviews-title"
-            lines={heading.lines}
-            className={styles.reviews__title}
-          />
+          <SectionHeading index={5} id="reviews-title" heading={heading} />
           <p className={styles.reviews__lead}>{t.lead}</p>
         </div>
         <ReviewsCarousel t={t} />

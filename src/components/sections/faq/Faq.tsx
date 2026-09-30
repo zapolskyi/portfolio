@@ -1,5 +1,4 @@
-import { TypingHeading } from "@/components/typing-heading/TypingHeading";
-import { SectionLabel } from "@/components/ui/SectionLabel";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import styles from "./Faq.module.scss";
 
@@ -12,8 +11,7 @@ export function Faq({ t, heading }: Props) {
     <section id="faq" className={styles.faq} aria-labelledby="faq-title">
       <div className={styles.faq__inner}>
         <div className={`${styles.faq__intro} reveal`}>
-          <SectionLabel index={7}>{heading.label}</SectionLabel>
-          <TypingHeading id="faq-title" lines={heading.lines} className={styles.faq__title} />
+          <SectionHeading index={7} id="faq-title" heading={heading} />
           <p className={styles.faq__lead}>{t.lead}</p>
         </div>
 

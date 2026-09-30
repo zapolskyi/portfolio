@@ -8,7 +8,7 @@ import {
   type MouseEvent,
   type PointerEvent,
 } from "react";
-import { TypingHeading } from "@/components/typing-heading/TypingHeading";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Chip } from "@/components/ui/Chip";
 import type { PortfolioCard } from "@/content/portfolio";
 import type { Dictionary } from "@/i18n/get-dictionary";
@@ -109,22 +109,16 @@ export function PortfolioSlider({ cards, t, heading, home }: Props) {
   return (
     <>
       <div className={cx(styles["portfolio__title-row"], "reveal")}>
-        <TypingHeading
-          id="portfolio-title"
-          lines={heading.lines}
-          className={styles.portfolio__title}
-          after={
-            <span className={styles.portfolio__count} aria-hidden="true">
-              ({pad(shown.length)})
-            </span>
-          }
-        />
-        <div role="group" aria-label={t.filterLabel} className={styles.portfolio__filters}>
-          {t.filters.map((label, i) => (
-            <Chip key={label} selected={filter === i} onClick={() => pickFilter(i)}>
-              {label}
-            </Chip>
-          ))}
+        <SectionHeading index={4} id="portfolio-title" heading={heading} />
+        <div className={styles.portfolio__aside}>
+          <div role="group" aria-label={t.filterLabel} className={styles.portfolio__filters}>
+            {t.filters.map((label, i) => (
+              <Chip key={label} selected={filter === i} onClick={() => pickFilter(i)}>
+                {label}
+              </Chip>
+            ))}
+          </div>
+          <p className={styles.portfolio__hint}>{t.hint}</p>
         </div>
       </div>
 

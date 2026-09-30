@@ -131,7 +131,7 @@
       caret var(--t) linear var(--dl);
   }
 
-  // Ховаємо текст до старту, лише якщо JS працює (клас .typing-heading__js ставить layout).
+  // Ховаємо текст до старту, лише якщо JS працює (клас .js ставить layout).
   :global(.js)
     .typing-heading:not(.typing-heading--typed):not(.typing-heading--ghost)
     .typing-heading__text {

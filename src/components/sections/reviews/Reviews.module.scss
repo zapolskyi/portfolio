@@ -37,20 +37,6 @@
   }
 }
 
-.reviews__title {
-  font-size: 28px;
-  line-height: 1.15;
-
-  @include mixins.up(md) {
-    font-size: 44px;
-  }
-
-  @include mixins.up(xl) {
-    font-size: 52px;
-    line-height: 1.12;
-  }
-}
-
 .reviews__lead {
   font-size: 14px;
   color: var(--muted);

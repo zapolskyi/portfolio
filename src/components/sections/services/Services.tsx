@@ -1,5 +1,4 @@
-import { TypingHeading } from "@/components/typing-heading/TypingHeading";
-import { SectionLabel } from "@/components/ui/SectionLabel";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Tag } from "@/components/ui/Tag";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { cx } from "@/lib/cx";
@@ -17,14 +16,7 @@ export function Services({ t, heading, home }: Props) {
     <section id="services" className={styles.services} aria-labelledby="services-title">
       <div className={styles.services__inner}>
         <header className={cx(styles.services__header, "reveal")}>
-          <div className={styles.services__titles}>
-            <SectionLabel index={2}>{heading.label}</SectionLabel>
-            <TypingHeading
-              id="services-title"
-              lines={heading.lines}
-              className={styles.services__title}
-            />
-          </div>
+          <SectionHeading index={2} id="services-title" heading={heading} />
           <p className={styles.services__lead}>{t.lead}</p>
         </header>
 

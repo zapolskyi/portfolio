@@ -1,6 +1,5 @@
-import { TypingHeading } from "@/components/typing-heading/TypingHeading";
 import { CopyButton } from "@/components/ui/CopyButton";
-import { SectionLabel } from "@/components/ui/SectionLabel";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { contacts, socials } from "@/config/site";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import styles from "./Contact.module.scss";
@@ -15,12 +14,7 @@ export function Contact({ t, heading }: Props) {
       <div className={styles.contact__inner}>
         <PlotScene className={styles.contact__scene} />
         <header className={styles.contact__header}>
-          <SectionLabel index={8}>{heading.label}</SectionLabel>
-          <TypingHeading
-            id="contact-title"
-            lines={heading.lines}
-            className={styles.contact__title}
-          />
+          <SectionHeading index={8} id="contact-title" heading={heading} />
         </header>
 
         <div className={styles.contact__grid}>

@@ -1,6 +1,5 @@
 import type { CSSProperties } from "react";
-import { TypingHeading } from "@/components/typing-heading/TypingHeading";
-import { SectionLabel } from "@/components/ui/SectionLabel";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { cx } from "@/lib/cx";
 import styles from "./Process.module.scss";
@@ -13,13 +12,7 @@ export function Process({ t, heading }: Props) {
     <section id="process" className={styles.process} aria-labelledby="process-title">
       <div className={styles.process__inner}>
         <header className={cx(styles.process__header, "reveal")}>
-          <SectionLabel index={3}>{heading.label}</SectionLabel>
-          <TypingHeading
-            id="process-title"
-            lines={heading.lines}
-            linesMobile={heading.linesMobile}
-            className={styles.process__title}
-          />
+          <SectionHeading index={3} id="process-title" heading={heading} />
         </header>
 
         <ProcessScene>

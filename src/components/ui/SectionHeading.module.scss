@@ -1,0 +1,25 @@
+@use "@/styles/mixins";
+
+.section-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  @include mixins.up(xl) {
+    gap: 20px;
+  }
+}
+
+.section-heading__title {
+  font-size: 28px;
+  line-height: 1.15;
+
+  @include mixins.up(md) {
+    font-size: 44px;
+  }
+
+  @include mixins.up(xl) {
+    font-size: 52px;
+    line-height: 1.12;
+  }
+}
