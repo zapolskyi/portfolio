@@ -32,10 +32,17 @@
   grid-template-areas: "intro" "visual" "body";
   gap: 22px;
 
-  @include mixins.up(xl) {
-    grid-template-columns: minmax(0, 1fr) 420px;
+  // Від 1024px — дві колонки (планшет горизонтально: фото менше, плашка коротка).
+  @include mixins.up(lg) {
+    grid-template-columns: minmax(0, 1fr) 340px;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: "intro visual" "body visual";
+    column-gap: 48px;
+    row-gap: 28px;
+  }
+
+  @include mixins.up(xl) {
+    grid-template-columns: minmax(0, 1fr) 420px;
     column-gap: 72px;
     row-gap: 32px;
   }
@@ -48,9 +55,12 @@
   flex-direction: column;
   gap: 22px;
 
+  @include mixins.up(lg) {
+    align-self: end;
+  }
+
   @include mixins.up(xl) {
     gap: 32px;
-    align-self: end;
   }
 }
 
@@ -102,9 +112,12 @@
   flex-direction: column;
   gap: 20px;
 
+  @include mixins.up(lg) {
+    align-self: start;
+  }
+
   @include mixins.up(xl) {
     gap: 32px;
-    align-self: start;
   }
 }
 
@@ -178,8 +191,13 @@
   --photo-bottom: 40px;
   --delay: 0.2s;
 
-  @include mixins.up(xl) {
+  @include mixins.up(lg) {
     max-width: none;
+    height: 460px;
+    align-self: center;
+  }
+
+  @include mixins.up(xl) {
     height: 600px;
     align-self: center;
     --photo-bottom: 56px;
@@ -283,8 +301,9 @@
   align-items: center;
   justify-content: center;
 
+  // Не заходить під кастомний скролбар (він займає 14–58px від правого краю).
   @include mixins.up(xl) {
-    right: -40px;
+    right: -16px;
     top: -36px;
     bottom: auto;
     width: 132px;
