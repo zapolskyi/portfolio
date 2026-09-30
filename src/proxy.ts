@@ -21,6 +21,7 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Пропускаємо службові шляхи й файли з розширенням (favicon.ico, зображення тощо).
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  // Пропускаємо службові шляхи, файли з розширенням і маршрути метаданих
+  // (іконки, OG-картинки), які Next віддає напряму.
+  matcher: ["/((?!api|_next|_vercel|apple-icon|icon|(?:uk|en)/opengraph-image|.*\\..*).*)"],
 };
