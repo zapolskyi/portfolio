@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
     // Один лендинг, більшість відвідувачів — нові: CSS у <head> прибирає
     // блокувальні запити й прискорює перше малювання.
     inlineCss: true,
+    // Корневий layout — у app/[lang], тож єдина 404 для неіснуючих адрес —
+    // app/global-not-found.tsx (рендериться в обхід layout).
+    globalNotFound: true,
   },
 };
 

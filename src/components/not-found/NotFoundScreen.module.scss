@@ -1,0 +1,101 @@
+@use "@/styles/mixins";
+
+.not-found {
+  min-height: 100dvh;
+  padding: 24px var(--gutter) 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.not-found__logo {
+  align-self: flex-start;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.not-found__dot {
+  color: var(--accent);
+}
+
+.not-found__body {
+  @include mixins.inner;
+  max-width: 760px;
+  margin-block: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.not-found__label {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.not-found__title {
+  font-size: 36px;
+  line-height: 1.1;
+
+  @include mixins.up(md) {
+    font-size: 64px;
+  }
+}
+
+.not-found__terminal {
+  margin: 8px 0;
+  padding: 20px 22px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+}
+
+.not-found__code {
+  margin: 0;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  color: var(--text-2);
+}
+
+.not-found__prompt {
+  color: var(--muted-2);
+}
+
+.not-found__error {
+  color: var(--accent);
+}
+
+.not-found__cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  vertical-align: text-bottom;
+  background: var(--accent);
+}
+
+.not-found__text {
+  max-width: 560px;
+  color: var(--muted);
+}
+
+.not-found__actions {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@include mixins.motion-safe {
+  .not-found__cursor {
+    animation: blink 1.06s steps(1) infinite;
+  }
+}
