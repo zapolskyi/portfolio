@@ -1,14 +1,19 @@
 import { CopyButton } from "@/components/ui/CopyButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { contacts, socials } from "@/config/site";
+import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import styles from "./Contact.module.scss";
 import { ContactForm } from "./ContactForm";
 import { PlotScene } from "./PlotScene";
 
-type Props = { t: Dictionary["contact"]; heading: Dictionary["headings"]["contact"] };
+type Props = {
+  t: Dictionary["contact"];
+  heading: Dictionary["headings"]["contact"];
+  lang: Locale;
+};
 
-export function Contact({ t, heading }: Props) {
+export function Contact({ t, heading, lang }: Props) {
   return (
     <section id="contact" className={styles.contact} aria-labelledby="contact-title">
       <div className={styles.contact__inner}>
@@ -63,7 +68,7 @@ export function Contact({ t, heading }: Props) {
             </figure>
           </div>
 
-          <ContactForm t={t.form} />
+          <ContactForm t={t.form} lang={lang} />
         </div>
       </div>
     </section>

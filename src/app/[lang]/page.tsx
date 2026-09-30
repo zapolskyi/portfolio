@@ -26,7 +26,8 @@ export default async function Home() {
     contact,
     headings,
   } = await getDictionary();
-  const home = (await getLocale()) === "en" ? "/en" : "/";
+  const locale = await getLocale();
+  const home = locale === "en" ? "/en" : "/";
 
   return (
     <main id="main" tabIndex={-1}>
@@ -40,7 +41,7 @@ export default async function Home() {
       <Reviews t={reviews} heading={headings.reviews} />
       <About t={about} heading={headings.about} />
       <Faq t={faq} heading={headings.faq} />
-      <Contact t={contact} heading={headings.contact} />
+      <Contact t={contact} heading={headings.contact} lang={locale} />
     </main>
   );
 }

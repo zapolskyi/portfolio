@@ -468,7 +468,13 @@
         "contact": "Add a Telegram (@username) or an email",
         "message": "Describe the task in at least one sentence"
       },
-      "pending": "Sending is being connected — for now, message me on Telegram or by email."
+      "sending": "Sending…",
+      "successTitle": "Thank you! Request received",
+      "successText": "I'll reply within [24 hours] with questions, a rough price and a timeline.",
+      "another": "Send another one",
+      "errorSend": "Couldn't send the request. Please try again or message me on Telegram or by email.",
+      "unavailable": "The form isn't connected yet — please message me on Telegram or by email above.",
+      "honeypot": "Leave this field empty"
     }
   },
   "footer": {

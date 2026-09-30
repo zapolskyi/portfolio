@@ -294,6 +294,40 @@
   }
 }
 
+// Пастка для ботів — поза екраном (не display:none: деякі боти це перевіряють).
+.contact__trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.contact__submit:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.contact__success {
+  min-height: 320px;
+  justify-content: center;
+  gap: 12px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.contact__success-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.contact__success-text {
+  color: var(--text-2);
+}
+
 .contact__status {
   font-size: 14px;
   color: var(--text-2);

@@ -1,72 +1,113 @@
 "use client";
 
-import { useId, useState, type FormEvent } from "react";
+import { useActionState, useEffect, useId, useRef, useState, type FormEvent } from "react";
+import { sendContactRequest } from "@/app/actions/contact";
 import { ChoiceChip } from "@/components/ui/ChoiceChip";
+import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
+import { invalidFields, type ContactField, type ContactState } from "@/lib/contact/rules";
 import { setProjectType, useProjectType } from "@/lib/contact-intent";
 import { cx } from "@/lib/cx";
 import styles from "./Contact.module.scss";
 
-type Props = { t: Dictionary["contact"]["form"] };
-type Field = "name" | "contact" | "message";
+type Props = { t: Dictionary["contact"]["form"]; lang: Locale };
 
-const CONTACT_RE = /^(@[\w]{4,}|[^\s@]+@[^\s@]+\.[^\s@]+)$/;
+const initial: ContactState = { status: "idle" };
 
-// Форма заявки: клієнтська валідація і стани чипів. Тип проєкту спільний
-// з «Послугами» (contact-intent). Відправка на сервер — фаза 6.
-export function ContactForm({ t }: Props) {
+// Форма заявки → Server Action → Telegram. Спершу миттєва перевірка на клієнті
+// (та сама Zod-схема, що й на сервері), тип проєкту спільний із «Послугами».
+export function ContactForm({ t, lang }: Props) {
   const id = useId();
   const type = useProjectType();
   const [budget, setBudget] = useState(3);
-  const [errors, setErrors] = useState<Partial<Record<Field, string>>>({});
-  const [status, setStatus] = useState<string | null>(null);
+  const [clientErrors, setErrors] = useState<ContactField[]>([]);
+  const [state, formAction, pending] = useActionState(sendContactRequest, initial);
+  const successRef = useRef<HTMLDivElement>(null);
+  const startedAt = useRef(0);
+  const startedInput = useRef<HTMLInputElement>(null);
 
-  const validate = (data: FormData) => {
-    const next: Partial<Record<Field, string>> = {};
-    if (!String(data.get("name") ?? "").trim()) next.name = t.errors.name;
-    if (!CONTACT_RE.test(String(data.get("contact") ?? "").trim())) next.contact = t.errors.contact;
-    if (String(data.get("message") ?? "").trim().length < 10) next.message = t.errors.message;
-    return next;
-  };
+  // Час показу форми — для антиспаму (заповнення швидше 3 с = бот).
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
+
+  // Після успіху фокус — на підтвердження, щоб його почули скрінрідери.
+  useEffect(() => {
+    if (state.status === "sent") successRef.current?.focus();
+  }, [state]);
+
+  // Помилки з сервера показуємо, лише якщо клієнтську перевірку обійшли.
+  const errors =
+    clientErrors.length === 0 && state.status === "invalid" ? state.fields : clientErrors;
+
+  const messages: Record<ContactField, string> = t.errors;
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
     const form = e.currentTarget;
-    const next = validate(new FormData(form));
-    setErrors(next);
-    const first = Object.keys(next)[0];
-    if (first) {
-      form.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
-      setStatus(null);
-      return;
+    if (startedInput.current) startedInput.current.value = String(startedAt.current);
+    const bad = invalidFields(new FormData(form));
+    setErrors(bad);
+    if (bad.length) {
+      e.preventDefault();
+      form.querySelector<HTMLElement>(`[name="${bad[0]}"]`)?.focus();
     }
-    // TODO(фаза 6): Server Action + Zod-схема, відправка заявки.
-    setStatus(t.pending);
   };
 
-  const field = (name: Field) => ({
-    id: `${id}-${name}`,
-    name,
-    required: true, // aria-required; перевірку робимо самі (noValidate), з людськими текстами помилок
-    "aria-invalid": errors[name] ? true : undefined,
-    "aria-describedby": errors[name] ? `${id}-${name}-error` : undefined,
-    onInput: () => errors[name] && setErrors((e) => ({ ...e, [name]: undefined })),
-  });
+  if (state.status === "sent") {
+    return (
+      <div
+        ref={successRef}
+        tabIndex={-1}
+        role="status"
+        className={cx(styles.contact__form, styles.contact__success)}
+      >
+        <p className={styles["contact__success-title"]}>{t.successTitle}</p>
+        <p className={styles["contact__success-text"]}>{t.successText}</p>
+      </div>
+    );
+  }
 
-  const error = (name: Field) =>
-    errors[name] && (
+  const field = (name: ContactField) => {
+    const invalid = errors.includes(name);
+    return {
+      id: `${id}-${name}`,
+      name,
+      required: true, // aria-required; перевіряємо самі (noValidate) з людськими текстами
+      "aria-invalid": invalid || undefined,
+      "aria-describedby": invalid ? `${id}-${name}-error` : undefined,
+      onInput: () => invalid && setErrors((list) => list.filter((f) => f !== name)),
+    };
+  };
+
+  const error = (name: ContactField) =>
+    errors.includes(name) && (
       <span id={`${id}-${name}-error`} className={styles.contact__error}>
-        {errors[name]}
+        {messages[name]}
       </span>
     );
+
+  const statusText =
+    state.status === "error" ? t.errorSend : state.status === "unavailable" ? t.unavailable : "";
 
   return (
     <form
       className={cx(styles.contact__form, "reveal")}
       aria-label={t.label}
       noValidate
+      action={formAction}
       onSubmit={onSubmit}
+      aria-busy={pending || undefined}
     >
+      <input type="hidden" name="lang" value={lang} />
+      <input ref={startedInput} type="hidden" name="startedAt" defaultValue="" />
+      {/* Пастка для ботів: людина цього поля не бачить і не заповнює. */}
+      <div className={styles.contact__trap} aria-hidden="true">
+        <label>
+          {t.honeypot}
+          <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
+
       <div className={styles.contact__row}>
         <div className={styles.contact__field}>
           <label htmlFor={`${id}-name`}>{t.name}</label>
@@ -137,14 +178,16 @@ export function ContactForm({ t }: Props) {
         {error("message")}
       </div>
 
-      <button type="submit" className={styles.contact__submit}>
-        {t.submit}
-        <span className={styles["contact__submit-arrow"]} aria-hidden="true">
-          →
-        </span>
+      <button type="submit" className={styles.contact__submit} disabled={pending}>
+        {pending ? t.sending : t.submit}
+        {!pending && (
+          <span className={styles["contact__submit-arrow"]} aria-hidden="true">
+            →
+          </span>
+        )}
       </button>
       <p className={styles.contact__status} role="status">
-        {status}
+        {statusText}
       </p>
       <span className={styles.contact__note}>{t.note}</span>
     </form>
